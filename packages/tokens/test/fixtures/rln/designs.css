@@ -1,0 +1,21 @@
+/*
+ * The designs, each behind `data-design` on the root element.
+ *
+ * A design sets no colours; those come from `palettes.css`, so any palette
+ * goes with any design. Mostly a design is numbers. `styles/base.css` holds one set of tokens for spacing,
+ * control sizes, radii, type and the width of a page, and a design is that set
+ * with different values; the component rules are only for the parts a number
+ * cannot say, such as whether an active row is a filled pill or a bar in the
+ * margin.
+ *
+ * Classic is the absence of an attribute rather than a block here, so nothing
+ * in this file can change what the app looked like before it existed.
+ */
+
+@import './designs/shared.css';
+@import './designs/linear.css';
+@import './designs/aurora.css';
+@import './designs/slate.css';
+@import './designs/contrast.css';
+@import './designs/editorial.css';
+@import './designs/touch-floor.css';

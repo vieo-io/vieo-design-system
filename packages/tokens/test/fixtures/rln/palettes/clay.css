@@ -1,0 +1,48 @@
+/* Clay — Editorial's warm paper and terracotta. */
+:root[data-palette='clay'] {
+	--bg: #fdfbf7;
+	--bg-elev: #f5f1e8;
+	--bg-hover: #ebe5d7;
+	--border: #e5dece;
+	--border-strong: #d1c8b3;
+	--text: #231f19;
+	--muted: #8a8173;
+	--accent: #b0563a;
+	--accent-soft: #f5e6de;
+	--selection: #d6a898;
+	--accent-ink: #fdfbf7;
+	--glow-1: #b0563a;
+	--glow-2: #d9a441;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='clay']:not([data-theme='light']) {
+		--bg: #1a1815;
+		--bg-elev: #211e1a;
+		--bg-hover: #2c2822;
+		--border: #35302a;
+		--border-strong: #4a443b;
+		--text: #ece5d8;
+		--muted: #958c7c;
+		--accent: #d98060;
+		--accent-soft: #3a2a23;
+		--selection: #664233;
+		--accent-ink: #1a1815;
+		--glow-1: #d98060;
+		--glow-2: #e0b25a;
+	}
+}
+:root[data-palette='clay'][data-theme='dark'] {
+	--bg: #1a1815;
+	--bg-elev: #211e1a;
+	--bg-hover: #2c2822;
+	--border: #35302a;
+	--border-strong: #4a443b;
+	--text: #ece5d8;
+	--muted: #958c7c;
+	--accent: #d98060;
+	--accent-soft: #3a2a23;
+	--selection: #664233;
+	--accent-ink: #1a1815;
+	--glow-1: #d98060;
+	--glow-2: #e0b25a;
+}

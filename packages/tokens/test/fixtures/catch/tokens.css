@@ -1,0 +1,115 @@
+:root {
+	--bg: #ffffff;
+	--bg-elev: #f7f7f5;
+	--panel: var(--bg);
+	--bg-hover: #ecebe8;
+	--border: #e3e2df;
+	--text: #1f1f1d;
+	--muted: #8a8a84;
+	--accent: #3b6fe0;
+	--accent-soft: #e8effc;
+	--accent-ink: #ffffff;
+	--border-strong: #d2d1cc;
+	--danger: #c03545;
+	color-scheme: light dark;
+}
+
+/*
+ * The dimensions a design is allowed to move, which `[data-design]` in
+ * `designs.css` overrides. These values hold only until index.html sets a design.
+ */
+:root {
+	--font-family-ui:
+		ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--font-family-display: var(--font-family-ui);
+	/* The transcript and the notes. A design may set them in a serif and leave
+	   the chrome alone. */
+	--font-family-prose: var(--font-family-ui);
+	--font-family-mono:
+		ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+	--font-ui: 15px;
+	--font-sm: 13px;
+	--font-xs: 12px;
+	/* The meeting title, and the rename input it turns into. */
+	--font-title: clamp(24px, 3.2vw, 30px);
+	--tracking-title: -0.025em;
+	--tracking-ui: normal;
+	--weight-strong: 600;
+	--line-ui: 1.45;
+
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+
+	--control-height: 36px;
+	--control-height-sm: 30px;
+	--control-px: 12px;
+	/* One row of the sidebar, and of anything that lists like it. */
+	--row-height: 34px;
+	--row-gap: 0px;
+	--row-indent: 14px;
+
+	--icon-size: 18px;
+	--icon-size-sm: 15px;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+	--radius-pill: 999px;
+
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 5%);
+	--shadow-2: 0 2px 10px rgb(0 0 0 / 6%);
+	--shadow-pop: 0 16px 45px rgb(0 0 0 / 8%);
+
+	--dur: 120ms;
+	--ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+	/* What a focused button or field shows. A design that
+	   wants an offset ring rather than a glow overrides this one value. */
+	--focus-ring: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/*
+ * Dark, from two places. The media query is the machine's preference and the
+ * attribute is the Appearance setting; the attribute wins both ways, because
+ * somebody who chose light on a machine set to dark meant it.
+ */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--bg: #191919;
+		--bg-elev: #202020;
+		--bg-hover: #2b2b2b;
+		--border: #333330;
+		--text: #e8e8e4;
+		--muted: #8f8f88;
+		--accent: #5a8bff;
+		--accent-soft: #23304d;
+		--accent-ink: #0d1424;
+		--border-strong: #45453f;
+		--danger: #f08497;
+		--shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
+		--shadow-2: 0 2px 10px rgb(0 0 0 / 34%);
+		--shadow-pop: 0 16px 45px rgb(0 0 0 / 46%);
+	}
+}
+:root[data-theme='dark'] {
+	--bg: #191919;
+	--bg-elev: #202020;
+	--bg-hover: #2b2b2b;
+	--border: #333330;
+	--text: #e8e8e4;
+	--muted: #8f8f88;
+	--accent: #5a8bff;
+	--accent-soft: #23304d;
+	--accent-ink: #0d1424;
+	--border-strong: #45453f;
+	--danger: #f08497;
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
+	--shadow-2: 0 2px 10px rgb(0 0 0 / 34%);
+	--shadow-pop: 0 16px 45px rgb(0 0 0 / 46%);
+}

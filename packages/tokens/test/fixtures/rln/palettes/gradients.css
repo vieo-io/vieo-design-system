@@ -1,0 +1,65 @@
+/*
+ * Background gradients, behind `data-gradients`.
+ *
+ * Soft glows in the palette's two colours at the corners of the page and the ends of the sidebar.
+ * This file loads after `designs.css`, so these win over a design's flat sidebar at equal specificity.
+ */
+@media not (prefers-contrast: more) {
+	:root[data-gradients] .main {
+		background:
+			radial-gradient(
+				ellipse 70% 55% at 0% 0%,
+				color-mix(
+					in oklab,
+					var(--glow-1) var(--glow-strength),
+					transparent
+				),
+				transparent 70%
+			),
+			radial-gradient(
+				ellipse 55% 50% at 100% 0%,
+				color-mix(
+					in oklab,
+					var(--glow-2) calc(var(--glow-strength) * 0.8),
+					transparent
+				),
+				transparent 70%
+			),
+			radial-gradient(
+				ellipse 60% 50% at 90% 100%,
+				color-mix(
+					in oklab,
+					var(--glow-1) calc(var(--glow-strength) * 0.5),
+					transparent
+				),
+				transparent 70%
+			),
+			var(--bg);
+	}
+	:root[data-gradients] .sidebar {
+		background:
+			radial-gradient(
+				ellipse 130% 40% at 0% 0%,
+				color-mix(
+					in oklab,
+					var(--glow-1) var(--glow-strength),
+					transparent
+				),
+				transparent 75%
+			),
+			radial-gradient(
+				ellipse 130% 35% at 100% 100%,
+				color-mix(
+					in oklab,
+					var(--glow-2) calc(var(--glow-strength) * 0.7),
+					transparent
+				),
+				transparent 75%
+			),
+			var(--bg-elev);
+	}
+	/* A bar across the top of the page would cut the glow off at its edge. */
+	:root[data-gradients] .viewbar {
+		background: transparent;
+	}
+}

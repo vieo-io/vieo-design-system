@@ -1,0 +1,61 @@
+/* --------------------------------------------------------------- *
+ * Contrast — heavier lines, flat fills, and a shadow that is an    *
+ * offset rather than a blur.                                       *
+ * --------------------------------------------------------------- */
+
+:root[data-design='contrast'] {
+	--font-ui: 16px;
+	--weight-strong: 700;
+	--tracking-title: -0.015em;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 10px;
+
+	--control-height: 42px;
+	--doc-width: 1100px;
+	--measure-comfortable: 111ch;
+
+	/* An offset, not a blur: the edge is the whole effect. */
+	--shadow-1: 2px 2px 0 var(--text);
+	--shadow-2: 3px 3px 0 var(--text);
+	--shadow-pop: 6px 6px 0 var(--text);
+	--focus-ring: 0 0 0 3px var(--accent);
+}
+
+:root[data-design='contrast'] button.ghost,
+:root[data-design='contrast'] button.primary:not(:disabled),
+:root[data-design='contrast'] .button-link,
+:root[data-design='contrast'] .search-btn,
+:root[data-design='contrast'] .notes-card,
+:root[data-design='contrast'] .card,
+:root[data-design='contrast'] .design-card,
+:root[data-design='contrast'] .overlay-dialog,
+:root[data-design='contrast'] .palette {
+	border: 2px solid var(--text);
+	box-shadow: var(--shadow-1);
+}
+:root[data-design='contrast'] button.ghost:hover,
+:root[data-design='contrast'] button.primary:hover:not(:disabled),
+:root[data-design='contrast'] .notes-card:hover,
+:root[data-design='contrast'] .design-card:hover {
+	transform: translate(-1px, -1px);
+	box-shadow: var(--shadow-2);
+}
+:root[data-design='contrast'] button.ghost:active,
+:root[data-design='contrast'] button.primary:active {
+	transform: translate(1px, 1px);
+	box-shadow: none;
+}
+:root[data-design='contrast'] .tree-item.active,
+:root[data-design='contrast'] .nav-item.active,
+:root[data-design='contrast'] .all-notes-link.active,
+:root[data-design='contrast'] .settings-nav a.active {
+	background: var(--accent);
+	color: var(--accent-ink);
+}
+:root[data-design='contrast'] .sidebar {
+	background: var(--bg-elev);
+	border-right: 2px solid var(--text);
+}

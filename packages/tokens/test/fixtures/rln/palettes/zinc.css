@@ -1,0 +1,48 @@
+/* Zinc — Slate's colours: one neutral ramp and one blue. */
+:root[data-palette='zinc'] {
+	--bg: #ffffff;
+	--bg-elev: #fafafa;
+	--bg-hover: #f4f4f5;
+	--border: #e4e4e7;
+	--border-strong: #d4d4d8;
+	--text: #09090b;
+	--muted: #71717a;
+	--accent: #2563eb;
+	--accent-soft: #eff4ff;
+	--selection: #92b1f5;
+	--accent-ink: #ffffff;
+	--glow-1: #2563eb;
+	--glow-2: #06b6d4;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='zinc']:not([data-theme='light']) {
+		--bg: #09090b;
+		--bg-elev: #18181b;
+		--bg-hover: #27272a;
+		--border: #27272a;
+		--border-strong: #3f3f46;
+		--text: #fafafa;
+		--muted: #a1a1aa;
+		--accent: #60a5fa;
+		--accent-soft: #16233b;
+		--selection: #2c476b;
+		--accent-ink: #09090b;
+		--glow-1: #60a5fa;
+		--glow-2: #22d3ee;
+	}
+}
+:root[data-palette='zinc'][data-theme='dark'] {
+	--bg: #09090b;
+	--bg-elev: #18181b;
+	--bg-hover: #27272a;
+	--border: #27272a;
+	--border-strong: #3f3f46;
+	--text: #fafafa;
+	--muted: #a1a1aa;
+	--accent: #60a5fa;
+	--accent-soft: #16233b;
+	--selection: #2c476b;
+	--accent-ink: #09090b;
+	--glow-1: #60a5fa;
+	--glow-2: #22d3ee;
+}

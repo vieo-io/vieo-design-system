@@ -1,0 +1,76 @@
+{
+	"default": {
+		"color": {
+			"bg": {
+				"$value": "#fffdf7"
+			},
+			"bg-elev": {
+				"$value": "#f6f1e2"
+			},
+			"bg-hover": {
+				"$value": "#ece4cd"
+			},
+			"border": {
+				"$value": "#1b1a17"
+			},
+			"border-strong": {
+				"$value": "#1b1a17"
+			},
+			"text": {
+				"$value": "#1b1a17"
+			},
+			"muted": {
+				"$value": "#5d5a4f"
+			},
+			"accent": {
+				"$value": "#1f46d6"
+			},
+			"accent-soft": {
+				"$value": "#dfe5ff"
+			},
+			"selection": {
+				"$value": "#a5b4ea"
+			},
+			"accent-ink": {
+				"$value": "#ffffff"
+			}
+		}
+	},
+	"dark": {
+		"color": {
+			"bg": {
+				"$value": "#131210"
+			},
+			"bg-elev": {
+				"$value": "#1d1b17"
+			},
+			"bg-hover": {
+				"$value": "#2b2822"
+			},
+			"border": {
+				"$value": "#f2ede0"
+			},
+			"border-strong": {
+				"$value": "#f2ede0"
+			},
+			"text": {
+				"$value": "#f2ede0"
+			},
+			"muted": {
+				"$value": "#a49e8e"
+			},
+			"accent": {
+				"$value": "#8fa6ff"
+			},
+			"accent-soft": {
+				"$value": "#232a4a"
+			},
+			"selection": {
+				"$value": "#3e4664"
+			},
+			"accent-ink": {
+				"$value": "#131210"
+			}
+		}
+	}
+}

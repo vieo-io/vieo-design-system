@@ -1,0 +1,12 @@
+/*
+ * A design may widen a touch target and not shrink one. The coarse-pointer
+ * rules in `styles.css` set these on `:root`, which any block above outranks
+ * on specificity, so the floor is restated here where it comes last.
+ */
+@media (pointer: coarse) {
+	:root[data-design] {
+		--control-height: 44px;
+		--control-height-sm: 40px;
+		--row-height: 44px;
+	}
+}

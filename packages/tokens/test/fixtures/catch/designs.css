@@ -1,0 +1,346 @@
+/*
+ * The designs, each behind `data-design` on the root element.
+ *
+ * A design sets no colours; those come from `palettes.css`, so any palette
+ * goes with any design. Mostly a design is the tokens in `tokens.css` with
+ * different values. The component rules are for the parts a number cannot
+ * say, such as whether an active row is a filled pill or a bar in the margin.
+ */
+
+/*
+ * What every design starts from.
+ *
+ * These are Aurora's measurements: a 10px step, with
+ * sidebar rows at 34px. `:root[data-design]` matches whichever design is set
+ * and ties with a named block on specificity, so it comes first and each
+ * design below overrides what it wants.
+ */
+:root[data-design] {
+	--font-ui: 15.5px;
+	--font-sm: 13.5px;
+	--font-xs: 12.5px;
+	--font-title: clamp(30px, 4.2vw, 42px);
+	--line-ui: 1.5;
+	--weight-strong: 600;
+
+	--space-1: 5px;
+	--space-2: 10px;
+	--space-3: 14px;
+	--space-4: 20px;
+	--space-5: 28px;
+	--space-6: 40px;
+
+	--control-height: 40px;
+	--control-height-sm: 34px;
+	--control-px: 16px;
+	--row-height: 34px;
+	--row-gap: 1px;
+}
+
+/* ----------------------------------------------------------------- *
+ * Linear. A surface ladder and hairlines, no shadows, and a marker  *
+ * in the margin for the thing that is open.                          *
+ * ----------------------------------------------------------------- */
+
+:root[data-design='linear'] {
+	--font-family-ui:
+		Inter, 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
+		'Segoe UI', sans-serif;
+	--font-sm: 13px;
+	--font-title: clamp(30px, 4vw, 40px);
+	--tracking-ui: -0.012em;
+	--tracking-title: -0.028em;
+	--weight-strong: 590;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+
+	/* Depth is the ladder and a hairline, so the first two carry no shadow. */
+	--shadow-1: none;
+	--shadow-2: 0 0 0 1px var(--border-strong);
+	--shadow-pop: 0 20px 50px rgb(8 9 10 / 16%);
+
+	--dur: 100ms;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='linear']:not([data-theme='light']) {
+		--shadow-pop: 0 20px 50px rgb(0 0 0 / 60%);
+	}
+}
+:root[data-design='linear'][data-theme='dark'] {
+	--shadow-pop: 0 20px 50px rgb(0 0 0 / 60%);
+}
+
+/* The open row gets a bar in the margin as well as the hover fill. */
+:root[data-design='linear'] .sidebar-row.active,
+:root[data-design='linear'] .settings-nav a[aria-current='page'] {
+	position: relative;
+	background: var(--bg-hover);
+	color: var(--text);
+}
+:root[data-design='linear'] .sidebar-row.active::before,
+:root[data-design='linear'] .settings-nav a[aria-current='page']::before {
+	content: '';
+	position: absolute;
+	left: -6px;
+	top: 6px;
+	bottom: 6px;
+	width: 2px;
+	border-radius: var(--radius-pill);
+	background: var(--accent);
+}
+
+/* Linear's press: the control shrinks under the pointer. */
+:root[data-design='linear'] button:active {
+	transform: scale(0.97);
+}
+
+/* The sidebar sits one rung up the ladder rather than on a shadow. */
+:root[data-design='linear'] .sidebar {
+	background: var(--bg-elev);
+	box-shadow: none;
+}
+:root[data-design='linear'] .overlay-dialog {
+	border-color: var(--border-strong);
+}
+
+/* ------------------------------------------------------------ *
+ * Aurora. Round, tinted, and sized to be pressed.               *
+ * ------------------------------------------------------------ */
+
+:root[data-design='aurora'] {
+	--font-title: clamp(30px, 4.2vw, 42px);
+	--tracking-title: -0.02em;
+	--weight-strong: 650;
+
+	--radius-xs: 8px;
+	--radius-sm: 10px;
+	--radius-md: 14px;
+	--radius-lg: 20px;
+
+	/* Shadows tinted with the accent, darkened so they still read as shade. */
+	--shadow-tint: color-mix(in srgb, var(--accent) 50%, black);
+	--shadow-1: 0 1px 2px color-mix(in srgb, var(--shadow-tint) 6%, transparent);
+	--shadow-2:
+		0 2px 6px color-mix(in srgb, var(--shadow-tint) 8%, transparent),
+		0 10px 24px -8px color-mix(in srgb, var(--shadow-tint) 14%, transparent);
+	--shadow-pop: 0 24px 60px -12px
+		color-mix(in srgb, var(--shadow-tint) 30%, transparent);
+
+	--dur: 160ms;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='aurora']:not([data-theme='light']) {
+		--shadow-1: 0 1px 2px rgb(0 0 0 / 34%);
+		--shadow-2:
+			0 2px 6px rgb(0 0 0 / 40%), 0 10px 24px -8px rgb(0 0 0 / 50%);
+		--shadow-pop: 0 24px 60px -12px rgb(0 0 0 / 66%);
+	}
+}
+:root[data-design='aurora'][data-theme='dark'] {
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 34%);
+	--shadow-2: 0 2px 6px rgb(0 0 0 / 40%), 0 10px 24px -8px rgb(0 0 0 / 50%);
+	--shadow-pop: 0 24px 60px -12px rgb(0 0 0 / 66%);
+}
+
+:root[data-design='aurora'] .btn-primary:not(:disabled) {
+	border-radius: var(--radius-pill);
+	background: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--accent) 88%, white),
+		var(--accent)
+	);
+	box-shadow: var(--shadow-1);
+}
+:root[data-design='aurora'] .btn-primary:hover:not(:disabled) {
+	box-shadow: var(--shadow-2);
+	transform: translateY(-1px);
+}
+:root[data-design='aurora'] .btn-ghost {
+	border-radius: var(--radius-pill);
+	background: var(--bg-elev);
+}
+:root[data-design='aurora'] .settings__segmented,
+:root[data-design='aurora'] .settings__segmented button {
+	border-radius: var(--radius-pill);
+}
+
+:root[data-design='aurora'] .sidebar {
+	border-right: 0;
+}
+:root[data-design='aurora'] .sidebar-row,
+:root[data-design='aurora'] .settings-nav a {
+	border-radius: var(--radius-pill);
+}
+:root[data-design='aurora'] .sidebar-row.active {
+	box-shadow: inset 0 0 0 1px
+		color-mix(in srgb, var(--accent) 26%, transparent);
+}
+
+/* -------------------------------------------------------- *
+ * Slate. Small radii, soft shadows, and a ring on what has  *
+ * focus.                                                     *
+ * -------------------------------------------------------- */
+
+:root[data-design='slate'] {
+	--tracking-ui: -0.011em;
+	--tracking-title: -0.025em;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+
+	--shadow-1: 0 1px 2px rgb(9 9 11 / 5%);
+	--shadow-2: 0 1px 3px rgb(9 9 11 / 8%), 0 8px 20px -6px rgb(9 9 11 / 10%);
+	--shadow-pop: 0 20px 50px -12px rgb(9 9 11 / 24%);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='slate']:not([data-theme='light']) {
+		--shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+		--shadow-2:
+			0 1px 3px rgb(0 0 0 / 50%), 0 8px 20px -6px rgb(0 0 0 / 55%);
+		--shadow-pop: 0 20px 50px -12px rgb(0 0 0 / 70%);
+	}
+}
+:root[data-design='slate'][data-theme='dark'] {
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+	--shadow-2: 0 1px 3px rgb(0 0 0 / 50%), 0 8px 20px -6px rgb(0 0 0 / 55%);
+	--shadow-pop: 0 20px 50px -12px rgb(0 0 0 / 70%);
+}
+
+/* An offset ring rather than a glow, so focus is legible on any surface. */
+:root[data-design='slate'] {
+	--focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+:root[data-design='slate'] .sidebar-row.active,
+:root[data-design='slate'] .settings-nav a[aria-current='page'] {
+	background: var(--bg-hover);
+	color: var(--text);
+}
+:root[data-design='slate'] .sidebar {
+	background: var(--bg-elev);
+}
+:root[data-design='slate'] .btn-ghost {
+	box-shadow: var(--shadow-1);
+}
+
+/* --------------------------------------------------------------- *
+ * Contrast. Heavier lines, flat fills, and a shadow that is an    *
+ * offset rather than a blur.                                       *
+ * --------------------------------------------------------------- */
+
+:root[data-design='contrast'] {
+	--font-ui: 16px;
+	--weight-strong: 700;
+	--tracking-title: -0.015em;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 10px;
+
+	--control-height: 42px;
+
+	--shadow-1: 2px 2px 0 var(--text);
+	--shadow-2: 3px 3px 0 var(--text);
+	--shadow-pop: 6px 6px 0 var(--text);
+	--focus-ring: 0 0 0 3px var(--accent);
+}
+
+:root[data-design='contrast'] .btn-ghost,
+:root[data-design='contrast'] .btn-primary:not(:disabled),
+:root[data-design='contrast'] .overlay-dialog {
+	border: 2px solid var(--text);
+	box-shadow: var(--shadow-1);
+}
+:root[data-design='contrast'] .btn-ghost:hover,
+:root[data-design='contrast'] .btn-primary:hover:not(:disabled) {
+	transform: translate(-1px, -1px);
+	box-shadow: var(--shadow-2);
+}
+:root[data-design='contrast'] .btn-ghost:active,
+:root[data-design='contrast'] .btn-primary:active {
+	transform: translate(1px, 1px);
+	box-shadow: none;
+}
+:root[data-design='contrast'] .sidebar-row.active,
+:root[data-design='contrast'] .settings-nav a[aria-current='page'] {
+	background: var(--accent);
+	color: var(--accent-ink);
+}
+:root[data-design='contrast'] .sidebar {
+	background: var(--bg-elev);
+	border-right: 2px solid var(--text);
+}
+
+/* ---------------------------------------------------------------- *
+ * Editorial. The transcript, notes, and headings set in a serif.  *
+ * ---------------------------------------------------------------- */
+
+:root[data-design='editorial'] {
+	--font-family-display:
+		ui-serif, Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+	--font-family-prose: var(--font-family-display);
+	--font-ui: 16px;
+	--font-sm: 14px;
+	--font-title: clamp(32px, 4.4vw, 46px);
+	--tracking-title: -0.018em;
+	--line-ui: 1.55;
+
+	--radius-xs: 3px;
+	--radius-sm: 5px;
+	--radius-md: 7px;
+	--radius-lg: 10px;
+
+	--control-height: 38px;
+	--control-height-sm: 32px;
+	--control-px: 14px;
+	--row-height: 36px;
+	--row-gap: 1px;
+
+	--shadow-1: none;
+	--shadow-2: 0 1px 3px rgb(60 48 30 / 10%);
+	--shadow-pop: 0 18px 48px rgb(60 48 30 / 22%);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='editorial']:not([data-theme='light']) {
+		--shadow-2: 0 1px 3px rgb(0 0 0 / 40%);
+		--shadow-pop: 0 18px 48px rgb(0 0 0 / 60%);
+	}
+}
+:root[data-design='editorial'][data-theme='dark'] {
+	--shadow-2: 0 1px 3px rgb(0 0 0 / 40%);
+	--shadow-pop: 0 18px 48px rgb(0 0 0 / 60%);
+}
+
+/* Settings' heading takes the serif too; rows, buttons and labels stay in
+   the UI stack, or the chrome starts competing with the writing. */
+:root[data-design='editorial'] .settings-head h1 {
+	font-family: var(--font-family-display);
+	letter-spacing: var(--tracking-title);
+}
+:root[data-design='editorial'] .sidebar-row.active,
+:root[data-design='editorial'] .settings-nav a[aria-current='page'] {
+	background: var(--bg-hover);
+	color: var(--text);
+	box-shadow: inset 2px 0 0 var(--accent);
+}
+:root[data-design='editorial'] .sidebar {
+	background: var(--bg-elev);
+}
+
+/* A design may widen a touch target and not shrink one. */
+@media (pointer: coarse) {
+	:root[data-design] {
+		--control-height: 44px;
+		--control-height-sm: 40px;
+		--row-height: 44px;
+	}
+}

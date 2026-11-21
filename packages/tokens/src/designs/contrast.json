@@ -1,0 +1,53 @@
+{
+	"default": {
+		"typography": {
+			"font-ui": {
+				"$value": "16px"
+			},
+			"weight-strong": {
+				"$value": "700"
+			},
+			"tracking-title": {
+				"$value": "-0.015em"
+			}
+		},
+		"radius": {
+			"radius-xs": {
+				"$value": "4px"
+			},
+			"radius-sm": {
+				"$value": "6px"
+			},
+			"radius-md": {
+				"$value": "8px"
+			},
+			"radius-lg": {
+				"$value": "10px"
+			}
+		},
+		"size": {
+			"control-height": {
+				"$value": "42px"
+			}
+		},
+		"layout": {
+			"doc-width": {
+				"$value": "1100px"
+			}
+		},
+		"shadow": {
+			"shadow-1": {
+				"$value": "2px 2px 0 {color.text}"
+			},
+			"shadow-2": {
+				"$value": "3px 3px 0 {color.text}"
+			},
+			"shadow-pop": {
+				"$value": "6px 6px 0 {color.text}"
+			},
+			"focus-ring": {
+				"$value": "0 0 0 3px {color.accent}"
+			}
+		}
+	}
+}

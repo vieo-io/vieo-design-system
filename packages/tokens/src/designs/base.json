@@ -1,0 +1,88 @@
+{
+	"default": {
+		"typography": {
+			"font-ui": {
+				"$value": "15.5px"
+			},
+			"font-sm": {
+				"$value": "13.5px"
+			},
+			"font-xs": {
+				"$value": "12.5px"
+			},
+			"font-title": {
+				"$value": "clamp(30px, 4.2vw, 42px)"
+			},
+			"line-ui": {
+				"$value": "1.5"
+			},
+			"weight-strong": {
+				"$value": "600"
+			}
+		},
+		"space": {
+			"space-1": {
+				"$value": "5px"
+			},
+			"space-2": {
+				"$value": "10px"
+			},
+			"space-3": {
+				"$value": "14px"
+			},
+			"space-4": {
+				"$value": "20px"
+			},
+			"space-5": {
+				"$value": "28px"
+			},
+			"space-6": {
+				"$value": "40px"
+			}
+		},
+		"size": {
+			"control-height": {
+				"$value": "40px"
+			},
+			"control-height-sm": {
+				"$value": "34px"
+			},
+			"control-px": {
+				"$value": "16px"
+			},
+			"row-height": {
+				"$value": "34px"
+			},
+			"row-gap": {
+				"$value": "1px"
+			}
+		},
+		"layout": {
+			"doc-width": {
+				"$value": "1120px"
+			},
+			"doc-pad-top": {
+				"$value": "44px"
+			},
+			"doc-pad-x": {
+				"$value": "clamp(20px, 3.4vw, 56px)"
+			},
+			"doc-pad-bottom": {
+				"$value": "104px"
+			}
+		}
+	},
+	"coarse": {
+		"size": {
+			"control-height": {
+				"$value": "44px"
+			},
+			"control-height-sm": {
+				"$value": "40px"
+			},
+			"row-height": {
+				"$value": "44px"
+			}
+		}
+	}
+}

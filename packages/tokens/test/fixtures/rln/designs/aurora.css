@@ -1,0 +1,103 @@
+/* ------------------------------------------------------------ *
+ * Aurora — round, tinted, and sized to be pressed. The others   *
+ * take their measurements from this one.                         *
+ * ------------------------------------------------------------ */
+
+:root[data-design='aurora'] {
+	--font-title: clamp(30px, 4.2vw, 42px);
+	--tracking-title: -0.02em;
+	--weight-strong: 650;
+
+	--radius-xs: 8px;
+	--radius-sm: 10px;
+	--radius-md: 14px;
+	--radius-lg: 20px;
+
+	--measure-comfortable: 110ch;
+
+	/* Shadows tinted with the accent, darkened so they still read as shade. */
+	--shadow-tint: color-mix(in srgb, var(--accent) 50%, black);
+	--shadow-1: 0 1px 2px color-mix(in srgb, var(--shadow-tint) 6%, transparent);
+	--shadow-2:
+		0 2px 6px color-mix(in srgb, var(--shadow-tint) 8%, transparent),
+		0 10px 24px -8px color-mix(in srgb, var(--shadow-tint) 14%, transparent);
+	--shadow-pop: 0 24px 60px -12px
+		color-mix(in srgb, var(--shadow-tint) 30%, transparent);
+
+	--dur: 160ms;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='aurora']:not([data-theme='light']) {
+		--shadow-1: 0 1px 2px rgb(0 0 0 / 34%);
+		--shadow-2:
+			0 2px 6px rgb(0 0 0 / 40%), 0 10px 24px -8px rgb(0 0 0 / 50%);
+		--shadow-pop: 0 24px 60px -12px rgb(0 0 0 / 66%);
+	}
+}
+:root[data-design='aurora'][data-theme='dark'] {
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 34%);
+	--shadow-2: 0 2px 6px rgb(0 0 0 / 40%), 0 10px 24px -8px rgb(0 0 0 / 50%);
+	--shadow-pop: 0 24px 60px -12px rgb(0 0 0 / 66%);
+}
+
+:root[data-design='aurora'] button.primary:not(:disabled),
+:root[data-design='aurora'] .button-link.primary {
+	border-radius: var(--radius-pill);
+	background: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--accent) 88%, white),
+		var(--accent)
+	);
+	box-shadow: var(--shadow-1);
+}
+:root[data-design='aurora'] button.primary:hover:not(:disabled),
+:root[data-design='aurora'] .button-link.primary:hover {
+	box-shadow: var(--shadow-2);
+	transform: translateY(-1px);
+}
+:root[data-design='aurora'] button.ghost {
+	border-radius: var(--radius-pill);
+	background: var(--bg-elev);
+}
+:root[data-design='aurora'] .segmented,
+:root[data-design='aurora'] .segmented button,
+:root[data-design='aurora'] .setting-choice,
+:root[data-design='aurora'] .setting-choice button {
+	border-radius: var(--radius-pill);
+}
+
+:root[data-design='aurora'] .sidebar {
+	border-right: 0;
+}
+:root[data-design='aurora'] .tree-item,
+:root[data-design='aurora'] .nav-item,
+:root[data-design='aurora'] .all-notes-link,
+:root[data-design='aurora'] .settings-nav a,
+:root[data-design='aurora'] .sidebar-store-links button {
+	border-radius: var(--radius-pill);
+}
+:root[data-design='aurora'] .tree-item.active,
+:root[data-design='aurora'] .nav-item.active {
+	box-shadow: inset 0 0 0 1px
+		color-mix(in srgb, var(--accent) 26%, transparent);
+}
+:root[data-design='aurora'] .search-btn {
+	border-radius: var(--radius-pill);
+	background: var(--bg);
+	box-shadow: var(--shadow-1);
+}
+:root[data-design='aurora'] .notes-card,
+:root[data-design='aurora'] .card {
+	background: var(--bg);
+	box-shadow: var(--shadow-1);
+	transition:
+		transform var(--dur) var(--ease),
+		box-shadow var(--dur) var(--ease),
+		border-color var(--dur) var(--ease);
+}
+:root[data-design='aurora'] .notes-card:hover,
+:root[data-design='aurora'] .card:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-2);
+}

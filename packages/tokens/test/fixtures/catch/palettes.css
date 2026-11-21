@@ -1,0 +1,533 @@
+/*
+ * The colour schemes, each behind `data-palette` on the root element.
+ *
+ * A palette sets colour tokens and nothing else, and a design sets everything
+ * but colour, so the two combine freely. Paper is the absence of an attribute:
+ * its values are the defaults in `tokens.css`.
+ */
+
+/* Moss, llt's own: warm olive neutrals with a sage accent. */
+:root[data-palette='moss'] {
+	--bg: #fbfaf6;
+	--bg-elev: #f4f3ed;
+	--panel: #ffffff;
+	--bg-hover: #ebeae2;
+	--border: #e2e0d6;
+	--border-strong: #cfccbf;
+	--text: #1c1e18;
+	--muted: #62665a;
+	--accent: #2f7151;
+	--accent-soft: #e7ece6;
+	--accent-ink: #ffffff;
+	--danger: #b3362a;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='moss']:not([data-theme='light']) {
+		--bg: #111310;
+		--bg-elev: #171a15;
+		--panel: #1c1f19;
+		--bg-hover: #232720;
+		--border: #2a2e26;
+		--border-strong: #383d33;
+		--text: #ecede6;
+		--muted: #9a9e90;
+		--accent: #7cc79b;
+		--accent-soft: #202c23;
+		--accent-ink: #0f1a13;
+		--danger: #ef7d6b;
+	}
+}
+:root[data-palette='moss'][data-theme='dark'] {
+	--bg: #111310;
+	--bg-elev: #171a15;
+	--panel: #1c1f19;
+	--bg-hover: #232720;
+	--border: #2a2e26;
+	--border-strong: #383d33;
+	--text: #ecede6;
+	--muted: #9a9e90;
+	--accent: #7cc79b;
+	--accent-soft: #202c23;
+	--accent-ink: #0f1a13;
+	--danger: #ef7d6b;
+}
+
+/* Lavender. Linear's colours. */
+:root[data-palette='lavender'] {
+	--bg: #ffffff;
+	--bg-elev: #f5f6f6;
+	--bg-hover: #ebecec;
+	--border: #e5e5e7;
+	--border-strong: #d0d0d4;
+	--text: #08090a;
+	--muted: #6f6f76;
+	--accent: #5e6ad2;
+	--accent-soft: #eceefd;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='lavender']:not([data-theme='light']) {
+		--bg: #0f1011;
+		--bg-elev: #141516;
+		--bg-hover: #1c1d1f;
+		--border: #23252a;
+		--border-strong: #34343a;
+		--text: #f7f8f8;
+		--muted: #8a8f98;
+		--accent: #7b86ee;
+		--accent-soft: #1e2038;
+		--accent-ink: #0f1011;
+	}
+}
+:root[data-palette='lavender'][data-theme='dark'] {
+	--bg: #0f1011;
+	--bg-elev: #141516;
+	--bg-hover: #1c1d1f;
+	--border: #23252a;
+	--border-strong: #34343a;
+	--text: #f7f8f8;
+	--muted: #8a8f98;
+	--accent: #7b86ee;
+	--accent-soft: #1e2038;
+	--accent-ink: #0f1011;
+}
+
+/* Violet. */
+:root[data-palette='violet'] {
+	--bg: #fdfcff;
+	--bg-elev: #f5f2ff;
+	--bg-hover: #ebe6ff;
+	--border: #e6e0f7;
+	--border-strong: #d2c9ef;
+	--text: #221c3d;
+	--muted: #7a7398;
+	--accent: #6c5ce7;
+	--accent-soft: #eae5ff;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='violet']:not([data-theme='light']) {
+		--bg: #15131f;
+		--bg-elev: #1e1a2e;
+		--bg-hover: #2a2442;
+		--border: #302a48;
+		--border-strong: #443a68;
+		--text: #eee9ff;
+		--muted: #9a93bb;
+		--accent: #9d8cff;
+		--accent-soft: #2b2450;
+		--accent-ink: #15131f;
+	}
+}
+:root[data-palette='violet'][data-theme='dark'] {
+	--bg: #15131f;
+	--bg-elev: #1e1a2e;
+	--bg-hover: #2a2442;
+	--border: #302a48;
+	--border-strong: #443a68;
+	--text: #eee9ff;
+	--muted: #9a93bb;
+	--accent: #9d8cff;
+	--accent-soft: #2b2450;
+	--accent-ink: #15131f;
+}
+
+/* Zinc. One neutral ramp and one blue. */
+:root[data-palette='zinc'] {
+	--bg: #ffffff;
+	--bg-elev: #fafafa;
+	--bg-hover: #f4f4f5;
+	--border: #e4e4e7;
+	--border-strong: #d4d4d8;
+	--text: #09090b;
+	--muted: #71717a;
+	--accent: #2563eb;
+	--accent-soft: #eff4ff;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='zinc']:not([data-theme='light']) {
+		--bg: #09090b;
+		--bg-elev: #18181b;
+		--bg-hover: #27272a;
+		--border: #27272a;
+		--border-strong: #3f3f46;
+		--text: #fafafa;
+		--muted: #a1a1aa;
+		--accent: #60a5fa;
+		--accent-soft: #16233b;
+		--accent-ink: #09090b;
+	}
+}
+:root[data-palette='zinc'][data-theme='dark'] {
+	--bg: #09090b;
+	--bg-elev: #18181b;
+	--bg-hover: #27272a;
+	--border: #27272a;
+	--border-strong: #3f3f46;
+	--text: #fafafa;
+	--muted: #a1a1aa;
+	--accent: #60a5fa;
+	--accent-soft: #16233b;
+	--accent-ink: #09090b;
+}
+
+/* Ink. A line is the colour of the text. */
+:root[data-palette='ink'] {
+	--bg: #fffdf7;
+	--bg-elev: #f6f1e2;
+	--bg-hover: #ece4cd;
+	--border: #1b1a17;
+	--border-strong: #1b1a17;
+	--text: #1b1a17;
+	--muted: #5d5a4f;
+	--accent: #1f46d6;
+	--accent-soft: #dfe5ff;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='ink']:not([data-theme='light']) {
+		--bg: #131210;
+		--bg-elev: #1d1b17;
+		--bg-hover: #2b2822;
+		--border: #f2ede0;
+		--border-strong: #f2ede0;
+		--text: #f2ede0;
+		--muted: #a49e8e;
+		--accent: #8fa6ff;
+		--accent-soft: #232a4a;
+		--accent-ink: #131210;
+	}
+}
+:root[data-palette='ink'][data-theme='dark'] {
+	--bg: #131210;
+	--bg-elev: #1d1b17;
+	--bg-hover: #2b2822;
+	--border: #f2ede0;
+	--border-strong: #f2ede0;
+	--text: #f2ede0;
+	--muted: #a49e8e;
+	--accent: #8fa6ff;
+	--accent-soft: #232a4a;
+	--accent-ink: #131210;
+}
+
+/* Clay. Warm paper and terracotta. */
+:root[data-palette='clay'] {
+	--bg: #fdfbf7;
+	--bg-elev: #f5f1e8;
+	--bg-hover: #ebe5d7;
+	--border: #e5dece;
+	--border-strong: #d1c8b3;
+	--text: #231f19;
+	--muted: #8a8173;
+	--accent: #b0563a;
+	--accent-soft: #f5e6de;
+	--accent-ink: #fdfbf7;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='clay']:not([data-theme='light']) {
+		--bg: #1a1815;
+		--bg-elev: #211e1a;
+		--bg-hover: #2c2822;
+		--border: #35302a;
+		--border-strong: #4a443b;
+		--text: #ece5d8;
+		--muted: #958c7c;
+		--accent: #d98060;
+		--accent-soft: #3a2a23;
+		--accent-ink: #1a1815;
+	}
+}
+:root[data-palette='clay'][data-theme='dark'] {
+	--bg: #1a1815;
+	--bg-elev: #211e1a;
+	--bg-hover: #2c2822;
+	--border: #35302a;
+	--border-strong: #4a443b;
+	--text: #ece5d8;
+	--muted: #958c7c;
+	--accent: #d98060;
+	--accent-soft: #3a2a23;
+	--accent-ink: #1a1815;
+}
+
+/* Ember. Red-orange, with a charcoal dark theme. */
+:root[data-palette='ember'] {
+	--bg: #fffbf8;
+	--bg-elev: #fdf3ee;
+	--bg-hover: #fae6dc;
+	--border: #f1e0d6;
+	--border-strong: #e4c9bb;
+	--text: #232427;
+	--muted: #6e6f75;
+	--accent: #d93a2b;
+	--accent-soft: #ffe9e0;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='ember']:not([data-theme='light']) {
+		--bg: #1c1d20;
+		--bg-elev: #242528;
+		--bg-hover: #2f3034;
+		--border: #34353a;
+		--border-strong: #48494f;
+		--text: #f3f1ef;
+		--muted: #9c9ca3;
+		--accent: #ff7a4d;
+		--accent-soft: #3a2320;
+		--accent-ink: #1c1d20;
+	}
+}
+:root[data-palette='ember'][data-theme='dark'] {
+	--bg: #1c1d20;
+	--bg-elev: #242528;
+	--bg-hover: #2f3034;
+	--border: #34353a;
+	--border-strong: #48494f;
+	--text: #f3f1ef;
+	--muted: #9c9ca3;
+	--accent: #ff7a4d;
+	--accent-soft: #3a2320;
+	--accent-ink: #1c1d20;
+}
+
+/* Tangerine. Orange, between Ember's red and Marigold's gold. */
+:root[data-palette='tangerine'] {
+	--bg: #fffdfb;
+	--bg-elev: #fdf5f0;
+	--bg-hover: #f9e9e2;
+	--border: #efdfd8;
+	--border-strong: #e1cabf;
+	--text: #291c15;
+	--muted: #705f57;
+	--accent: #c34e00;
+	--accent-soft: #ffe7d8;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='tangerine']:not([data-theme='light']) {
+		--bg: #18120f;
+		--bg-elev: #211a16;
+		--bg-hover: #2e241f;
+		--border: #332924;
+		--border-strong: #4a3c36;
+		--text: #f7eee9;
+		--muted: #a99b94;
+		--accent: #ff9454;
+		--accent-soft: #3f2314;
+		--accent-ink: #18120f;
+	}
+}
+:root[data-palette='tangerine'][data-theme='dark'] {
+	--bg: #18120f;
+	--bg-elev: #211a16;
+	--bg-hover: #2e241f;
+	--border: #332924;
+	--border-strong: #4a3c36;
+	--text: #f7eee9;
+	--muted: #a99b94;
+	--accent: #ff9454;
+	--accent-soft: #3f2314;
+	--accent-ink: #18120f;
+}
+
+/* Marigold. Gold. A yellow light enough to look yellow cannot reach 4.5:1 on white, so the light accent is ochre. */
+:root[data-palette='marigold'] {
+	--bg: #fffdfa;
+	--bg-elev: #faf6ef;
+	--bg-hover: #f4ecde;
+	--border: #eae2d4;
+	--border-strong: #d9ceba;
+	--text: #251e11;
+	--muted: #6a6253;
+	--accent: #9d6900;
+	--accent-soft: #fcedd1;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='marigold']:not([data-theme='light']) {
+		--bg: #16130e;
+		--bg-elev: #1f1b14;
+		--bg-hover: #2b261c;
+		--border: #302b21;
+		--border-strong: #463f33;
+		--text: #f4f0e7;
+		--muted: #a59d91;
+		--accent: #e7ac2a;
+		--accent-soft: #38290a;
+		--accent-ink: #16130e;
+	}
+}
+:root[data-palette='marigold'][data-theme='dark'] {
+	--bg: #16130e;
+	--bg-elev: #1f1b14;
+	--bg-hover: #2b261c;
+	--border: #302b21;
+	--border-strong: #463f33;
+	--text: #f4f0e7;
+	--muted: #a59d91;
+	--accent: #e7ac2a;
+	--accent-soft: #38290a;
+	--accent-ink: #16130e;
+}
+
+/* Fern. Green. */
+:root[data-palette='fern'] {
+	--bg: #fcfefc;
+	--bg-elev: #f2f9f3;
+	--bg-hover: #e4f1e6;
+	--border: #dae7dc;
+	--border-strong: #c2d5c5;
+	--text: #172319;
+	--muted: #5a675c;
+	--accent: #17843f;
+	--accent-soft: #dcf7e1;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='fern']:not([data-theme='light']) {
+		--bg: #101511;
+		--bg-elev: #171e18;
+		--bg-hover: #202922;
+		--border: #252e27;
+		--border-strong: #38433a;
+		--text: #ebf3ec;
+		--muted: #96a298;
+		--accent: #67d283;
+		--accent-soft: #17321e;
+		--accent-ink: #101511;
+	}
+}
+:root[data-palette='fern'][data-theme='dark'] {
+	--bg: #101511;
+	--bg-elev: #171e18;
+	--bg-hover: #202922;
+	--border: #252e27;
+	--border-strong: #38433a;
+	--text: #ebf3ec;
+	--muted: #96a298;
+	--accent: #67d283;
+	--accent-soft: #17321e;
+	--accent-ink: #101511;
+}
+
+/* Lagoon. Teal. */
+:root[data-palette='lagoon'] {
+	--bg: #fbfefe;
+	--bg-elev: #eff9f8;
+	--bg-hover: #dff1f0;
+	--border: #d5e7e6;
+	--border-strong: #bad6d4;
+	--text: #102322;
+	--muted: #536866;
+	--accent: #00827d;
+	--accent-soft: #d1f8f4;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='lagoon']:not([data-theme='light']) {
+		--bg: #0e1615;
+		--bg-elev: #141e1d;
+		--bg-hover: #1c2928;
+		--border: #212e2d;
+		--border-strong: #324442;
+		--text: #e8f3f2;
+		--muted: #91a3a1;
+		--accent: #3ed0c8;
+		--accent-soft: #003331;
+		--accent-ink: #0e1615;
+	}
+}
+:root[data-palette='lagoon'][data-theme='dark'] {
+	--bg: #0e1615;
+	--bg-elev: #141e1d;
+	--bg-hover: #1c2928;
+	--border: #212e2d;
+	--border-strong: #324442;
+	--text: #e8f3f2;
+	--muted: #91a3a1;
+	--accent: #3ed0c8;
+	--accent-soft: #003331;
+	--accent-ink: #0e1615;
+}
+
+/* Orchid. Magenta. */
+:root[data-palette='orchid'] {
+	--bg: #fffcff;
+	--bg-elev: #fbf4fb;
+	--bg-hover: #f4e8f4;
+	--border: #eadfea;
+	--border-strong: #dac9da;
+	--text: #251b26;
+	--muted: #6b5f6b;
+	--accent: #b243ba;
+	--accent-soft: #fde6fe;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='orchid']:not([data-theme='light']) {
+		--bg: #171217;
+		--bg-elev: #1f1a1f;
+		--bg-hover: #2b232b;
+		--border: #302830;
+		--border-strong: #463c46;
+		--text: #f4edf5;
+		--muted: #a59aa5;
+		--accent: #ed8ef3;
+		--accent-soft: #382239;
+		--accent-ink: #171217;
+	}
+}
+:root[data-palette='orchid'][data-theme='dark'] {
+	--bg: #171217;
+	--bg-elev: #1f1a1f;
+	--bg-hover: #2b232b;
+	--border: #302830;
+	--border-strong: #463c46;
+	--text: #f4edf5;
+	--muted: #a59aa5;
+	--accent: #ed8ef3;
+	--accent-soft: #382239;
+	--accent-ink: #171217;
+}
+
+/* Rose. Pink. */
+:root[data-palette='rose'] {
+	--bg: #fffcfd;
+	--bg-elev: #fef4f6;
+	--bg-hover: #fae8eb;
+	--border: #f0dee1;
+	--border-strong: #e2c8cd;
+	--text: #2a1a1e;
+	--muted: #705e61;
+	--accent: #cf386b;
+	--accent-soft: #ffe4eb;
+	--accent-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='rose']:not([data-theme='light']) {
+		--bg: #191213;
+		--bg-elev: #22191b;
+		--bg-hover: #2e2325;
+		--border: #33282a;
+		--border-strong: #4a3b3e;
+		--text: #f8edef;
+		--muted: #aa9a9d;
+		--accent: #ff88aa;
+		--accent-soft: #402028;
+		--accent-ink: #191213;
+	}
+}
+:root[data-palette='rose'][data-theme='dark'] {
+	--bg: #191213;
+	--bg-elev: #22191b;
+	--bg-hover: #2e2325;
+	--border: #33282a;
+	--border-strong: #4a3b3e;
+	--text: #f8edef;
+	--muted: #aa9a9d;
+	--accent: #ff88aa;
+	--accent-soft: #402028;
+	--accent-ink: #191213;
+}

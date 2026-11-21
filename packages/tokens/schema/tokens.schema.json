@@ -1,0 +1,97 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://vieo.io/schema/tokens.schema.json",
+	"title": "Vieo token source",
+	"description": "The files under @vieo-io/tokens' src/. Tokens follow the W3C Design Tokens format, with each $value written as the CSS it becomes and {group.token} for a reference.",
+	"$defs": {
+		"type": {
+			"type": "string",
+			"enum": [
+				"color",
+				"dimension",
+				"fontFamily",
+				"fontWeight",
+				"number",
+				"duration",
+				"cubicBezier",
+				"shadow"
+			]
+		},
+		"value": {
+			"type": "string",
+			"minLength": 1,
+			"pattern": "^[^;{}]*(\\{[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*\\}[^;{}]*)*$"
+		},
+		"name": {
+			"type": "string",
+			"pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+		},
+		"typedToken": {
+			"type": "object",
+			"required": ["$type", "$value"],
+			"properties": {
+				"$type": { "$ref": "#/$defs/type" },
+				"$value": { "$ref": "#/$defs/value" },
+				"$description": { "type": "string" }
+			},
+			"additionalProperties": false
+		},
+		"token": {
+			"type": "object",
+			"required": ["$value"],
+			"properties": {
+				"$type": { "$ref": "#/$defs/type" },
+				"$value": { "$ref": "#/$defs/value" },
+				"$description": { "type": "string" }
+			},
+			"additionalProperties": false
+		},
+		"typedTree": {
+			"type": "object",
+			"propertyNames": { "$ref": "#/$defs/name" },
+			"additionalProperties": {
+				"type": "object",
+				"propertyNames": { "$ref": "#/$defs/name" },
+				"additionalProperties": { "$ref": "#/$defs/typedToken" }
+			}
+		},
+		"tree": {
+			"type": "object",
+			"propertyNames": { "$ref": "#/$defs/name" },
+			"additionalProperties": {
+				"type": "object",
+				"propertyNames": { "$ref": "#/$defs/name" },
+				"additionalProperties": { "$ref": "#/$defs/token" }
+			}
+		},
+		"base": { "$ref": "#/$defs/typedTree" },
+		"theme": { "$ref": "#/$defs/tree" },
+		"modes": {
+			"type": "object",
+			"required": ["default"],
+			"properties": {
+				"default": { "$ref": "#/$defs/tree" },
+				"dark": { "$ref": "#/$defs/tree" },
+				"coarse": { "$ref": "#/$defs/tree" }
+			},
+			"additionalProperties": false
+		},
+		"order": {
+			"type": "object",
+			"required": ["designs", "palettes"],
+			"properties": {
+				"designs": {
+					"type": "array",
+					"items": { "$ref": "#/$defs/name" },
+					"uniqueItems": true
+				},
+				"palettes": {
+					"type": "array",
+					"items": { "$ref": "#/$defs/name" },
+					"uniqueItems": true
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

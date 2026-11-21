@@ -1,0 +1,48 @@
+/* Ember — the app icon: its orange-to-pink coil, and its charcoal tile for dark. */
+:root[data-palette='ember'] {
+	--bg: #fffbf8;
+	--bg-elev: #fdf3ee;
+	--bg-hover: #fae6dc;
+	--border: #f1e0d6;
+	--border-strong: #e4c9bb;
+	--text: #232427;
+	--muted: #6e6f75;
+	--accent: #d93a2b;
+	--accent-soft: #ffe9e0;
+	--selection: #ec9a92;
+	--accent-ink: #ffffff;
+	--glow-1: #ff9a2e;
+	--glow-2: #f8258a;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='ember']:not([data-theme='light']) {
+		--bg: #1c1d20;
+		--bg-elev: #242528;
+		--bg-hover: #2f3034;
+		--border: #34353a;
+		--border-strong: #48494f;
+		--text: #f3f1ef;
+		--muted: #9c9ca3;
+		--accent: #ff7a4d;
+		--accent-soft: #3a2320;
+		--selection: #774232;
+		--accent-ink: #1c1d20;
+		--glow-1: #ff8a2e;
+		--glow-2: #f8258a;
+	}
+}
+:root[data-palette='ember'][data-theme='dark'] {
+	--bg: #1c1d20;
+	--bg-elev: #242528;
+	--bg-hover: #2f3034;
+	--border: #34353a;
+	--border-strong: #48494f;
+	--text: #f3f1ef;
+	--muted: #9c9ca3;
+	--accent: #ff7a4d;
+	--accent-soft: #3a2320;
+	--selection: #774232;
+	--accent-ink: #1c1d20;
+	--glow-1: #ff8a2e;
+	--glow-2: #f8258a;
+}

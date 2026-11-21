@@ -1,0 +1,23 @@
+/*
+ * The colour schemes, each behind `data-palette` on the root element.
+ *
+ * A palette sets colour tokens and nothing else, and a design sets everything
+ * but colour, so the two combine freely. Paper is the absence of an attribute:
+ * its values are the defaults in `styles/base.css`.
+ *
+ * `--glow-1` and `--glow-2` are what the background gradients wash in.
+ */
+
+@import './palettes/lavender.css';
+@import './palettes/violet.css';
+@import './palettes/zinc.css';
+@import './palettes/ink.css';
+@import './palettes/clay.css';
+@import './palettes/ember.css';
+@import './palettes/tangerine.css';
+@import './palettes/marigold.css';
+@import './palettes/fern.css';
+@import './palettes/lagoon.css';
+@import './palettes/orchid.css';
+@import './palettes/rose.css';
+@import './palettes/gradients.css';

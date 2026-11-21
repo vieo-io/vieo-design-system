@@ -1,0 +1,41 @@
+/*
+ * What every design starts from.
+ *
+ * These are Aurora's measurements, which were the ones worth keeping: 40px
+ * controls and a 10px step. Sidebar rows are tighter, at 34px. `:root[data-design]` matches whichever
+ * design is set and ties with a named block on specificity, so it comes first
+ * and each design below overrides what it wants.
+ */
+:root[data-design] {
+	--font-ui: 15.5px;
+	--font-sm: 13.5px;
+	--font-xs: 12.5px;
+	--font-title: clamp(30px, 4.2vw, 42px);
+	--line-ui: 1.5;
+	--weight-strong: 600;
+
+	--space-1: 5px;
+	--space-2: 10px;
+	--space-3: 14px;
+	--space-4: 20px;
+	--space-5: 28px;
+	--space-6: 40px;
+
+	--control-height: 40px;
+	--control-height-sm: 34px;
+	--control-px: 16px;
+	--row-height: 34px;
+	--row-gap: 1px;
+
+	--doc-width: 1120px;
+	--doc-pad-top: 44px;
+	--doc-pad-x: clamp(20px, 3.4vw, 56px);
+	--doc-pad-bottom: 104px;
+	/*
+	 * Comfortable is a column that nearly fills the page beside a sidebar on a
+	 * laptop, rather than a narrow strip down the middle of it. `ch` is the
+	 * editor font's own zero, so a design with a different face needs a
+	 * different count for the same column, and several below set their own.
+	 */
+	--measure-comfortable: 102ch;
+}

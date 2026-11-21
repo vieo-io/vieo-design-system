@@ -1,0 +1,48 @@
+/* Lagoon — teal, with a sky-blue glow. */
+:root[data-palette='lagoon'] {
+	--bg: #fbfefe;
+	--bg-elev: #eff9f8;
+	--bg-hover: #dff1f0;
+	--border: #d5e7e6;
+	--border-strong: #bad6d4;
+	--text: #102322;
+	--muted: #536866;
+	--accent: #00827d;
+	--accent-soft: #d1f8f4;
+	--selection: #7ec0be;
+	--accent-ink: #ffffff;
+	--glow-1: #00beac;
+	--glow-2: #00b8f4;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='lagoon']:not([data-theme='light']) {
+		--bg: #0e1615;
+		--bg-elev: #141e1d;
+		--bg-hover: #1c2928;
+		--border: #212e2d;
+		--border-strong: #324442;
+		--text: #e8f3f2;
+		--muted: #91a3a1;
+		--accent: #3ed0c8;
+		--accent-soft: #003331;
+		--selection: #1f5754;
+		--accent-ink: #0e1615;
+		--glow-1: #00cdbb;
+		--glow-2: #00c8ff;
+	}
+}
+:root[data-palette='lagoon'][data-theme='dark'] {
+	--bg: #0e1615;
+	--bg-elev: #141e1d;
+	--bg-hover: #1c2928;
+	--border: #212e2d;
+	--border-strong: #324442;
+	--text: #e8f3f2;
+	--muted: #91a3a1;
+	--accent: #3ed0c8;
+	--accent-soft: #003331;
+	--selection: #1f5754;
+	--accent-ink: #0e1615;
+	--glow-1: #00cdbb;
+	--glow-2: #00c8ff;
+}

@@ -1,0 +1,41 @@
+{
+	"name": "@vieo-io/tokens",
+	"version": "0.1.0",
+	"description": "Vieo's design tokens: one W3C-format JSON source, generated to CSS",
+	"license": "MIT",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vieo-io/vieo-design-system.git",
+		"directory": "packages/tokens"
+	},
+	"files": [
+		"dist",
+		"src",
+		"schema",
+		"LICENSE"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./tokens.css": "./dist/tokens.css",
+		"./designs.css": "./dist/designs.css",
+		"./palettes.css": "./dist/palettes.css",
+		"./schema.json": "./schema/tokens.schema.json"
+	},
+	"scripts": {
+		"build": "node generator/build.ts",
+		"test": "vitest run && tsc --noEmit",
+		"prepublishOnly": "node generator/build.ts"
+	},
+	"devDependencies": {
+		"ajv": "8.20.0",
+		"postcss": "8.5.33",
+		"vitest": "5.1.1"
+	},
+	"engines": {
+		"node": ">=22.12"
+	}
+}

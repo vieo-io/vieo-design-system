@@ -1,0 +1,93 @@
+{
+	"default": {
+		"typography": {
+			"font-family-display": {
+				"$value": "ui-serif, Georgia, 'Iowan Old Style', 'Times New Roman', serif"
+			},
+			"font-family-prose": {
+				"$value": "{typography.font-family-display}"
+			},
+			"font-ui": {
+				"$value": "16px"
+			},
+			"font-sm": {
+				"$value": "14px"
+			},
+			"font-title": {
+				"$value": "clamp(32px, 4.4vw, 46px)"
+			},
+			"tracking-title": {
+				"$value": "-0.018em"
+			},
+			"line-ui": {
+				"$value": "1.55"
+			}
+		},
+		"radius": {
+			"radius-xs": {
+				"$value": "3px"
+			},
+			"radius-sm": {
+				"$value": "5px"
+			},
+			"radius-md": {
+				"$value": "7px"
+			},
+			"radius-lg": {
+				"$value": "10px"
+			}
+		},
+		"size": {
+			"control-height": {
+				"$value": "38px"
+			},
+			"control-height-sm": {
+				"$value": "32px"
+			},
+			"control-px": {
+				"$value": "14px"
+			},
+			"row-height": {
+				"$value": "36px"
+			},
+			"row-gap": {
+				"$value": "1px"
+			}
+		},
+		"layout": {
+			"doc-width": {
+				"$value": "1180px"
+			},
+			"doc-pad-top": {
+				"$value": "56px"
+			},
+			"doc-pad-x": {
+				"$value": "clamp(24px, 4.5vw, 72px)"
+			},
+			"doc-pad-bottom": {
+				"$value": "120px"
+			}
+		},
+		"shadow": {
+			"shadow-1": {
+				"$value": "none"
+			},
+			"shadow-2": {
+				"$value": "0 1px 3px rgb(60 48 30 / 10%)"
+			},
+			"shadow-pop": {
+				"$value": "0 18px 48px rgb(60 48 30 / 22%)"
+			}
+		}
+	},
+	"dark": {
+		"shadow": {
+			"shadow-2": {
+				"$value": "0 1px 3px rgb(0 0 0 / 40%)"
+			},
+			"shadow-pop": {
+				"$value": "0 18px 48px rgb(0 0 0 / 60%)"
+			}
+		}
+	}
+}

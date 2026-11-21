@@ -1,0 +1,74 @@
+{
+	"color": {
+		"bg": {
+			"$value": "#191919"
+		},
+		"bg-elev": {
+			"$value": "#202020"
+		},
+		"bg-hover": {
+			"$value": "#2b2b2b"
+		},
+		"border": {
+			"$value": "#333330"
+		},
+		"text": {
+			"$value": "#e8e8e4"
+		},
+		"muted": {
+			"$value": "#8f8f88"
+		},
+		"accent": {
+			"$value": "#5a8bff"
+		},
+		"accent-soft": {
+			"$value": "#23304d"
+		},
+		"selection": {
+			"$value": "#364c80"
+		},
+		"accent-ink": {
+			"$value": "#0d1424"
+		},
+		"border-strong": {
+			"$value": "#45453f"
+		},
+		"danger": {
+			"$value": "#f08497"
+		},
+		"success": {
+			"$value": "#7fc79b"
+		},
+		"warning": {
+			"$value": "#e5ac5c"
+		}
+	},
+	"shadow": {
+		"shadow-1": {
+			"$value": "0 1px 2px rgb(0 0 0 / 30%)"
+		},
+		"shadow-2": {
+			"$value": "0 2px 10px rgb(0 0 0 / 34%)"
+		},
+		"shadow-pop": {
+			"$value": "0 16px 45px rgb(0 0 0 / 46%)"
+		}
+	},
+	"syntax": {
+		"syntax-marker": {
+			"$value": "#6f6f68"
+		},
+		"syntax-code": {
+			"$value": "#e0936a"
+		},
+		"syntax-keyword": {
+			"$value": "#b48ce8"
+		},
+		"syntax-string": {
+			"$value": "#7fc79b"
+		},
+		"syntax-number": {
+			"$value": "#e0936a"
+		}
+	}
+}

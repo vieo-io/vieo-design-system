@@ -1,0 +1,87 @@
+/* ----------------------------------------------------------------- *
+ * Linear — a surface ladder and hairlines, no shadows, and a marker  *
+ * in the margin for the thing that is open.                          *
+ * ----------------------------------------------------------------- */
+
+:root[data-design='linear'] {
+	--font-family-ui:
+		Inter, 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
+		'Segoe UI', sans-serif;
+	--font-sm: 13px;
+	--font-title: clamp(30px, 4vw, 40px);
+	--tracking-ui: -0.012em;
+	--tracking-title: -0.028em;
+	/* Inter's UI weight, which is what makes a label read as Linear's. */
+	--weight-strong: 590;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+
+	--doc-width: 1180px;
+
+	/* Depth is the ladder and a hairline, so the first two carry no shadow. */
+	--shadow-1: none;
+	--shadow-2: 0 0 0 1px var(--border-strong);
+	--shadow-pop: 0 20px 50px rgb(8 9 10 / 16%);
+
+	--dur: 100ms;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='linear']:not([data-theme='light']) {
+		--shadow-pop: 0 20px 50px rgb(0 0 0 / 60%);
+	}
+}
+:root[data-design='linear'][data-theme='dark'] {
+	--shadow-pop: 0 20px 50px rgb(0 0 0 / 60%);
+}
+
+/* The open page is marked in the margin, not filled in. A filled row in a
+   tree of sixty makes the tree the loudest thing on the screen. */
+:root[data-design='linear'] .tree-item.active,
+:root[data-design='linear'] .nav-item.active,
+:root[data-design='linear'] .all-notes-link.active,
+:root[data-design='linear'] .settings-nav a.active {
+	position: relative;
+	background: var(--bg-hover);
+	color: var(--text);
+}
+:root[data-design='linear'] .tree-item.active::before,
+:root[data-design='linear'] .nav-item.active::before,
+:root[data-design='linear'] .all-notes-link.active::before,
+:root[data-design='linear'] .settings-nav a.active::before {
+	content: '';
+	position: absolute;
+	left: -6px;
+	top: 6px;
+	bottom: 6px;
+	width: 2px;
+	border-radius: var(--radius-pill);
+	background: var(--accent);
+}
+
+/* Linear's press: the control shrinks under the pointer rather than dimming. */
+:root[data-design='linear'] button:active,
+:root[data-design='linear'] .button-link:active {
+	transform: scale(0.97);
+}
+
+/* Nothing raised sits on a shadow; it sits one rung up the ladder. */
+:root[data-design='linear'] .sidebar,
+:root[data-design='linear'] .search-btn,
+:root[data-design='linear'] .notes-card,
+:root[data-design='linear'] .card {
+	background: var(--bg-elev);
+	box-shadow: none;
+}
+:root[data-design='linear'] .viewbar,
+:root[data-design='linear'] .page-bar {
+	background: var(--bg);
+}
+:root[data-design='linear'] .overlay-dialog,
+:root[data-design='linear'] .palette,
+:root[data-design='linear'] .rln-menu {
+	border-color: var(--border-strong);
+}

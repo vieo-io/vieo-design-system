@@ -1,0 +1,48 @@
+/* Ink — Contrast's colours, where a line is the colour of the text. */
+:root[data-palette='ink'] {
+	--bg: #fffdf7;
+	--bg-elev: #f6f1e2;
+	--bg-hover: #ece4cd;
+	--border: #1b1a17;
+	--border-strong: #1b1a17;
+	--text: #1b1a17;
+	--muted: #5d5a4f;
+	--accent: #1f46d6;
+	--accent-soft: #dfe5ff;
+	--selection: #a5b4ea;
+	--accent-ink: #ffffff;
+	--glow-1: #1f46d6;
+	--glow-2: #e0a800;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='ink']:not([data-theme='light']) {
+		--bg: #131210;
+		--bg-elev: #1d1b17;
+		--bg-hover: #2b2822;
+		--border: #f2ede0;
+		--border-strong: #f2ede0;
+		--text: #f2ede0;
+		--muted: #a49e8e;
+		--accent: #8fa6ff;
+		--accent-soft: #232a4a;
+		--selection: #3e4664;
+		--accent-ink: #131210;
+		--glow-1: #8fa6ff;
+		--glow-2: #f2c230;
+	}
+}
+:root[data-palette='ink'][data-theme='dark'] {
+	--bg: #131210;
+	--bg-elev: #1d1b17;
+	--bg-hover: #2b2822;
+	--border: #f2ede0;
+	--border-strong: #f2ede0;
+	--text: #f2ede0;
+	--muted: #a49e8e;
+	--accent: #8fa6ff;
+	--accent-soft: #232a4a;
+	--selection: #3e4664;
+	--accent-ink: #131210;
+	--glow-1: #8fa6ff;
+	--glow-2: #f2c230;
+}

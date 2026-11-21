@@ -1,0 +1,48 @@
+/* Lavender — Linear's colours. */
+:root[data-palette='lavender'] {
+	--bg: #ffffff;
+	--bg-elev: #f5f6f6;
+	--bg-hover: #ebecec;
+	--border: #e5e5e7;
+	--border-strong: #d0d0d4;
+	--text: #08090a;
+	--muted: #6f6f76;
+	--accent: #5e6ad2;
+	--accent-soft: #eceefd;
+	--selection: #aeb4e8;
+	--accent-ink: #ffffff;
+	--glow-1: #5e6ad2;
+	--glow-2: #8f7cf7;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='lavender']:not([data-theme='light']) {
+		--bg: #0f1011;
+		--bg-elev: #141516;
+		--bg-hover: #1c1d1f;
+		--border: #23252a;
+		--border-strong: #34343a;
+		--text: #f7f8f8;
+		--muted: #8a8f98;
+		--accent: #7b86ee;
+		--accent-soft: #1e2038;
+		--selection: #404574;
+		--accent-ink: #0f1011;
+		--glow-1: #7b86ee;
+		--glow-2: #a593ff;
+	}
+}
+:root[data-palette='lavender'][data-theme='dark'] {
+	--bg: #0f1011;
+	--bg-elev: #141516;
+	--bg-hover: #1c1d1f;
+	--border: #23252a;
+	--border-strong: #34343a;
+	--text: #f7f8f8;
+	--muted: #8a8f98;
+	--accent: #7b86ee;
+	--accent-soft: #1e2038;
+	--selection: #404574;
+	--accent-ink: #0f1011;
+	--glow-1: #7b86ee;
+	--glow-2: #a593ff;
+}

@@ -1,0 +1,18 @@
+{
+	"designs": ["classic", "linear", "aurora", "slate", "contrast", "editorial"],
+	"palettes": [
+		"ember",
+		"clay",
+		"tangerine",
+		"marigold",
+		"fern",
+		"lagoon",
+		"paper",
+		"zinc",
+		"ink",
+		"lavender",
+		"violet",
+		"orchid",
+		"rose"
+	]
+}

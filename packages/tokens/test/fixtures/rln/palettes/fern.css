@@ -1,0 +1,48 @@
+/* Fern — green, with a lime glow. */
+:root[data-palette='fern'] {
+	--bg: #fcfefc;
+	--bg-elev: #f2f9f3;
+	--bg-hover: #e4f1e6;
+	--border: #dae7dc;
+	--border-strong: #c2d5c5;
+	--text: #172319;
+	--muted: #5a675c;
+	--accent: #17843f;
+	--accent-soft: #dcf7e1;
+	--selection: #8ac19e;
+	--accent-ink: #ffffff;
+	--glow-1: #41ba5d;
+	--glow-2: #8cb623;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='fern']:not([data-theme='light']) {
+		--bg: #101511;
+		--bg-elev: #171e18;
+		--bg-hover: #202922;
+		--border: #252e27;
+		--border-strong: #38433a;
+		--text: #ebf3ec;
+		--muted: #96a298;
+		--accent: #67d283;
+		--accent-soft: #17321e;
+		--selection: #2e5739;
+		--accent-ink: #101511;
+		--glow-1: #5bc971;
+		--glow-2: #9dc546;
+	}
+}
+:root[data-palette='fern'][data-theme='dark'] {
+	--bg: #101511;
+	--bg-elev: #171e18;
+	--bg-hover: #202922;
+	--border: #252e27;
+	--border-strong: #38433a;
+	--text: #ebf3ec;
+	--muted: #96a298;
+	--accent: #67d283;
+	--accent-soft: #17321e;
+	--selection: #2e5739;
+	--accent-ink: #101511;
+	--glow-1: #5bc971;
+	--glow-2: #9dc546;
+}

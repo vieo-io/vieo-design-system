@@ -1,0 +1,66 @@
+{
+	"default": {
+		"typography": {
+			"font-family-ui": {
+				"$value": "Inter, 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+			},
+			"font-sm": {
+				"$value": "13px"
+			},
+			"font-title": {
+				"$value": "clamp(30px, 4vw, 40px)"
+			},
+			"tracking-ui": {
+				"$value": "-0.012em"
+			},
+			"tracking-title": {
+				"$value": "-0.028em"
+			},
+			"weight-strong": {
+				"$value": "590"
+			}
+		},
+		"radius": {
+			"radius-xs": {
+				"$value": "4px"
+			},
+			"radius-sm": {
+				"$value": "6px"
+			},
+			"radius-md": {
+				"$value": "8px"
+			},
+			"radius-lg": {
+				"$value": "12px"
+			}
+		},
+		"layout": {
+			"doc-width": {
+				"$value": "1180px"
+			}
+		},
+		"shadow": {
+			"shadow-1": {
+				"$value": "none"
+			},
+			"shadow-2": {
+				"$value": "0 0 0 1px {color.border-strong}"
+			},
+			"shadow-pop": {
+				"$value": "0 20px 50px rgb(8 9 10 / 16%)"
+			}
+		},
+		"motion": {
+			"dur": {
+				"$value": "100ms"
+			}
+		}
+	},
+	"dark": {
+		"shadow": {
+			"shadow-pop": {
+				"$value": "0 20px 50px rgb(0 0 0 / 60%)"
+			}
+		}
+	}
+}

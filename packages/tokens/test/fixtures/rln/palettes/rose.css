@@ -1,0 +1,48 @@
+/* Rose — pink, with a fuchsia glow. */
+:root[data-palette='rose'] {
+	--bg: #fffcfd;
+	--bg-elev: #fef4f6;
+	--bg-hover: #fae8eb;
+	--border: #f0dee1;
+	--border-strong: #e2c8cd;
+	--text: #2a1a1e;
+	--muted: #705e61;
+	--accent: #cf386b;
+	--accent-soft: #ffe4eb;
+	--selection: #e79ab4;
+	--accent-ink: #ffffff;
+	--glow-1: #f46a86;
+	--glow-2: #f072b3;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='rose']:not([data-theme='light']) {
+		--bg: #191213;
+		--bg-elev: #22191b;
+		--bg-hover: #2e2325;
+		--border: #33282a;
+		--border-strong: #4a3b3e;
+		--text: #f8edef;
+		--muted: #aa9a9d;
+		--accent: #ff88aa;
+		--accent-soft: #402028;
+		--selection: #6a3b48;
+		--accent-ink: #191213;
+		--glow-1: #ff7e97;
+		--glow-2: #fe86c2;
+	}
+}
+:root[data-palette='rose'][data-theme='dark'] {
+	--bg: #191213;
+	--bg-elev: #22191b;
+	--bg-hover: #2e2325;
+	--border: #33282a;
+	--border-strong: #4a3b3e;
+	--text: #f8edef;
+	--muted: #aa9a9d;
+	--accent: #ff88aa;
+	--accent-soft: #402028;
+	--selection: #6a3b48;
+	--accent-ink: #191213;
+	--glow-1: #ff7e97;
+	--glow-2: #fe86c2;
+}

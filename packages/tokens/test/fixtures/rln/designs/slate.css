@@ -1,0 +1,56 @@
+/* -------------------------------------------------------- *
+ * Slate — small radii, soft shadows, and a ring on what has  *
+ * focus.                                                     *
+ * -------------------------------------------------------- */
+
+:root[data-design='slate'] {
+	--tracking-ui: -0.011em;
+	--tracking-title: -0.025em;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+
+	--doc-width: 1140px;
+	--measure-comfortable: 111ch;
+
+	--shadow-1: 0 1px 2px rgb(9 9 11 / 5%);
+	--shadow-2: 0 1px 3px rgb(9 9 11 / 8%), 0 8px 20px -6px rgb(9 9 11 / 10%);
+	--shadow-pop: 0 20px 50px -12px rgb(9 9 11 / 24%);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='slate']:not([data-theme='light']) {
+		--shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+		--shadow-2:
+			0 1px 3px rgb(0 0 0 / 50%), 0 8px 20px -6px rgb(0 0 0 / 55%);
+		--shadow-pop: 0 20px 50px -12px rgb(0 0 0 / 70%);
+	}
+}
+:root[data-design='slate'][data-theme='dark'] {
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+	--shadow-2: 0 1px 3px rgb(0 0 0 / 50%), 0 8px 20px -6px rgb(0 0 0 / 55%);
+	--shadow-pop: 0 20px 50px -12px rgb(0 0 0 / 70%);
+}
+
+/* An offset ring rather than a glow, so focus is legible on any surface. */
+:root[data-design='slate'] {
+	--focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+:root[data-design='slate'] .tree-item.active,
+:root[data-design='slate'] .nav-item.active,
+:root[data-design='slate'] .all-notes-link.active,
+:root[data-design='slate'] .settings-nav a.active {
+	background: var(--bg-hover);
+	color: var(--text);
+}
+:root[data-design='slate'] .sidebar {
+	background: var(--bg-elev);
+}
+:root[data-design='slate'] button.ghost,
+:root[data-design='slate'] .notes-card,
+:root[data-design='slate'] .card,
+:root[data-design='slate'] .design-card {
+	box-shadow: var(--shadow-1);
+}

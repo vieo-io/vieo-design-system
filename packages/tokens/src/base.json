@@ -1,0 +1,306 @@
+{
+	"color": {
+		"bg": {
+			"$type": "color",
+			"$value": "#ffffff"
+		},
+		"bg-elev": {
+			"$type": "color",
+			"$value": "#f7f7f5"
+		},
+		"panel": {
+			"$type": "color",
+			"$value": "{color.bg}"
+		},
+		"bg-hover": {
+			"$type": "color",
+			"$value": "#ecebe8"
+		},
+		"border": {
+			"$type": "color",
+			"$value": "#e3e2df"
+		},
+		"text": {
+			"$type": "color",
+			"$value": "#1f1f1d"
+		},
+		"muted": {
+			"$type": "color",
+			"$value": "#8a8a84"
+		},
+		"accent": {
+			"$type": "color",
+			"$value": "#3b6fe0"
+		},
+		"accent-soft": {
+			"$type": "color",
+			"$value": "#e8effc"
+		},
+		"selection": {
+			"$type": "color",
+			"$value": "#9db7f0"
+		},
+		"accent-ink": {
+			"$type": "color",
+			"$value": "#ffffff"
+		},
+		"border-strong": {
+			"$type": "color",
+			"$value": "#d2d1cc"
+		},
+		"danger": {
+			"$type": "color",
+			"$value": "#c03545"
+		},
+		"success": {
+			"$type": "color",
+			"$value": "#2f7a52",
+			"$description": "Something finished or is healthy, as text or an icon on bg"
+		},
+		"warning": {
+			"$type": "color",
+			"$value": "#94580c",
+			"$description": "Something needs attention but nothing failed, as text or an icon on bg"
+		}
+	},
+	"radius": {
+		"radius": {
+			"$type": "dimension",
+			"$value": "8px"
+		},
+		"radius-xs": {
+			"$type": "dimension",
+			"$value": "4px"
+		},
+		"radius-sm": {
+			"$type": "dimension",
+			"$value": "6px"
+		},
+		"radius-md": {
+			"$type": "dimension",
+			"$value": "10px"
+		},
+		"radius-lg": {
+			"$type": "dimension",
+			"$value": "14px"
+		},
+		"radius-pill": {
+			"$type": "dimension",
+			"$value": "999px"
+		}
+	},
+	"syntax": {
+		"syntax-marker": {
+			"$type": "color",
+			"$value": "#a3a39a"
+		},
+		"syntax-code": {
+			"$type": "color",
+			"$value": "#b4592f"
+		},
+		"syntax-keyword": {
+			"$type": "color",
+			"$value": "#7c4dbd"
+		},
+		"syntax-string": {
+			"$type": "color",
+			"$value": "#2f7a52"
+		},
+		"syntax-number": {
+			"$type": "color",
+			"$value": "#b4592f"
+		}
+	},
+	"typography": {
+		"font-family-ui": {
+			"$type": "fontFamily",
+			"$value": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+		},
+		"font-family-display": {
+			"$type": "fontFamily",
+			"$value": "{typography.font-family-ui}"
+		},
+		"font-family-prose": {
+			"$type": "fontFamily",
+			"$value": "{typography.font-family-ui}"
+		},
+		"font-family-mono": {
+			"$type": "fontFamily",
+			"$value": "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+		},
+		"font-ui": {
+			"$type": "dimension",
+			"$value": "15px"
+		},
+		"font-sm": {
+			"$type": "dimension",
+			"$value": "13px"
+		},
+		"font-xs": {
+			"$type": "dimension",
+			"$value": "12px"
+		},
+		"font-title": {
+			"$type": "dimension",
+			"$value": "clamp(24px, 3.2vw, 30px)"
+		},
+		"tracking-title": {
+			"$type": "dimension",
+			"$value": "-0.025em"
+		},
+		"tracking-ui": {
+			"$type": "dimension",
+			"$value": "normal"
+		},
+		"weight-strong": {
+			"$type": "fontWeight",
+			"$value": "600"
+		},
+		"line-ui": {
+			"$type": "number",
+			"$value": "1.45"
+		}
+	},
+	"space": {
+		"space-1": {
+			"$type": "dimension",
+			"$value": "4px"
+		},
+		"space-2": {
+			"$type": "dimension",
+			"$value": "8px"
+		},
+		"space-3": {
+			"$type": "dimension",
+			"$value": "12px"
+		},
+		"space-4": {
+			"$type": "dimension",
+			"$value": "16px"
+		},
+		"space-5": {
+			"$type": "dimension",
+			"$value": "24px"
+		},
+		"space-6": {
+			"$type": "dimension",
+			"$value": "32px"
+		}
+	},
+	"size": {
+		"control-height": {
+			"$type": "dimension",
+			"$value": "36px"
+		},
+		"control-height-sm": {
+			"$type": "dimension",
+			"$value": "30px"
+		},
+		"control-px": {
+			"$type": "dimension",
+			"$value": "12px"
+		},
+		"row-height": {
+			"$type": "dimension",
+			"$value": "34px"
+		},
+		"row-gap": {
+			"$type": "dimension",
+			"$value": "0px"
+		},
+		"tree-indent": {
+			"$type": "dimension",
+			"$value": "14px"
+		},
+		"row-indent": {
+			"$type": "dimension",
+			"$value": "14px"
+		},
+		"icon-size": {
+			"$type": "dimension",
+			"$value": "18px"
+		},
+		"icon-size-sm": {
+			"$type": "dimension",
+			"$value": "15px"
+		}
+	},
+	"layout": {
+		"doc-width": {
+			"$type": "dimension",
+			"$value": "860px"
+		},
+		"doc-pad-top": {
+			"$type": "dimension",
+			"$value": "34px"
+		},
+		"doc-pad-x": {
+			"$type": "dimension",
+			"$value": "clamp(24px, 6vw, 80px)"
+		},
+		"doc-pad-bottom": {
+			"$type": "dimension",
+			"$value": "72px"
+		}
+	},
+	"shadow": {
+		"shadow-1": {
+			"$type": "shadow",
+			"$value": "0 1px 2px rgb(0 0 0 / 5%)"
+		},
+		"shadow-2": {
+			"$type": "shadow",
+			"$value": "0 2px 10px rgb(0 0 0 / 6%)"
+		},
+		"shadow-pop": {
+			"$type": "shadow",
+			"$value": "0 16px 45px rgb(0 0 0 / 8%)"
+		},
+		"focus-ring": {
+			"$type": "shadow",
+			"$value": "0 0 0 3px color-mix(in srgb, {color.accent} 22%, transparent)"
+		}
+	},
+	"motion": {
+		"dur": {
+			"$type": "duration",
+			"$value": "120ms"
+		},
+		"ease": {
+			"$type": "cubicBezier",
+			"$value": "cubic-bezier(0.32, 0.72, 0, 1)"
+		}
+	},
+	"z": {
+		"z-raised": {
+			"$type": "number",
+			"$value": "1",
+			"$description": "Above its siblings in the same stacking context"
+		},
+		"z-sticky": {
+			"$type": "number",
+			"$value": "20",
+			"$description": "Sticky headers and rails"
+		},
+		"z-overlay": {
+			"$type": "number",
+			"$value": "100",
+			"$description": "A scrim or a panel that covers the page"
+		},
+		"z-popover": {
+			"$type": "number",
+			"$value": "1000",
+			"$description": "Menus, popovers, and tooltips"
+		},
+		"z-dialog": {
+			"$type": "number",
+			"$value": "1100",
+			"$description": "Dialogs and the command palette"
+		},
+		"z-toast": {
+			"$type": "number",
+			"$value": "1200",
+			"$description": "Toasts, above everything"
+		}
+	}
+}

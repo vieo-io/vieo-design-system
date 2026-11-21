@@ -1,0 +1,48 @@
+/* Marigold — gold. A yellow light enough to look yellow cannot reach 4.5:1 on white, so the light accent is ochre. */
+:root[data-palette='marigold'] {
+	--bg: #fffdfa;
+	--bg-elev: #faf6ef;
+	--bg-hover: #f4ecde;
+	--border: #eae2d4;
+	--border-strong: #d9ceba;
+	--text: #251e11;
+	--muted: #6a6253;
+	--accent: #9d6900;
+	--accent-soft: #fcedd1;
+	--selection: #c9ac70;
+	--accent-ink: #ffffff;
+	--glow-1: #ce9300;
+	--glow-2: #ef8600;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='marigold']:not([data-theme='light']) {
+		--bg: #16130e;
+		--bg-elev: #1f1b14;
+		--bg-hover: #2b261c;
+		--border: #302b21;
+		--border-strong: #463f33;
+		--text: #f4f0e7;
+		--muted: #a59d91;
+		--accent: #e7ac2a;
+		--accent-soft: #38290a;
+		--selection: #5f4918;
+		--accent-ink: #16130e;
+		--glow-1: #dca400;
+		--glow-2: #fd9836;
+	}
+}
+:root[data-palette='marigold'][data-theme='dark'] {
+	--bg: #16130e;
+	--bg-elev: #1f1b14;
+	--bg-hover: #2b261c;
+	--border: #302b21;
+	--border-strong: #463f33;
+	--text: #f4f0e7;
+	--muted: #a59d91;
+	--accent: #e7ac2a;
+	--accent-soft: #38290a;
+	--selection: #5f4918;
+	--accent-ink: #16130e;
+	--glow-1: #dca400;
+	--glow-2: #fd9836;
+}

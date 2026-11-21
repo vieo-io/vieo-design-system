@@ -1,0 +1,67 @@
+/* ---------------------------------------------------------------- *
+ * Editorial — a wide page with the note set in a serif.             *
+ * ---------------------------------------------------------------- */
+
+:root[data-design='editorial'] {
+	--font-family-display:
+		ui-serif, Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+	--font-family-prose: var(--font-family-display);
+	--font-ui: 16px;
+	--font-sm: 14px;
+	--font-title: clamp(32px, 4.4vw, 46px);
+	--tracking-title: -0.018em;
+	--line-ui: 1.55;
+
+	--radius-xs: 3px;
+	--radius-sm: 5px;
+	--radius-md: 7px;
+	--radius-lg: 10px;
+
+	--control-height: 38px;
+	--control-height-sm: 32px;
+	--control-px: 14px;
+	--row-height: 36px;
+	--row-gap: 1px;
+
+	--doc-width: 1180px;
+	--doc-pad-top: 56px;
+	--doc-pad-x: clamp(24px, 4.5vw, 72px);
+	--doc-pad-bottom: 120px;
+	/* The serif's `ch` is narrower, so the same column takes more of them. */
+	--measure-comfortable: 122ch;
+
+	--shadow-1: none;
+	--shadow-2: 0 1px 3px rgb(60 48 30 / 10%);
+	--shadow-pop: 0 18px 48px rgb(60 48 30 / 22%);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root[data-design='editorial']:not([data-theme='light']) {
+		--shadow-2: 0 1px 3px rgb(0 0 0 / 40%);
+		--shadow-pop: 0 18px 48px rgb(0 0 0 / 60%);
+	}
+}
+:root[data-design='editorial'][data-theme='dark'] {
+	--shadow-2: 0 1px 3px rgb(0 0 0 / 40%);
+	--shadow-pop: 0 18px 48px rgb(0 0 0 / 60%);
+}
+
+/* Headings take the serif; rows, buttons and labels stay in the UI stack, or
+   the chrome starts competing with the writing. */
+:root[data-design='editorial'] .settings-head h1,
+:root[data-design='editorial'] .collection-head h1,
+:root[data-design='editorial'] .stored-items-head h1 {
+	font-family: var(--font-family-display);
+	letter-spacing: var(--tracking-title);
+}
+:root[data-design='editorial'] .tree-item.active,
+:root[data-design='editorial'] .nav-item.active,
+:root[data-design='editorial'] .all-notes-link.active,
+:root[data-design='editorial'] .settings-nav a.active {
+	background: var(--bg-hover);
+	color: var(--text);
+	box-shadow: inset 2px 0 0 var(--accent);
+}
+:root[data-design='editorial'] .sidebar {
+	background: var(--bg-elev);
+}

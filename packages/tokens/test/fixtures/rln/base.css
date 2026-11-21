@@ -1,0 +1,309 @@
+:root {
+	--bg: #ffffff;
+	--bg-elev: #f7f7f5;
+	--panel: var(--bg);
+	--bg-hover: #ecebe8;
+	--border: #e3e2df;
+	--text: #1f1f1d;
+	--muted: #8a8a84;
+	--accent: #3b6fe0;
+	--kind-canvas: #e34948;
+	--kind-collection: #7356b8;
+	--kind-log: #1baf7a;
+	--kind-tracker: #eda100;
+	--accent-soft: #e8effc;
+	--selection: #9db7f0;
+	--accent-ink: #ffffff;
+	--border-strong: #d2d1cc;
+	--danger: #c03545;
+	/* What the background gradients wash in, and how strongly. */
+	--glow-1: #3b6fe0;
+	--glow-2: #8b5cf6;
+	--glow-strength: 11%;
+	--radius: 8px;
+	/* Markdown source colours — see livePreview/highlight.ts. */
+	--syntax-marker: #a3a39a;
+	--syntax-code: #b4592f;
+	--syntax-keyword: #7c4dbd;
+	--syntax-string: #2f7a52;
+	--syntax-number: #b4592f;
+	font-family: var(--font-family-ui);
+	color-scheme: light dark;
+}
+
+/*
+ * The dimensions a design is allowed to move.
+ *
+ * Spacing, control sizes, radii, type and the width of a page were px spread
+ * through the rest of this file, so every one of them was a separate edit and
+ * none of them could be changed together. As tokens they are one set of
+ * numbers, which is what `[data-design]` in `designs.css` overrides. The
+ * values here reproduce the app as it was, so the design named Classic is the
+ * absence of an override rather than a copy of one.
+ */
+:root {
+	--font-family-ui:
+		ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--font-family-display: var(--font-family-ui);
+	/* The note body. Separate from the UI stack: a design may set prose in a
+	   serif and leave the chrome alone. */
+	--font-family-prose: var(--font-family-ui);
+	--font-family-mono:
+		ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+	--font-ui: 15px;
+	--font-sm: 13px;
+	--font-xs: 12px;
+	/* The document title, and the rename input it turns into. */
+	--font-title: clamp(24px, 3.2vw, 30px);
+	--tracking-title: -0.025em;
+	--tracking-ui: normal;
+	/* What a label, a tab or an active row weighs against body text. */
+	--weight-strong: 600;
+	--line-ui: 1.45;
+
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+
+	--control-height: 36px;
+	--control-height-sm: 30px;
+	--control-px: 12px;
+	/* One row of the sidebar tree, and of anything that lists like it. */
+	--row-height: 34px;
+	--row-gap: 0px;
+	--tree-indent: 14px;
+	--row-indent: 14px;
+
+	--icon-size: 18px;
+	--icon-size-sm: 15px;
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+	--radius-pill: 999px;
+
+	--doc-width: 860px;
+	--doc-pad-top: 34px;
+	--doc-pad-x: clamp(24px, 6vw, 80px);
+	--doc-pad-bottom: 72px;
+
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 5%);
+	--shadow-2: 0 2px 10px rgb(0 0 0 / 6%);
+	--shadow-pop: 0 16px 45px rgb(0 0 0 / 8%);
+
+	--dur: 120ms;
+	--ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+	/* What every focusable control shows when it has focus. A design that
+	   wants an offset ring rather than a glow overrides this one value. */
+	--focus-ring: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/*
+ * Dark, from two places. The media query is the machine's preference and the
+ * attribute is the Appearance setting; the attribute wins both ways, because
+ * somebody who chose light on a machine set to dark meant it.
+ */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--bg: #191919;
+		--bg-elev: #202020;
+		--bg-hover: #2b2b2b;
+		--border: #333330;
+		--text: #e8e8e4;
+		--muted: #8f8f88;
+		--accent: #5a8bff;
+		--kind-canvas: #e35b55;
+		--kind-collection: #8e74d6;
+		--kind-log: #20a87a;
+		--kind-tracker: #d99a1a;
+		--accent-soft: #23304d;
+		--selection: #364c80;
+		--accent-ink: #0d1424;
+		--border-strong: #45453f;
+		--danger: #f08497;
+		--glow-1: #5a8bff;
+		--glow-2: #a78bfa;
+		--glow-strength: 15%;
+		--shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
+		--shadow-2: 0 2px 10px rgb(0 0 0 / 34%);
+		--shadow-pop: 0 16px 45px rgb(0 0 0 / 46%);
+		--syntax-marker: #6f6f68;
+		--syntax-code: #e0936a;
+		--syntax-keyword: #b48ce8;
+		--syntax-string: #7fc79b;
+		--syntax-number: #e0936a;
+	}
+}
+:root[data-theme='dark'] {
+	--bg: #191919;
+	--bg-elev: #202020;
+	--bg-hover: #2b2b2b;
+	--border: #333330;
+	--text: #e8e8e4;
+	--muted: #8f8f88;
+	--accent: #5a8bff;
+	--kind-canvas: #e35b55;
+	--kind-collection: #8e74d6;
+	--kind-log: #20a87a;
+	--kind-tracker: #d99a1a;
+	--accent-soft: #23304d;
+	--selection: #364c80;
+	--accent-ink: #0d1424;
+	--border-strong: #45453f;
+	--danger: #f08497;
+	--glow-1: #5a8bff;
+	--glow-2: #a78bfa;
+	--glow-strength: 15%;
+	--shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
+	--shadow-2: 0 2px 10px rgb(0 0 0 / 34%);
+	--shadow-pop: 0 16px 45px rgb(0 0 0 / 46%);
+	--syntax-marker: #6f6f68;
+	--syntax-code: #e0936a;
+	--syntax-keyword: #b48ce8;
+	--syntax-string: #7fc79b;
+	--syntax-number: #e0936a;
+	color-scheme: dark;
+}
+:root[data-theme='light'] {
+	color-scheme: light;
+}
+
+/*
+ * Editor text size and line width, set on the root by `preferences.ts`.
+ *
+ * `--editor-font-size` is the editor's base, and everything inside it sizes in
+ * `em`, so this one number carries headings and code with it. It is not an
+ * app-wide scale: the rest of the stylesheet is px, and a text size that moved
+ * a third of the screen would read as a bug.
+ */
+:root {
+	--editor-font-size: 15px;
+	--editor-measure: none;
+	/* What Comfortable means. A design widens the column by moving this
+	   rather than by overriding the preference, so both answers survive. */
+	--measure-comfortable: 70ch;
+}
+:root[data-text-size='small'] {
+	--editor-font-size: 13.5px;
+}
+:root[data-text-size='large'] {
+	--editor-font-size: 17px;
+}
+@media (pointer: coarse) {
+	:root {
+		--editor-font-size: 17px;
+	}
+	:root[data-text-size='small'] {
+		--editor-font-size: 15px;
+	}
+	:root[data-text-size='large'] {
+		--editor-font-size: 19px;
+	}
+}
+:root[data-line-width='comfortable'] {
+	--editor-measure: var(--measure-comfortable);
+}
+
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	/* Chrome on Android reloads the app when a scroll overshoots the top. */
+	overscroll-behavior-y: none;
+	background: var(--bg);
+	color: var(--text);
+	font-size: var(--font-ui);
+	line-height: var(--line-ui);
+	letter-spacing: var(--tracking-ui);
+}
+/* In the installed app the browser scrolls the page but never zooms it. A photo or a canvas still zooms itself under a pinch. */
+@media (display-mode: standalone),
+	(display-mode: fullscreen),
+	(display-mode: minimal-ui),
+	(display-mode: window-controls-overlay) {
+	html {
+		touch-action: pan-x pan-y;
+	}
+}
+.button-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	min-height: var(--control-height);
+	padding: 0 var(--control-px);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	color: inherit;
+	text-decoration: none;
+	transition: background var(--dur) var(--ease);
+}
+.button-link.primary {
+	border-color: var(--accent);
+	background: var(--accent);
+	color: var(--accent-ink);
+	font-weight: var(--weight-strong);
+}
+/* Chrome on a touch screen flashes a square box over a tapped button, whatever its corners. */
+button,
+[role='button'] {
+	-webkit-tap-highlight-color: transparent;
+}
+button {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+/*
+ * Every selector here is inside `:where`, so it has no specificity and any
+ * other rule for a button wins, wherever it sits. A button nothing else styles
+ * gets the browser's own grey face and 2px outset border, which no design uses.
+ */
+:where(button) {
+	background: var(--bg);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+}
+:where(button:not([class]):disabled) {
+	opacity: 0.55;
+	cursor: default;
+}
+@media (hover: hover) {
+	:where(button:not(:disabled):hover) {
+		background: var(--bg-hover);
+		border-color: var(--border-strong);
+	}
+}
+/* Inset, since the scrolling tab list and the card both clip what spills over. */
+.home-view-tabs .collection-tab-list > button:focus-visible,
+.notes-card-foot button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: -2px;
+}
+kbd {
+	font-family: inherit;
+	font-size: 11px;
+	color: var(--muted);
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	padding: 1px 5px;
+}
+.muted {
+	color: var(--muted);
+}
+.pad {
+	padding: 24px;
+}
+.count {
+	color: var(--muted);
+	font-weight: 500;
+	margin-left: 8px;
+	font-size: 12px;
+}

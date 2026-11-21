@@ -1,0 +1,48 @@
+/* Violet — Aurora's colours. */
+:root[data-palette='violet'] {
+	--bg: #fdfcff;
+	--bg-elev: #f5f2ff;
+	--bg-hover: #ebe6ff;
+	--border: #e6e0f7;
+	--border-strong: #d2c9ef;
+	--text: #221c3d;
+	--muted: #7a7398;
+	--accent: #6c5ce7;
+	--accent-soft: #eae5ff;
+	--selection: #b4acf3;
+	--accent-ink: #ffffff;
+	--glow-1: #6c5ce7;
+	--glow-2: #2fb8e6;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='violet']:not([data-theme='light']) {
+		--bg: #15131f;
+		--bg-elev: #1e1a2e;
+		--bg-hover: #2a2442;
+		--border: #302a48;
+		--border-strong: #443a68;
+		--text: #eee9ff;
+		--muted: #9a93bb;
+		--accent: #9d8cff;
+		--accent-soft: #2b2450;
+		--selection: #4b4379;
+		--accent-ink: #15131f;
+		--glow-1: #9d8cff;
+		--glow-2: #3cc8f0;
+	}
+}
+:root[data-palette='violet'][data-theme='dark'] {
+	--bg: #15131f;
+	--bg-elev: #1e1a2e;
+	--bg-hover: #2a2442;
+	--border: #302a48;
+	--border-strong: #443a68;
+	--text: #eee9ff;
+	--muted: #9a93bb;
+	--accent: #9d8cff;
+	--accent-soft: #2b2450;
+	--selection: #4b4379;
+	--accent-ink: #15131f;
+	--glow-1: #9d8cff;
+	--glow-2: #3cc8f0;
+}
