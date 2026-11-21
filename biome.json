@@ -1,7 +1,15 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
 	"files": {
-		"includes": ["**", "!**/dist", "!**/node_modules", "!**/test/fixtures", "!**/shots"]
+		"includes": [
+			"**",
+			"!**/dist",
+			"!**/node_modules",
+			"!**/test/fixtures",
+			"!**/shots",
+			"!**/test-results",
+			"!**/playwright-report"
+		]
 	},
 	"formatter": {
 		"indentStyle": "tab",
