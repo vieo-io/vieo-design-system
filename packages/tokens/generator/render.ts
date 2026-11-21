@@ -70,13 +70,25 @@ export function renderTokensCss(source: Source): string {
 	)
 }
 
-/** A palette's colours as they compute in one theme, in Classic, with references followed. */
-export function resolveColours(source: Source, palette: string, theme: Theme): Colours {
+/**
+ * A palette's colours as they compute in one theme, in Classic unless a design is named, with references
+ * followed and an sRGB `color-mix` of two colours worked out.
+ */
+export function resolveColours(
+	source: Source,
+	palette: string,
+	theme: Theme,
+	design = 'classic',
+): Colours {
 	const values = new Map<string, string>()
-	for (const layer of layersFor(source, { design: 'classic', palette, theme, coarse: false }))
+	for (const layer of layersFor(source, { design, palette, theme, coarse: false }))
 		for (const token of layer.tokens) values.set(token.name, token.value)
 	const resolve = (value: string): string =>
-		value.replace(REFERENCE, (_match, _group, name: string) => resolve(values.get(name) ?? ''))
+		mixSrgb(
+			value.replace(REFERENCE, (_match, _group, name: string) =>
+				resolve(values.get(name) ?? ''),
+			),
+		)
 	return Object.fromEntries(
 		source.base
 			.filter(isColour)
@@ -106,6 +118,24 @@ function look(
 		mediaBlock(DARK_MEDIA, `${selector}:not([data-theme='light'])`, dark),
 		block(`${selector}[data-theme='dark']`, dark),
 	].filter(Boolean)
+}
+
+/** `color-mix(in srgb, #a P%, #b)` as the `#rrggbb` it computes to. Any other value comes back as it was. */
+function mixSrgb(value: string): string {
+	const match = /^color-mix\(in srgb, (#[0-9a-f]{6}) (\d+(?:\.\d+)?)%, (#[0-9a-f]{6})\)$/i.exec(
+		value,
+	)
+	if (!match) return value
+	const [, one = '', percent = '', other = ''] = match
+	const share = Number(percent) / 100
+	const channel = (hex: string, at: number) => Number.parseInt(hex.slice(at, at + 2), 16)
+	return `#${[1, 3, 5]
+		.map((at) =>
+			Math.round(channel(one, at) * share + channel(other, at) * (1 - share))
+				.toString(16)
+				.padStart(2, '0'),
+		)
+		.join('')}`
 }
 
 function media(query: string, inner: string): string {

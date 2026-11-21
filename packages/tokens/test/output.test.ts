@@ -80,7 +80,15 @@ describe('the generated css', () => {
 
 	it('lists the designs and palettes in order, Classic and Paper in their places', async () => {
 		const { DESIGNS, PALETTES } = await indexJs()
-		expect(DESIGNS).toEqual(['classic', 'linear', 'aurora', 'slate', 'contrast', 'editorial'])
+		expect(DESIGNS).toEqual([
+			'classic',
+			'vieo',
+			'linear',
+			'aurora',
+			'slate',
+			'contrast',
+			'editorial',
+		])
 		expect(PALETTES).toEqual([
 			'ember',
 			'clay',

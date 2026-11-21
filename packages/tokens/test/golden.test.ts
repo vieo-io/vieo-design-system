@@ -14,6 +14,9 @@ const CHANGED: Record<string, Record<string, string>> = {
 
 const FIXTURES = fileURLToPath(new URL('./fixtures/', import.meta.url))
 
+/** Designs the package added after the apps, which no app has yet. */
+const PACKAGE_OWN = /data-design='vieo'/
+
 const SOURCE = loadSource(fileURLToPath(new URL('../src', import.meta.url)))
 
 const GENERATED = [
@@ -57,6 +60,8 @@ describe.each(Object.entries(APPS))('the generated css against %s', (_app, app) 
 				})),
 		)
 	const generated = declarations(GENERATED, (property) => appDeclarations.has(property))
+	for (const list of generated.values())
+		list.splice(0, list.length, ...list.filter((entry) => !PACKAGE_OWN.test(entry.selector)))
 
 	// The comparison sorts entries within one kind of block, which is sound only while no property is
 	// declared twice under the same selector and media query.

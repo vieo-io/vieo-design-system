@@ -70,3 +70,27 @@ describe('every palette meets the contrast targets in both themes', () => {
 		}
 	})
 })
+
+describe('every palette stays readable under the Vieo design', () => {
+	const vieo = (name: string) =>
+		THEMES.map((theme) => [theme, resolveColours(SOURCE, name, theme, 'vieo')] as const)
+
+	it.each(ALL)('%s keeps text, muted text, and buttons readable on every surface', (name) => {
+		for (const [theme, colours] of vieo(name)) {
+			for (const surface of ['ground', 'surface', 'raised']) {
+				expect(
+					contrast(colours.text ?? '', colours[surface] ?? ''),
+					`${theme} text on ${surface}`,
+				).toBeGreaterThanOrEqual(7)
+				expect(
+					contrast(colours.muted ?? '', colours[surface] ?? ''),
+					`${theme} muted on ${surface}`,
+				).toBeGreaterThanOrEqual(READABLE_TEXT)
+			}
+			expect(
+				contrast(colours['accent-ink'] ?? '', colours.accent ?? ''),
+				`${theme} button label`,
+			).toBeGreaterThanOrEqual(4.5)
+		}
+	})
+})

@@ -1,0 +1,146 @@
+{
+	"default": {
+		"color": {
+			"ground": {
+				"$value": "{color.bg-elev}"
+			},
+			"surface": {
+				"$value": "{color.bg}"
+			},
+			"raised": {
+				"$value": "{color.bg}"
+			}
+		},
+		"typography": {
+			"font-family-ui": {
+				"$value": "Inter, 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+			},
+			"font-family-mono": {
+				"$value": "'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+			},
+			"font-features-ui": {
+				"$value": "'cv11', 'ss02'"
+			},
+			"font-ui": {
+				"$value": "14px"
+			},
+			"font-sm": {
+				"$value": "13px"
+			},
+			"font-xs": {
+				"$value": "12px"
+			},
+			"font-title": {
+				"$value": "24px"
+			},
+			"font-prose": {
+				"$value": "16px"
+			},
+			"tracking-title": {
+				"$value": "-0.015em"
+			},
+			"line-ui": {
+				"$value": "1.43"
+			}
+		},
+		"radius": {
+			"radius-xs": {
+				"$value": "4px"
+			},
+			"radius-sm": {
+				"$value": "6px"
+			},
+			"radius-md": {
+				"$value": "8px"
+			},
+			"radius-lg": {
+				"$value": "12px"
+			}
+		},
+		"space": {
+			"space-1": {
+				"$value": "4px"
+			},
+			"space-2": {
+				"$value": "8px"
+			},
+			"space-3": {
+				"$value": "12px"
+			},
+			"space-4": {
+				"$value": "16px"
+			},
+			"space-5": {
+				"$value": "24px"
+			},
+			"space-6": {
+				"$value": "32px"
+			}
+		},
+		"size": {
+			"control-height": {
+				"$value": "32px"
+			},
+			"control-height-sm": {
+				"$value": "28px"
+			},
+			"control-px": {
+				"$value": "12px"
+			},
+			"row-height": {
+				"$value": "30px"
+			},
+			"row-indent": {
+				"$value": "12px"
+			},
+			"icon-size": {
+				"$value": "16px"
+			},
+			"icon-size-sm": {
+				"$value": "14px"
+			}
+		},
+		"layout": {
+			"doc-width": {
+				"$value": "720px"
+			}
+		},
+		"shadow": {
+			"shadow-1": {
+				"$value": "none"
+			},
+			"shadow-2": {
+				"$value": "0 1px 3px rgb(0 0 0 / 6%)"
+			},
+			"shadow-pop": {
+				"$value": "0 12px 32px rgb(0 0 0 / 12%), 0 0 0 1px {color.border}"
+			},
+			"focus-ring": {
+				"$value": "0 0 0 2px {color.surface}, 0 0 0 4px color-mix(in srgb, {color.accent} 60%, transparent)"
+			}
+		},
+		"motion": {
+			"dur": {
+				"$value": "100ms"
+			}
+		}
+	},
+	"dark": {
+		"color": {
+			"ground": {
+				"$value": "{color.bg}"
+			},
+			"surface": {
+				"$value": "{color.bg-elev}"
+			},
+			"raised": {
+				"$value": "color-mix(in srgb, {color.text} 4%, {color.bg-elev})"
+			}
+		},
+		"shadow": {
+			"shadow-pop": {
+				"$value": "0 16px 40px rgb(0 0 0 / 50%), 0 0 0 1px {color.border}"
+			}
+		}
+	}
+}

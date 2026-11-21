@@ -12,6 +12,26 @@
 			"$type": "color",
 			"$value": "{color.bg}"
 		},
+		"ground": {
+			"$type": "color",
+			"$value": "{color.bg-elev}",
+			"$description": "Behind a shell's panels: the sidebar, and the header of a design that insets its page"
+		},
+		"surface": {
+			"$type": "color",
+			"$value": "{color.panel}",
+			"$description": "The panel a page's content sits on"
+		},
+		"raised": {
+			"$type": "color",
+			"$value": "{color.bg-elev}",
+			"$description": "What floats over the page: a dialog, a popover, a sheet, or a toast"
+		},
+		"scrim": {
+			"$type": "color",
+			"$value": "rgb(0 0 0 / 28%)",
+			"$description": "Behind a modal dialog or sheet"
+		},
 		"bg-hover": {
 			"$type": "color",
 			"$value": "#ecebe8"
@@ -128,6 +148,15 @@
 			"$type": "fontFamily",
 			"$value": "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
 		},
+		"font-features-ui": {
+			"$type": "fontFeatures",
+			"$value": "normal",
+			"$description": "The UI face's OpenType features, set with the face so another face never inherits them"
+		},
+		"font-features-mono": {
+			"$type": "fontFeatures",
+			"$value": "normal"
+		},
 		"font-ui": {
 			"$type": "dimension",
 			"$value": "15px"
@@ -143,6 +172,15 @@
 		"font-title": {
 			"$type": "dimension",
 			"$value": "clamp(24px, 3.2vw, 30px)"
+		},
+		"font-prose": {
+			"$type": "dimension",
+			"$value": "{typography.font-ui}",
+			"$description": "Long reading text, such as a note or a transcript"
+		},
+		"line-prose": {
+			"$type": "number",
+			"$value": "1.6"
 		},
 		"tracking-title": {
 			"$type": "dimension",
@@ -223,12 +261,21 @@
 		"icon-size-sm": {
 			"$type": "dimension",
 			"$value": "15px"
+		},
+		"hit-min": {
+			"$type": "dimension",
+			"$value": "44px",
+			"$description": "The least a control accepts a touch over, on a coarse pointer, whatever it draws"
 		}
 	},
 	"layout": {
 		"doc-width": {
 			"$type": "dimension",
 			"$value": "860px"
+		},
+		"sidebar-width": {
+			"$type": "dimension",
+			"$value": "256px"
 		},
 		"doc-pad-top": {
 			"$type": "dimension",
