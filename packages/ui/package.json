@@ -35,7 +35,10 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "1.8.0",
-		"@solid-primitives/focus": "1.0.0"
+		"@solid-primitives/focus": "1.0.0",
+		"@solid-primitives/media": "4.0.0",
+		"@solid-primitives/presence": "1.0.0",
+		"@solid-primitives/resize-observer": "4.0.0"
 	},
 	"devDependencies": {
 		"@solidjs/testing-library": "1.0.0-rc.2",
