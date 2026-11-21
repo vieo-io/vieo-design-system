@@ -1,0 +1,72 @@
+.vds-app-switcher {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	width: 100%;
+	height: var(--control-height);
+	padding: 0 var(--space-2);
+	border: 0;
+	border-radius: var(--radius-sm);
+	background: transparent;
+	color: var(--text);
+	font: inherit;
+	font-size: var(--font-ui);
+	font-weight: var(--weight-strong);
+	text-align: start;
+	cursor: pointer;
+}
+
+.vds-app-switcher:hover {
+	background: var(--bg-hover);
+}
+
+.vds-app-switcher:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+
+.vds-app-switcher__name {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.vds-app-switcher > .vds-icon:last-child {
+	color: var(--muted);
+}
+
+.vds-app-mark {
+	display: inline-grid;
+	flex: none;
+	place-items: center;
+	width: 20px;
+	height: 20px;
+	border-radius: var(--radius-xs);
+	background: var(--vds-app, var(--accent));
+	color: #fff;
+	--vds-icon-size: 13px;
+}
+
+.vds-app-mark .vds-icon {
+	stroke-width: 2.25;
+}
+
+.vds-app-mark--lg {
+	width: 28px;
+	height: 28px;
+	border-radius: var(--radius-sm);
+	--vds-icon-size: 16px;
+}
+
+.vds-app-switcher__menu {
+	min-width: 16rem;
+	background: var(--raised);
+}
+
+@media (pointer: coarse) {
+	.vds-app-switcher__menu .vds-menu__item {
+		min-height: var(--hit-min);
+	}
+}

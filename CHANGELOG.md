@@ -6,8 +6,13 @@ What changed in Vieo's shared design packages. Each package has its own version,
 
 ### Added
 
-- `@vieo-io/tokens`: the Vieo design, the Vieo app's own. The sidebar and header sit on a ground colour with the page as an inset panel, controls are 32px, and the type is Inter at 14px. RLN and Catch offer it in their design pickers and look the same until someone picks it.
-- `@vieo-io/tokens`: `--ground`, `--surface`, `--raised`, and `--scrim` for shells and what floats over them, `--font-prose` and `--line-prose` for reading text, per-face font features, `--hit-min`, and `--sidebar-width`.
+- `@vieo-io/ui`: an app frame. AppShell, a Sidebar that becomes a drawer on a phone with a handle to resize it, a Tree with arrow keys and type-ahead, and a Toolbar that is one tab stop.
+- `@vieo-io/ui`: form controls and settings rows: TextField, Checkbox, Switch, Select, SegmentedControl, and SettingRow.
+- `@vieo-io/ui`: toasts that pause while hovered or focused, an app switcher, an object card for something another app owns, and Badge, Kbd, and EmptyState.
+- `@vieo-io/ui`: IconButton, which names itself in a tooltip, or shows its label beside the icon until its toolbar narrows. Every button takes a 44px touch on a phone, whatever it draws.
+- `@vieo-io/fonts`: Inter and JetBrains Mono for the Vieo design, subset from the upstream releases with every OpenType feature kept.
+- `@vieo-io/tokens`: the Vieo design, the Vieo app's own. The sidebar sits on a ground colour with the page, toolbar included, as an inset panel, controls are 32px, and the type is Inter at 14px. RLN and Catch offer it in their design pickers and look the same until someone picks it.
+- `@vieo-io/tokens`: `--ground`, `--surface`, `--raised`, and `--scrim` for shells and what floats over them, `--font-prose` and `--line-prose` for reading text, per-face font features, `--hit-min`, `--sidebar-width`, and `--shell-inset` and `--shell-radius` for a page panel set in from the window.
 - `@vieo-io/ui`: Button, Icon, Dialog, Popover, Tooltip, Menu, Tabs, Listbox, and CommandPalette in Solid 2.0, styled by the tokens.
 - A gallery app showing every component in every design, palette, and theme, with a Playwright run that screenshots each one and checks it with axe.
 - `@vieo-io/tokens`: colour, space, type, shape, and motion tokens, with six designs and thirteen palettes in light and dark, as CSS that any Vieo app can load.

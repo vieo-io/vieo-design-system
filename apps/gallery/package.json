@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@solidjs/web": "2.0.3",
+		"@vieo-io/fonts": "workspace:*",
 		"@vieo-io/tokens": "workspace:*",
 		"@vieo-io/ui": "workspace:*",
 		"solid-js": "2.0.3"

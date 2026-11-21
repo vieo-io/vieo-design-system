@@ -34,28 +34,28 @@ them, but never names a colour of its own.
 
 ## Colour
 
-| Token             | For                                                                                   |
-| ----------------- | ------------------------------------------------------------------------------------- |
-| `--bg`            | The page                                                                              |
-| `--bg-elev`       | A raised surface: the sidebar, a card, a popover                                      |
-| `--panel`         | A panel that sits on the page. The page colour unless a palette separates them        |
-| `--ground`        | Behind a shell's panels: the sidebar, and the header of a design that insets the page |
-| `--surface`       | The panel a page's content sits on                                                    |
-| `--raised`        | What floats over the page: a dialog, a popover, a sheet, a toast                      |
-| `--scrim`         | Behind a modal dialog or sheet                                                        |
-| `--bg-hover`      | A row or control under the pointer                                                    |
-| `--border`        | Hairlines between things                                                              |
-| `--border-strong` | A control's outline, and a line that has to read at a glance                          |
-| `--text`          | Body text. At least 7:1 on `--bg` in every palette                                    |
-| `--muted`         | Secondary text: meta, placeholders, a disabled label. Text, never a surface           |
-| `--accent`        | The one colour that means "this is the action" or "this is where you are"             |
-| `--accent-soft`   | The fill behind the selected row. `--text` stays readable on it                       |
-| `--accent-ink`    | Text and icons on an `--accent` fill                                                  |
-| `--selection`     | Selected text                                                                         |
-| `--danger`        | Destructive actions and errors                                                        |
-| `--success`       | Something finished or is healthy                                                      |
-| `--warning`       | Something needs attention but nothing failed                                          |
-| `--syntax-*`      | Markdown and code colours: `marker`, `code`, `keyword`, `string`, `number`            |
+| Token             | For                                                                            |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `--bg`            | The page                                                                       |
+| `--bg-elev`       | A raised surface: the sidebar, a card, a popover                               |
+| `--panel`         | A panel that sits on the page. The page colour unless a palette separates them |
+| `--ground`        | Behind a shell's page panel, under the sidebar                                 |
+| `--surface`       | The panel a page's content sits on                                             |
+| `--raised`        | What floats over the page: a dialog, a popover, a sheet, a toast               |
+| `--scrim`         | Behind a modal dialog or sheet                                                 |
+| `--bg-hover`      | A row or control under the pointer                                             |
+| `--border`        | Hairlines between things                                                       |
+| `--border-strong` | A control's outline, and a line that has to read at a glance                   |
+| `--text`          | Body text. At least 7:1 on `--bg` in every palette                             |
+| `--muted`         | Secondary text: meta, placeholders, a disabled label. Text, never a surface    |
+| `--accent`        | The one colour that means "this is the action" or "this is where you are"      |
+| `--accent-soft`   | The fill behind the selected row. `--text` stays readable on it                |
+| `--accent-ink`    | Text and icons on an `--accent` fill                                           |
+| `--selection`     | Selected text                                                                  |
+| `--danger`        | Destructive actions and errors                                                 |
+| `--success`       | Something finished or is healthy                                               |
+| `--warning`       | Something needs attention but nothing failed                                   |
+| `--syntax-*`      | Markdown and code colours: `marker`, `code`, `keyword`, `string`, `number`     |
 
 `--success`, `--warning`, and `--danger` are readable as text on `--bg` in every palette and theme, and the tests hold
 them to it. For a tinted background, mix the role into the page rather than adding a token:
@@ -102,6 +102,8 @@ into Literata turns a transcript into a row of shapes. Numbers in tables, timers
 - `--icon-size` and `--icon-size-sm`.
 - `--hit-min`, the least a control accepts a touch over, and `--sidebar-width`, a sidebar's width until the person
   drags it.
+- `--shell-inset` and `--shell-radius`, how far a shell's page panel sits in from the window and how round its
+  corners are. Both are 0 unless a design insets the page.
 - `--radius-xs` to `--radius-lg`, and `--radius-pill`. Small things take the small radii. A design changes them all
   together.
 - `--doc-width` and `--doc-pad-*` for a document page.
@@ -119,7 +121,7 @@ never shrink one.
 | Design    | Character                                                                                                        |
 | --------- | ---------------------------------------------------------------------------------------------------------------- |
 | Classic   | The base values. Plain, with 36px controls and an 8px step                                                       |
-| Vieo      | The Vieo app's own. Sidebar and header on a ground colour, the page an inset panel, 32px controls, and Inter     |
+| Vieo      | The Vieo app's own. The sidebar on a ground colour, the page an inset panel, 32px controls, and Inter            |
 | Linear    | A surface ladder and hairlines with no resting shadow, Inter at 590                                              |
 | Aurora    | Round, with shadows tinted by the accent, and sized to be pressed. The other designs start from its measurements |
 | Slate     | Small radii and soft shadows, with an offset ring on focus                                                       |
@@ -142,7 +144,8 @@ rules it follows come from his notes the same day:
   tooltip and as its accessible name. One whose icon isn't keeps its label until its bar runs out of room.
 - Sidebar rows are flat, with state shown as a fill: the open row takes `--accent-soft`, and hover `--bg-hover`.
 
-The shell puts the sidebar and the header on `--ground` and the page on `--surface`, a panel with `--radius-lg`. In
+The shell puts the sidebar on `--ground` and the page, toolbar included, on `--surface`: a panel set in by
+`--shell-inset` with `--shell-radius` corners. On a phone the panel takes the whole window. In
 light the ground is the raised colour and the panel the page colour. In dark they swap, so the panel reads as lifted
 rather than as a hole. Dialogs and popovers sit on `--raised`, which in dark is a step lighter than the panel.
 

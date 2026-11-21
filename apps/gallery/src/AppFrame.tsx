@@ -1,0 +1,365 @@
+import { Switch as Choose, For, Match } from '@solidjs/web'
+import { DESIGNS, PALETTES } from '@vieo-io/tokens'
+import {
+	type App,
+	AppShell,
+	AppSwitcher,
+	Badge,
+	Button,
+	Dialog,
+	EmptyState,
+	IconButton,
+	Kbd,
+	ObjectCard,
+	type ObjectCardData,
+	SegmentedControl,
+	Select,
+	SettingRow,
+	Sidebar,
+	Switch,
+	TextField,
+	Toaster,
+	Toolbar,
+	Tree,
+	type TreeNode,
+	toast,
+} from '@vieo-io/ui'
+import { createSignal } from 'solid-js'
+import { applyLook, label, lookFromUrl } from './look'
+
+const APPS: App[] = [
+	{ id: 'vieo', name: 'Vieo', icon: 'home', colour: '#4f5bd5' },
+	{ id: 'base', name: 'Vieo Base', icon: 'document', colour: '#2f6fde' },
+	{ id: 'catch', name: 'Vieo Catch', icon: 'mic', colour: '#1f8a6a' },
+	{ id: 'dev', name: 'Vieo Dev', icon: 'code', colour: '#8a4fd0' },
+	{
+		id: 'tracker',
+		name: 'Vieo Tracker',
+		icon: 'tracker',
+		colour: '#c8611c',
+		description: 'In Base for now',
+	},
+]
+
+const CARDS: ObjectCardData[] = [
+	{
+		version: 1,
+		type: 'Tracker issue',
+		title: 'Shorter buttons across the apps',
+		status: 'In progress',
+		summary: 'Controls at 32px, with labels that give way to icons when a bar narrows.',
+		icon: 'tracker',
+		colour: '#c8611c',
+		href: '#tracker',
+	},
+	{
+		version: 1,
+		type: 'Catch transcript',
+		title: 'Design review, 21 November',
+		summary: 'Alex and Sam, 24 minutes.',
+		icon: 'mic',
+		colour: '#1f8a6a',
+		href: '#transcripts',
+	},
+]
+
+const PAGES: TreeNode[] = [
+	{
+		id: 'notes',
+		label: 'Notes',
+		icon: 'folder',
+		children: [
+			{ id: 'direction', label: 'Design direction', icon: 'document' },
+			{ id: 'plans', label: 'Plans', icon: 'document', end: '12' },
+			{
+				id: 'calls',
+				label: 'Calls',
+				icon: 'folder',
+				children: [{ id: 'standup', label: 'Standup', icon: 'document' }],
+			},
+		],
+	},
+	{ id: 'tracker', label: 'Tracker', icon: 'tracker', end: '4' },
+	{ id: 'transcripts', label: 'Transcripts', icon: 'mic' },
+	{ id: 'settings', label: 'Settings', icon: 'settings' },
+]
+
+const THEMES = ['system', 'light', 'dark']
+
+/** The components together as an app window: a sidebar tree, a toolbar, pages, settings, a dialog, and toasts. */
+export function AppFrame() {
+	const [look, setLook] = createSignal(lookFromUrl())
+	applyLook(lookFromUrl())
+	const [page, setPage] = createSignal('direction')
+	const [expanded, setExpanded] = createSignal(['notes'])
+	const [width, setWidth] = createSignal(256)
+	const [collapsed, setCollapsed] = createSignal(false)
+	const [drawer, setDrawer] = createSignal(false)
+	const [connecting, setConnecting] = createSignal(false)
+	const [serif, setSerif] = createSignal(false)
+	const [compact, setCompact] = createSignal(true)
+	let main: HTMLElement | undefined
+	let navigated = false
+	const title = () => findPage(PAGES, page())?.label ?? ''
+	const changeLook = (key: 'design' | 'palette' | 'theme', value: string) => {
+		const before = look()
+		const next = { ...before, [key]: value }
+		setLook(next)
+		applyLook(next)
+		toast(`${label(key)} changed to ${label(value)}`, {
+			key: 'look',
+			kind: 'success',
+			action: {
+				label: 'Undo',
+				onAction: () => {
+					setLook(before)
+					applyLook(before)
+				},
+			},
+		})
+	}
+	const open = (node: TreeNode) => {
+		setPage(node.id)
+		navigated = true
+		setDrawer(false)
+	}
+	return (
+		<>
+			<AppShell
+				mainRef={(element) => {
+					main = element
+				}}
+				sidebar={
+					<Sidebar
+						label='Pages'
+						width={width()}
+						collapsed={collapsed()}
+						onWidthChange={setWidth}
+						onCollapsedChange={setCollapsed}
+						drawerOpen={drawer()}
+						onDrawerOpenChange={(next) => {
+							if (next) navigated = false
+							setDrawer(next)
+						}}
+						drawerFocusAfter={() => (navigated ? main : undefined)}
+						footer={<AppSwitcher apps={APPS} current='base' onOpen={() => {}} />}
+					>
+						<Tree
+							label='Pages'
+							nodes={PAGES}
+							expanded={expanded()}
+							onExpandedChange={(id, isOpen) =>
+								setExpanded((ids) =>
+									isOpen ? [...ids, id] : ids.filter((other) => other !== id),
+								)
+							}
+							current={page()}
+							onOpen={open}
+							actions={() => (
+								<IconButton
+									icon='more-horizontal'
+									label='Page actions'
+									variant='ghost'
+									size='sm'
+									tabindex='-1'
+								/>
+							)}
+						/>
+					</Sidebar>
+				}
+			>
+				<Toolbar
+					label='Page'
+					title={title()}
+					subtitle={page() === 'settings' ? undefined : 'Note'}
+					leading={
+						<IconButton
+							icon='menu'
+							label='Show the sidebar'
+							variant='ghost'
+							onClick={() => {
+								if (matchMedia('(max-width: 639.98px)').matches) setDrawer(true)
+								else setCollapsed(!collapsed())
+							}}
+						/>
+					}
+				>
+					<IconButton icon='share' label='Share' showLabel />
+					<IconButton icon='pin' label='Pin' showLabel variant='ghost' />
+					<IconButton icon='more-horizontal' label='More' variant='ghost' />
+				</Toolbar>
+				<div class='frame-scroll'>
+					<Choose>
+						<Match when={page() === 'settings'}>
+							<div class='frame-page frame-settings'>
+								<h2>Look</h2>
+								<SettingRow label='Theme' hint='Follow the system, or pick one.'>
+									{(ids) => (
+										<SegmentedControl
+											label='Theme'
+											value={look().theme}
+											options={THEMES.map((value) => ({
+												value,
+												label: label(value),
+											}))}
+											onChange={(value) => changeLook('theme', value)}
+											{...ids}
+										/>
+									)}
+								</SettingRow>
+								<SettingRow
+									label='Design'
+									hint='Spacing, corners, and control sizes.'
+								>
+									{(ids) => (
+										<Select
+											value={look().design}
+											options={DESIGNS.map((value) => ({
+												value,
+												label: label(value),
+											}))}
+											onChange={(value) => changeLook('design', value)}
+											{...ids}
+										/>
+									)}
+								</SettingRow>
+								<SettingRow
+									label='Palette'
+									hint='Colours only. Any palette goes with any design.'
+								>
+									{(ids) => (
+										<Select
+											value={look().palette}
+											options={PALETTES.map((value) => ({
+												value,
+												label: label(value),
+											}))}
+											onChange={(value) => changeLook('palette', value)}
+											{...ids}
+										/>
+									)}
+								</SettingRow>
+								<h2>Reading</h2>
+								<SettingRow
+									label='Serif for long text'
+									hint='Notes and transcripts in a serif. The interface keeps its own font.'
+								>
+									{(ids) => (
+										<Switch checked={serif()} onChange={setSerif} {...ids} />
+									)}
+								</SettingRow>
+								<SettingRow
+									label='Compact sidebar'
+									hint='One line per page, without the count.'
+								>
+									{(ids) => (
+										<Switch
+											checked={compact()}
+											onChange={setCompact}
+											{...ids}
+										/>
+									)}
+								</SettingRow>
+								<h2>Connected apps</h2>
+								<SettingRow label='Vieo Catch' hint='Not connected'>
+									{(ids) => (
+										<Button
+											size='sm'
+											icon='link'
+											onClick={() => setConnecting(true)}
+											aria-describedby={ids['aria-describedby']}
+										>
+											Connect
+										</Button>
+									)}
+								</SettingRow>
+							</div>
+						</Match>
+						<Match when={page() === 'transcripts'}>
+							<EmptyState
+								icon='mic'
+								title='No transcripts yet'
+								description='Start a session in Vieo Catch and it saves here.'
+							>
+								<Button variant='primary' icon='plus'>
+									New session
+								</Button>
+							</EmptyState>
+						</Match>
+						<Match when={true}>
+							<article class='frame-page frame-note'>
+								<p>
+									The direction is settled: the inset shell, 32px controls, and
+									Inter. <Badge tone='success'>Approved</Badge>
+								</p>
+								<For each={CARDS}>{(card) => <ObjectCard card={card} />}</For>
+								<p>
+									Press <Kbd keys='Mod+K' /> for the palette, and{' '}
+									<Kbd keys='Mod+B' /> to hide the sidebar.
+								</p>
+							</article>
+						</Match>
+					</Choose>
+				</div>
+			</AppShell>
+			<Dialog title='Connect Vieo Catch' open={connecting()} onOpenChange={setConnecting}>
+				<ConnectForm onDone={() => setConnecting(false)} />
+			</Dialog>
+			<Toaster />
+		</>
+	)
+}
+
+function ConnectForm(props: { onDone: () => void }) {
+	const [address, setAddress] = createSignal('')
+	const error = () =>
+		address() && !address().startsWith('https://')
+			? 'The address starts with https://'
+			: undefined
+	return (
+		<div class='frame-form'>
+			<p class='frame-muted'>
+				Open Catch's pairing page and approve this machine. If the page can't reach this
+				one, copy its address and paste it below.
+			</p>
+			<div class='frame-inline'>
+				<Button size='sm' icon='open-page'>
+					Open pairing page
+				</Button>
+				<Button size='sm' variant='ghost' icon='copy'>
+					Copy link
+				</Button>
+			</div>
+			<TextField
+				label='Address of the pairing page'
+				hint='It ends in a one-time code, and works for ten minutes.'
+				placeholder='https://desk:7445/pair/…'
+				value={address()}
+				error={error()}
+				onChange={setAddress}
+			/>
+			<div class='frame-foot'>
+				<Button onClick={props.onDone}>Cancel</Button>
+				<Button
+					variant='primary'
+					disabled={!address() || Boolean(error())}
+					onClick={() => {
+						props.onDone()
+						toast('Vieo Catch connected', { kind: 'success' })
+					}}
+				>
+					Connect
+				</Button>
+			</div>
+		</div>
+	)
+}
+
+function findPage(nodes: TreeNode[], id: string): TreeNode | undefined {
+	for (const node of nodes) {
+		if (node.id === id) return node
+		const found = findPage(node.children ?? [], id)
+		if (found) return found
+	}
+	return undefined
+}

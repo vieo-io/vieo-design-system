@@ -15,7 +15,7 @@
 		"ground": {
 			"$type": "color",
 			"$value": "{color.bg-elev}",
-			"$description": "Behind a shell's panels: the sidebar, and the header of a design that insets its page"
+			"$description": "Behind a shell's page panel, under the sidebar"
 		},
 		"surface": {
 			"$type": "color",
@@ -107,6 +107,11 @@
 		"radius-pill": {
 			"$type": "dimension",
 			"$value": "999px"
+		},
+		"shell-radius": {
+			"$type": "dimension",
+			"$value": "0px",
+			"$description": "The corners of a shell's page panel"
 		}
 	},
 	"syntax": {
@@ -276,6 +281,11 @@
 		"sidebar-width": {
 			"$type": "dimension",
 			"$value": "256px"
+		},
+		"shell-inset": {
+			"$type": "dimension",
+			"$value": "0px",
+			"$description": "How far a shell's page panel sits in from the window and the sidebar"
 		},
 		"doc-pad-top": {
 			"$type": "dimension",

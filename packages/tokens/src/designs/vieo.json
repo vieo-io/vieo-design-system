@@ -55,6 +55,9 @@
 			},
 			"radius-lg": {
 				"$value": "12px"
+			},
+			"shell-radius": {
+				"$value": "{radius.radius-lg}"
 			}
 		},
 		"space": {
@@ -103,6 +106,9 @@
 		"layout": {
 			"doc-width": {
 				"$value": "720px"
+			},
+			"shell-inset": {
+				"$value": "{space.space-2}"
 			}
 		},
 		"shadow": {

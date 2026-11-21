@@ -1,5 +1,7 @@
 .vds-button {
+	position: relative;
 	display: inline-flex;
+	flex: none;
 	align-items: center;
 	justify-content: center;
 	gap: var(--space-2);
@@ -7,9 +9,10 @@
 	padding: 0 var(--control-px);
 	border: 1px solid var(--border-strong);
 	border-radius: var(--radius-sm);
-	background: var(--bg-elev);
+	background: var(--surface);
 	color: var(--text);
 	font: inherit;
+	white-space: nowrap;
 	font-size: var(--font-ui);
 	line-height: var(--line-ui);
 	letter-spacing: var(--tracking-ui);
@@ -34,6 +37,7 @@
 }
 
 .vds-button--sm {
+	gap: var(--space-1);
 	height: var(--control-height-sm);
 	padding: 0 var(--space-2);
 	font-size: var(--font-sm);
@@ -57,4 +61,56 @@
 .vds-button--danger {
 	border-color: var(--danger);
 	color: var(--danger);
+}
+
+.vds-button__icon {
+	color: var(--muted);
+}
+
+.vds-button--primary .vds-button__icon,
+.vds-button--danger .vds-button__icon {
+	color: inherit;
+}
+
+.vds-button--icon {
+	width: var(--control-height);
+	padding: 0;
+}
+
+.vds-button--icon.vds-button--sm {
+	width: var(--control-height-sm);
+}
+
+/* What a finger can hit, whatever the button draws. */
+@media (pointer: coarse) {
+	.vds-button::before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: max(100%, var(--hit-min));
+		height: max(100%, var(--hit-min));
+		content: "";
+		transform: translate(-50%, -50%);
+	}
+}
+
+/* IconButton reads --vds-collapsed to decide whether its tooltip opens. */
+@container vds-toolbar (width < 560px) {
+	.vds-button--collapse {
+		width: var(--control-height);
+		padding: 0;
+	}
+
+	.vds-button--collapse.vds-button--sm {
+		width: var(--control-height-sm);
+	}
+
+	.vds-button--collapse .vds-button__label {
+		--vds-collapsed: 1;
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
 }

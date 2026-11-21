@@ -1,0 +1,28 @@
+{
+	"name": "@vieo-io/fonts",
+	"version": "0.1.0",
+	"description": "The Vieo design's fonts, Inter and JetBrains Mono, subset from their upstream releases with every OpenType feature kept",
+	"license": "MPL-2.0 AND OFL-1.1",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vieo-io/vieo-design-system.git",
+		"directory": "packages/fonts"
+	},
+	"files": [
+		"fonts",
+		"fonts.css",
+		"OFL-*.txt",
+		"sources.json",
+		"LICENSE"
+	],
+	"exports": {
+		"./fonts.css": "./fonts.css"
+	},
+	"scripts": {
+		"test": "python3 -I scripts/build.py --check"
+	},
+	"sideEffects": [
+		"**/*.css"
+	]
+}

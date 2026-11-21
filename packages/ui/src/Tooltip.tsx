@@ -8,6 +8,8 @@ export type TooltipProps = {
 	children: (props: TriggerProps) => JSX.Element
 	content: string
 	placement?: Placement
+	/** Asked as the tooltip is about to open, which it does only on true. */
+	when?: () => boolean
 }
 
 /** How long the pointer rests on a trigger before its tooltip shows. Keyboard focus shows it at once. */
@@ -22,8 +24,9 @@ export function Tooltip(props: TooltipProps) {
 	let timer: ReturnType<typeof setTimeout> | undefined
 	const show = (delay: number) => {
 		clearTimeout(timer)
-		if (delay) timer = setTimeout(() => setOpen(true), delay)
-		else setOpen(true)
+		const reveal = () => setOpen(props.when?.() ?? true)
+		if (delay) timer = setTimeout(reveal, delay)
+		else reveal()
 	}
 	const hide = () => {
 		clearTimeout(timer)

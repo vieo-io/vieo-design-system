@@ -34,3 +34,23 @@
 .vds-menu__item--danger {
 	color: var(--danger);
 }
+
+.vds-menu__item--current {
+	background: var(--accent-soft);
+}
+
+.vds-menu__lines {
+	display: flex;
+	flex-direction: column;
+	padding: var(--space-1) 0;
+}
+
+.vds-menu__description {
+	color: var(--muted);
+	font-size: var(--font-sm);
+}
+
+.vds-menu__item:has(.vds-menu__lines) {
+	height: auto;
+	min-height: var(--row-height);
+}

@@ -1,0 +1,42 @@
+.vds-setting {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--space-2) var(--space-4);
+	padding: var(--space-3) 0;
+	border-top: 1px solid var(--border);
+	font-size: var(--font-ui);
+	line-height: var(--line-ui);
+}
+
+.vds-setting__text {
+	display: flex;
+	flex: 1 1 220px;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.vds-setting__hint {
+	color: var(--muted);
+	font-size: var(--font-sm);
+}
+
+.vds-setting__control {
+	display: flex;
+	flex: none;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.vds-setting--stacked {
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.vds-setting--stacked .vds-setting__text {
+	flex-basis: auto;
+}
+
+.vds-setting--stacked .vds-setting__control {
+	flex: auto;
+}

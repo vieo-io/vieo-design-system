@@ -18,7 +18,8 @@ the package to their values.
 The direction is `src/designs/vieo.json`, a design like the other six, listed second after Classic. It sets its values
 under `:root[data-design='vieo']` and changes no base value, design, or palette. The surface roles it needs,
 `--ground`, `--surface`, `--raised`, and `--scrim`, join the base with values that keep every other design as it was,
-along with `--font-prose`, `--line-prose`, the two font-feature tokens, `--hit-min`, and `--sidebar-width`.
+along with `--font-prose`, `--line-prose`, the two font-feature tokens, `--hit-min`, `--sidebar-width`,
+`--shell-inset`, and `--shell-radius`.
 
 ## Consequences
 

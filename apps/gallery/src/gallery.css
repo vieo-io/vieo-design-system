@@ -6,6 +6,12 @@ body {
 	font-size: var(--font-ui);
 	line-height: var(--line-ui);
 	letter-spacing: var(--tracking-ui);
+	font-feature-settings: var(--font-features-ui);
+}
+
+code {
+	font-family: var(--font-family-mono);
+	font-feature-settings: var(--font-features-mono);
 }
 
 .gallery-toolbar {
@@ -119,4 +125,78 @@ body {
 	display: flex;
 	justify-content: flex-end;
 	gap: var(--space-2);
+}
+
+.gallery-link {
+	color: var(--accent);
+	font-size: var(--font-sm);
+}
+
+/* The App frame page. */
+.frame-scroll {
+	flex: 1;
+	min-height: 0;
+	overflow: auto;
+}
+
+.frame-page {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	max-width: var(--doc-width);
+	margin: 0 auto;
+	padding: var(--space-5) var(--space-5) var(--space-6);
+}
+
+.frame-page h2 {
+	margin: var(--space-4) 0 0;
+	font-size: var(--font-sm);
+	font-weight: var(--weight-strong);
+}
+
+.frame-page h2:first-child {
+	margin-top: 0;
+}
+
+.frame-note {
+	font-family: var(--font-family-prose);
+	font-size: var(--font-prose);
+	line-height: var(--line-prose);
+}
+
+.frame-note p {
+	margin: 0;
+}
+
+.frame-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.frame-muted {
+	margin: 0;
+	color: var(--muted);
+	font-size: var(--font-sm);
+}
+
+.frame-inline,
+.frame-foot {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+}
+
+.frame-foot {
+	justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+	.frame-page {
+		padding: var(--space-4) var(--space-4) var(--space-5);
+	}
+
+	.frame-foot > * {
+		flex: 1;
+	}
 }

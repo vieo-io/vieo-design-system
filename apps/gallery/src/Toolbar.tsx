@@ -29,6 +29,9 @@ export function Toolbar(props: Props) {
 	return (
 		<header class='gallery-toolbar'>
 			<h1>Vieo components</h1>
+			<a class='gallery-link' href='?page=frame'>
+				App frame
+			</a>
 			{field('design', 'Design', DESIGNS)}
 			{field('palette', 'Palette', PALETTES)}
 			{field('theme', 'Theme', THEMES)}

@@ -1,0 +1,76 @@
+/* Badge, Kbd, and EmptyState. */
+
+.vds-badge {
+	--vds-badge-tone: var(--muted);
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-1);
+	height: 20px;
+	padding: 0 var(--space-2);
+	border-radius: var(--radius-xs);
+	background: color-mix(in srgb, var(--vds-badge-tone) 14%, var(--surface));
+	color: color-mix(in srgb, var(--vds-badge-tone) 62%, var(--text));
+	font-size: var(--font-xs);
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.vds-badge--accent {
+	--vds-badge-tone: var(--accent);
+}
+
+.vds-badge--success {
+	--vds-badge-tone: var(--success);
+}
+
+.vds-badge--warning {
+	--vds-badge-tone: var(--warning);
+}
+
+.vds-badge--danger {
+	--vds-badge-tone: var(--danger);
+}
+
+.vds-kbd {
+	display: inline-flex;
+	align-items: center;
+	height: 18px;
+	padding: 0 var(--space-1);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-xs);
+	color: var(--muted);
+	font-family: var(--font-family-ui);
+	font-size: var(--font-xs);
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.vds-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-2);
+	padding: var(--space-6) var(--space-4);
+	color: var(--muted);
+	font-size: var(--font-ui);
+	line-height: var(--line-ui);
+	text-align: center;
+}
+
+.vds-empty__title {
+	margin: 0;
+	color: var(--text);
+	font-weight: var(--weight-strong);
+}
+
+.vds-empty__description {
+	max-width: 36ch;
+	margin: 0;
+	font-size: var(--font-sm);
+}
+
+.vds-empty__actions {
+	display: flex;
+	gap: var(--space-2);
+	margin-top: var(--space-2);
+}

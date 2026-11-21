@@ -1,10 +1,20 @@
 /* Every component's styles. Load after @vieo-io/tokens' three files. */
+@import "./app-switcher.css";
 @import "./button.css";
+@import "./controls.css";
 @import "./dialog.css";
+@import "./field.css";
 @import "./icon.css";
 @import "./listbox.css";
 @import "./menu.css";
+@import "./object-card.css";
 @import "./palette.css";
 @import "./popover.css";
+@import "./setting.css";
+@import "./shell.css";
+@import "./small.css";
 @import "./tabs.css";
+@import "./toast.css";
+@import "./toolbar.css";
 @import "./tooltip.css";
+@import "./tree.css";

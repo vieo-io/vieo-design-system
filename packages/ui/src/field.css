@@ -1,0 +1,61 @@
+.vds-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+	font-size: var(--font-ui);
+	line-height: var(--line-ui);
+}
+
+.vds-field__label {
+	font-size: var(--font-sm);
+	font-weight: var(--weight-strong);
+}
+
+.vds-field__input {
+	box-sizing: border-box;
+	width: 100%;
+	height: var(--control-height);
+	padding: 0 var(--space-3);
+	border: 1px solid var(--border-strong);
+	border-radius: var(--radius-sm);
+	background: var(--surface);
+	color: var(--text);
+	font: inherit;
+	font-feature-settings: var(--font-features-ui);
+}
+
+.vds-field__input--multiline {
+	height: auto;
+	min-height: calc(var(--control-height) * 3);
+	padding: var(--space-2) var(--space-3);
+	resize: vertical;
+}
+
+.vds-field__input::placeholder {
+	color: var(--muted);
+}
+
+.vds-field__input:focus-visible {
+	border-color: var(--accent);
+	outline: none;
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.vds-field__input:disabled {
+	color: var(--muted);
+	cursor: not-allowed;
+}
+
+.vds-field--invalid .vds-field__input {
+	border-color: var(--danger);
+}
+
+.vds-field__hint {
+	color: var(--muted);
+	font-size: var(--font-sm);
+}
+
+.vds-field__error {
+	color: var(--danger);
+	font-size: var(--font-sm);
+}

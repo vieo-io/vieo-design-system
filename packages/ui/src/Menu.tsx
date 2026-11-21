@@ -8,14 +8,21 @@ import { first, moveFor, rows, typeahead } from './roving'
 import type { TriggerProps } from './trigger'
 
 export type MenuItem = {
+	/** Marks the item for where the person already is, such as the open app. */
+	current?: boolean
 	danger?: boolean
+	/** A second, quieter line under the label. */
+	description?: string
 	disabled?: boolean
 	icon?: IconName
 	label: string
+	/** Drawn before the label in place of an icon. */
+	leading?: () => JSX.Element
 	onSelect: () => void
 }
 
 export type MenuProps = {
+	class?: string
 	items: MenuItem[]
 	/** Names the menu for assistive technology. */
 	label: string
@@ -70,6 +77,12 @@ export function Menu(props: MenuProps) {
 			close(false)
 			return
 		}
+		const item = props.items[focused()]
+		if ((event.key === 'Enter' || event.key === ' ') && item) {
+			event.preventDefault()
+			choose(item)
+			return
+		}
 		const move = moveFor(event.key, props.items, focused())
 		if (move !== undefined) {
 			event.preventDefault()
@@ -103,7 +116,7 @@ export function Menu(props: MenuProps) {
 					<div
 						ref={setContent}
 						id={id}
-						class='vds-menu'
+						class={['vds-menu', props.class]}
 						role='menu'
 						aria-label={props.label}
 						onKeyDown={onKeyDown}
@@ -114,15 +127,30 @@ export function Menu(props: MenuProps) {
 									type='button'
 									class={[
 										'vds-menu__item',
-										{ 'vds-menu__item--danger': item.danger },
+										{
+											'vds-menu__item--danger': item.danger,
+											'vds-menu__item--current': item.current,
+										},
 									]}
 									role='menuitem'
 									tabindex='-1'
+									aria-current={item.current ? 'true' : undefined}
 									aria-disabled={aria(item.disabled)}
 									onClick={() => choose(item)}
 								>
-									<Show when={item.icon}>{(name) => <Icon name={name()} />}</Show>
-									{item.label}
+									{item.leading?.() ?? (
+										<Show when={item.icon}>
+											{(name) => <Icon name={name()} />}
+										</Show>
+									)}
+									<Show when={item.description} fallback={item.label}>
+										<span class='vds-menu__lines'>
+											<span>{item.label}</span>
+											<span class='vds-menu__description'>
+												{item.description}
+											</span>
+										</span>
+									</Show>
 								</button>
 							)}
 						</For>

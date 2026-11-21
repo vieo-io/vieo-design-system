@@ -1,0 +1,156 @@
+.vds-app-shell {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	grid-template-rows: minmax(0, 1fr) auto;
+	height: 100dvh;
+	background: var(--ground);
+	color: var(--text);
+}
+
+.vds-app-shell__main {
+	display: flex;
+	grid-column: 2;
+	flex-direction: column;
+	min-width: 0;
+	min-height: 0;
+	margin: var(--shell-inset) var(--shell-inset) var(--shell-inset) 0;
+	overflow: hidden;
+	border-radius: var(--shell-radius);
+	background: var(--surface);
+	box-shadow: 0 0 0 1px var(--border);
+	outline: none;
+}
+
+/* With the sidebar hidden, the page sits in from the window on every side. */
+.vds-app-shell__main:first-child {
+	margin-left: var(--shell-inset);
+}
+
+/* A phone gives the page the whole window. */
+@media (max-width: 639.98px) {
+	.vds-app-shell__main,
+	.vds-app-shell__main:first-child {
+		margin: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}
+}
+
+.vds-app-shell__status {
+	grid-column: 1 / -1;
+}
+
+.vds-sidebar-frame {
+	position: relative;
+	display: flex;
+	min-height: 0;
+}
+
+.vds-sidebar {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: var(--space-3);
+	min-width: 0;
+	min-height: 0;
+	padding: var(--space-2);
+	background: var(--ground);
+}
+
+.vds-sidebar__scroll {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: var(--space-3);
+	min-height: 0;
+	overflow: auto;
+}
+
+.vds-sidebar__footer {
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+	padding-top: var(--space-2);
+	border-top: 1px solid var(--border);
+}
+
+.vds-resizer {
+	position: absolute;
+	top: 0;
+	right: -4px;
+	bottom: 0;
+	z-index: var(--z-raised);
+	width: 8px;
+	cursor: col-resize;
+	touch-action: none;
+}
+
+.vds-resizer::after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3px;
+	width: 2px;
+	background: transparent;
+	content: "";
+	transition: background var(--dur) var(--ease);
+}
+
+.vds-resizer:hover::after,
+.vds-resizer:focus-visible::after {
+	background: var(--accent);
+}
+
+.vds-resizer:focus-visible {
+	outline: none;
+}
+
+/* Below the breakpoint the sidebar is a drawer over the page. */
+.vds-drawer-scrim {
+	position: fixed;
+	inset: 0;
+	z-index: var(--z-overlay);
+	background: var(--scrim);
+	opacity: 0;
+	transition: opacity var(--vds-drawer-duration) var(--ease);
+}
+
+.vds-drawer {
+	--vds-drawer-duration: 160ms;
+
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: var(--z-overlay);
+	width: min(320px, 86vw);
+	border-right: 1px solid var(--border);
+	background: var(--raised);
+	box-shadow: var(--shadow-pop);
+	outline: none;
+	transform: translateX(-100%);
+	transition: transform var(--vds-drawer-duration) var(--ease);
+}
+
+.vds-drawer-scrim {
+	--vds-drawer-duration: 160ms;
+}
+
+.vds-drawer__nav {
+	display: contents;
+}
+
+.vds-drawer.vds-drawer--visible {
+	transform: none;
+}
+
+.vds-drawer-scrim.vds-drawer--visible {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.vds-drawer,
+	.vds-drawer-scrim {
+		transition: none;
+	}
+}
