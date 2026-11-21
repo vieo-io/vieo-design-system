@@ -15,7 +15,8 @@ puts each Vieo app in its own repository, so the design packages have to reach s
 ## Decision
 
 `vieo-io/vieo-design-system` is public on GitHub, and `@vieo-io/tokens` and `@vieo-io/ui` are public on npm, under the
-MIT licence.
+Mozilla Public License 2.0. Callum, 2026-11-21, choosing it over MIT and GPLv3: "MPL-2.0 for the packages". It
+keeps changes to the packages' own files open while letting each app choose its own licence, which GPLv3 would not.
 
 ## Consequences
 

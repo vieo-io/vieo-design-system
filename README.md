@@ -36,4 +36,4 @@ pnpm check
 
 ## Licence
 
-MIT.
+MPL-2.0. Changes to the packages' own files are shared under the same licence, and an app that uses them can have any licence.

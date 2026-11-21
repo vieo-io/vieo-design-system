@@ -27,8 +27,8 @@ There's no end-to-end suite yet, so the smoke pack is `pnpm check`.
 
 Edit the JSON in `packages/tokens/src/`, never `dist/`. A design or palette file sets base tokens without a `$type`. A
 token it defines for itself, such as Aurora's `shadow-tint`, has one. A golden test that fails after a change means RLN
-or Catch would look different. When the change is meant, update the fixture from that app's new CSS in the same commit
-as the app's adoption.
+or Catch would look different. When the change is meant, add the app's value and the new one to `CHANGED` in
+`packages/tokens/test/golden.test.ts`, and leave the fixtures as copies of the apps.
 
 ## Releasing
 
