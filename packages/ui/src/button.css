@@ -1,0 +1,60 @@
+.vds-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+	height: var(--control-height);
+	padding: 0 var(--control-px);
+	border: 1px solid var(--border-strong);
+	border-radius: var(--radius-sm);
+	background: var(--bg-elev);
+	color: var(--text);
+	font: inherit;
+	font-size: var(--font-ui);
+	line-height: var(--line-ui);
+	letter-spacing: var(--tracking-ui);
+	cursor: pointer;
+	transition:
+		background var(--dur) var(--ease),
+		box-shadow var(--dur) var(--ease);
+}
+
+.vds-button:hover:not(:disabled) {
+	background: var(--bg-hover);
+}
+
+.vds-button:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+
+.vds-button:disabled {
+	color: var(--muted);
+	cursor: not-allowed;
+}
+
+.vds-button--sm {
+	height: var(--control-height-sm);
+	padding: 0 var(--space-2);
+	font-size: var(--font-sm);
+}
+
+.vds-button--primary {
+	border-color: var(--accent);
+	background: var(--accent);
+	color: var(--accent-ink);
+}
+
+.vds-button--primary:hover:not(:disabled) {
+	background: color-mix(in srgb, var(--accent) 88%, var(--text));
+}
+
+.vds-button--ghost {
+	border-color: transparent;
+	background: transparent;
+}
+
+.vds-button--danger {
+	border-color: var(--danger);
+	color: var(--danger);
+}

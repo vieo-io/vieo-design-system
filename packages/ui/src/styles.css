@@ -1,0 +1,10 @@
+/* Every component's styles. Load after @vieo-io/tokens' three files. */
+@import "./button.css";
+@import "./dialog.css";
+@import "./icon.css";
+@import "./listbox.css";
+@import "./menu.css";
+@import "./palette.css";
+@import "./popover.css";
+@import "./tabs.css";
+@import "./tooltip.css";

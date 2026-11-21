@@ -1,0 +1,44 @@
+.vds-dialog-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: var(--z-dialog);
+	background: rgb(0 0 0 / 40%);
+}
+
+.vds-dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: var(--z-dialog);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	width: min(32rem, calc(100vw - 2 * var(--space-4)));
+	max-height: calc(100vh - 2 * var(--space-6));
+	overflow: auto;
+	padding: var(--space-5);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	background: var(--bg-elev);
+	color: var(--text);
+	box-shadow: var(--shadow-pop);
+	transform: translate(-50%, -50%);
+}
+
+.vds-dialog:focus {
+	outline: none;
+}
+
+.vds-dialog__title {
+	margin: 0;
+	font-family: var(--font-family-display);
+	font-size: var(--font-title);
+	font-weight: var(--weight-strong);
+	letter-spacing: var(--tracking-title);
+}
+
+.vds-dialog__description {
+	margin: 0;
+	color: var(--muted);
+	font-size: var(--font-sm);
+}

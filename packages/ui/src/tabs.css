@@ -1,0 +1,44 @@
+.vds-tabs__list {
+	display: flex;
+	gap: var(--space-1);
+	border-bottom: 1px solid var(--border);
+}
+
+.vds-tabs__tab {
+	height: var(--control-height);
+	margin-bottom: -1px;
+	padding: 0 var(--control-px);
+	border: 0;
+	border-bottom: 2px solid transparent;
+	background: transparent;
+	color: var(--muted);
+	font: inherit;
+	font-size: var(--font-ui);
+	cursor: pointer;
+}
+
+.vds-tabs__tab:hover:not(:disabled) {
+	color: var(--text);
+}
+
+.vds-tabs__tab[aria-selected="true"] {
+	border-bottom-color: var(--accent);
+	color: var(--text);
+	font-weight: var(--weight-strong);
+}
+
+.vds-tabs__tab:focus-visible,
+.vds-tabs__panel:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+
+.vds-tabs__tab:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.vds-tabs__panel {
+	padding: var(--space-4) 0;
+	border-radius: var(--radius-xs);
+}

@@ -1,0 +1,5 @@
+.vds-icon {
+	flex: none;
+	width: var(--vds-icon-size, var(--icon-size));
+	height: var(--vds-icon-size, var(--icon-size));
+}

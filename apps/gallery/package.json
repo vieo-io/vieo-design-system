@@ -1,0 +1,25 @@
+{
+	"name": "@vieo-io/gallery",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite",
+		"e2e": "playwright test",
+		"preview": "vite preview",
+		"test": "tsc --noEmit -p ."
+	},
+	"dependencies": {
+		"@solidjs/web": "2.0.3",
+		"@vieo-io/tokens": "workspace:*",
+		"@vieo-io/ui": "workspace:*",
+		"solid-js": "2.0.3"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "4.14.0",
+		"@playwright/test": "1.59.1",
+		"@solidjs/vite-plugin": "3.0.1",
+		"vite": "8.3.8"
+	}
+}

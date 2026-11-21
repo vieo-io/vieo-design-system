@@ -1,0 +1,21 @@
+.vds-popover,
+.vds-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: var(--z-popover);
+	min-width: 12rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	background: var(--bg-elev);
+	color: var(--text);
+	box-shadow: var(--shadow-pop);
+}
+
+.vds-popover {
+	padding: var(--space-3);
+}
+
+.vds-popover:focus {
+	outline: none;
+}
