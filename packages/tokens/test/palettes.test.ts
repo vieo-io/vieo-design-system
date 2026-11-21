@@ -48,6 +48,17 @@ describe('every palette meets the contrast targets in both themes', () => {
 		}
 	})
 
+	it.each(ALL)('%s keeps muted text readable on the page and on raised surfaces', (name) => {
+		for (const [theme, colours] of themes(name)) {
+			for (const surface of ['bg', 'bg-elev']) {
+				expect(
+					contrast(colours.muted ?? '', colours[surface] ?? ''),
+					`${theme} muted on ${surface}`,
+				).toBeGreaterThanOrEqual(READABLE_TEXT)
+			}
+		}
+	})
+
 	it.each(ALL)('%s keeps success, warning, and danger readable as text on the page', (name) => {
 		for (const [theme, colours] of themes(name)) {
 			for (const role of ['success', 'warning', 'danger']) {

@@ -26,7 +26,7 @@
 		},
 		"muted": {
 			"$type": "color",
-			"$value": "#8a8a84"
+			"$value": "#70706b"
 		},
 		"accent": {
 			"$type": "color",

@@ -4,6 +4,14 @@ import { renderDesignsCss, renderPalettesCss, renderTokensCss } from '../generat
 import { loadSource } from '../generator/source.ts'
 import { cascadeShape, declarations, inlineImports } from './cascade.ts'
 
+/**
+ * Values the package changed on purpose since the fixtures were copied, as the app's value and the package's.
+ * The light muted text in Paper, Clay, and Violet was darkened to reach 4.5:1 on the page.
+ */
+const CHANGED: Record<string, Record<string, string>> = {
+	'--muted': { '#8a8a84': '#70706b', '#8a8173': '#736c60', '#7a7398': '#71698f' },
+}
+
 const FIXTURES = fileURLToPath(new URL('./fixtures/', import.meta.url))
 
 const SOURCE = loadSource(fileURLToPath(new URL('../src', import.meta.url)))
@@ -37,11 +45,16 @@ const APPS = {
 
 describe.each(Object.entries(APPS))('the generated css against %s', (_app, app) => {
 	const appDeclarations = declarations(app.css(), (property) => !app.own.test(property))
-	for (const list of appDeclarations.values())
+	for (const [property, list] of appDeclarations)
 		list.splice(
 			0,
 			list.length,
-			...list.filter((entry) => !app.ownSelectors.test(entry.selector)),
+			...list
+				.filter((entry) => !app.ownSelectors.test(entry.selector))
+				.map((entry) => ({
+					...entry,
+					value: CHANGED[property]?.[entry.value] ?? entry.value,
+				})),
 		)
 	const generated = declarations(GENERATED, (property) => appDeclarations.has(property))
 
