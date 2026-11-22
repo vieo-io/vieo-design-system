@@ -120,6 +120,15 @@ function look(
 	].filter(Boolean)
 }
 
+function media(query: string, inner: string): string {
+	if (!inner) return ''
+	return `@media ${query} {\n${inner.replace(/^(?=.)/gm, '\t')}}\n`
+}
+
+function mediaBlock(query: string, selector: string, layer: Layer): string {
+	return media(query, block(selector, layer))
+}
+
 /** `color-mix(in srgb, #a P%, #b)` as the `#rrggbb` it computes to. Any other value comes back as it was. */
 function mixSrgb(value: string): string {
 	const match = /^color-mix\(in srgb, (#[0-9a-f]{6}) (\d+(?:\.\d+)?)%, (#[0-9a-f]{6})\)$/i.exec(
@@ -136,13 +145,4 @@ function mixSrgb(value: string): string {
 				.padStart(2, '0'),
 		)
 		.join('')}`
-}
-
-function media(query: string, inner: string): string {
-	if (!inner) return ''
-	return `@media ${query} {\n${inner.replace(/^(?=.)/gm, '\t')}}\n`
-}
-
-function mediaBlock(query: string, selector: string, layer: Layer): string {
-	return media(query, block(selector, layer))
 }

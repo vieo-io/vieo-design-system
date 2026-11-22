@@ -70,7 +70,7 @@ def build(sources: dict, source_dir: Path) -> None:
 
 
 def check(sources: dict) -> list[str]:
-    """Every file fonts.css names exists, each family's face has its name and keeps its features, and ships its licence."""
+    """fonts.css, the files it names, their family names and features, and the licences agree with sources.json."""
     problems = []
     faces = dict(
         (file, name)

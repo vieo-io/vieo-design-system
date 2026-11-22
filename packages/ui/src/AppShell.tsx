@@ -3,7 +3,7 @@ import { type JSX, Show } from '@solidjs/web'
 export type AppShellProps = {
 	/** The page: a toolbar, then whatever scrolls. */
 	children: JSX.Element
-	/** Takes focus after navigation from a drawer, so give it to the `main` element's `ref`. */
+	/** Gets the `main` element, which can take focus, such as after a navigation from the drawer. */
 	mainRef?: (element: HTMLElement) => void
 	sidebar?: JSX.Element
 	/** A strip along the bottom of the window. */

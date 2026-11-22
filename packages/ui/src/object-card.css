@@ -48,7 +48,7 @@
 	text-decoration: none;
 }
 
-/* On a phone the Open action takes its own row rather than squeezing the text. */
+/* On a phone the Open action takes its own row. */
 @media (max-width: 640px) {
 	.vds-object-card {
 		grid-template-columns: auto minmax(0, 1fr);

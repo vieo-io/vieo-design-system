@@ -30,7 +30,7 @@ export type SidebarProps = {
 
 const BREAKPOINT = 640
 
-/** How long the drawer takes to slide in or out, matching `--vds-drawer-duration` in sidebar.css. */
+/** How long the drawer takes to slide in or out, matching `--vds-drawer-duration`. */
 const DRAWER_MS = 160
 
 const WIDTH = { min: 220, max: 480, reset: 256 }

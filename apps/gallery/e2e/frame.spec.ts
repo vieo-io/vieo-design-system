@@ -4,13 +4,13 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, type Page, test } from '@playwright/test'
 import { DESIGNS } from '@vieo-io/tokens'
 
-const SHOTS = process.env.GALLERY_SHOTS ?? join(import.meta.dirname, '..', 'shots')
-
 const DIAGNOSTIC = /^\[[A-Z][A-Z_]+\]/
 
-const WCAG = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
-
 const PHONE = { viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true }
+
+const SHOTS = process.env.GALLERY_SHOTS ?? join(import.meta.dirname, '..', 'shots')
+
+const WCAG = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
 
 for (const [width, device] of [
 	['desktop', {}],
@@ -129,6 +129,21 @@ test('on a desktop a labelled toolbar button shows its label and no tooltip', as
 	await expect(page.getByRole('tooltip')).toHaveCount(0)
 })
 
+async function audit(page: Page, state: string) {
+	const { violations } = await new AxeBuilder({ page }).withTags(WCAG).analyze()
+	expect
+		.soft(
+			violations.flatMap((violation) =>
+				violation.nodes.map(
+					(node) =>
+						`${state}: ${violation.id}: ${node.target.join(' ')}: ${node.any[0]?.message ?? ''}`,
+				),
+			),
+			'axe violations',
+		)
+		.toEqual([])
+}
+
 /**
  * Each visible control matching `selector` that a touch 21px from its centre, up, down, left, or right, would miss.
  * A control drawn smaller than 44px passes when its hit area reaches that far.
@@ -159,30 +174,15 @@ async function misses(page: Page, selector: string): Promise<string[]> {
 	)
 }
 
+/** Shoots with transitions finished, so a toast that is fading in shows, and colours have settled. */
+async function shoot(page: Page, path: string) {
+	await page.screenshot({ path, animations: 'disabled' })
+}
+
 function watchDiagnostics(page: Page): string[] {
 	const diagnostics: string[] = []
 	page.on('console', (message) => {
 		if (DIAGNOSTIC.test(message.text())) diagnostics.push(message.text())
 	})
 	return diagnostics
-}
-
-/** Shoots with transitions finished, so a toast that is fading in shows, and colours have settled. */
-async function shoot(page: Page, path: string) {
-	await page.screenshot({ path, animations: 'disabled' })
-}
-
-async function audit(page: Page, state: string) {
-	const { violations } = await new AxeBuilder({ page }).withTags(WCAG).analyze()
-	expect
-		.soft(
-			violations.flatMap((violation) =>
-				violation.nodes.map(
-					(node) =>
-						`${state}: ${violation.id}: ${node.target.join(' ')}: ${node.any[0]?.message ?? ''}`,
-				),
-			),
-			'axe violations',
-		)
-		.toEqual([])
 }

@@ -3,18 +3,18 @@ import { aria } from './aria'
 import { Icon, type IconName } from './Icon'
 import { first, moveFor, rows } from './roving'
 
-export type SegmentedOption = {
-	disabled?: boolean
-	icon?: IconName
-	label: string
-	value: string
-}
-
 export type SegmentedControlProps = {
 	/** Names the group for assistive technology. */
 	label: string
 	onChange: (value: string) => void
 	options: SegmentedOption[]
+	value: string
+}
+
+export type SegmentedOption = {
+	disabled?: boolean
+	icon?: IconName
+	label: string
 	value: string
 }
 

@@ -3,8 +3,6 @@ import { flush } from 'solid-js'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Toaster, toast } from '../src/Toast'
 
-const shown = () => [...document.querySelectorAll('.vds-toast__message')].map((m) => m.textContent)
-
 function renderToaster() {
 	render(() => (
 		<>
@@ -14,6 +12,8 @@ function renderToaster() {
 	))
 	return screen.getByRole('button', { name: 'Save' })
 }
+
+const shown = () => [...document.querySelectorAll('.vds-toast__message')].map((m) => m.textContent)
 
 describe('Toast', () => {
 	beforeEach(() => {

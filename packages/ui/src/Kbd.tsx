@@ -1,5 +1,5 @@
 export type KbdProps = {
-	/** Keys joined with `+`, such as `Mod+K`. `Mod` is ⌘ on Apple platforms and Ctrl elsewhere. */
+	/** Keys joined with `+`, such as `Mod+K`. */
 	keys: string
 }
 

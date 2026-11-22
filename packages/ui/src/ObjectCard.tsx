@@ -3,7 +3,6 @@ import { createUniqueId } from 'solid-js'
 import { AppMark } from './AppSwitcher'
 import type { IconName } from './Icon'
 
-/** Another app's object, as its `links` endpoint describes it. */
 export type ObjectCardData = {
 	/** The owning app's colour, behind the icon. */
 	colour: string
@@ -23,7 +22,6 @@ export type ObjectCardProps = {
 	onOpen?: (card: ObjectCardData) => void
 }
 
-/** The card schema versions this component knows how to draw. */
 const KNOWN_VERSIONS = [1]
 
 /**

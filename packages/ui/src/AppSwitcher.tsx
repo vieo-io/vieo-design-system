@@ -19,10 +19,19 @@ export type AppSwitcherProps = {
 	onOpen: (app: App) => void
 }
 
-/**
- * The open app's mark and name, opening a menu of the host's apps. It takes the list and leaves
- * reading the apps' manifests to the host.
- */
+/** An app's icon on its colour. */
+export function AppMark(props: { app: Pick<App, 'colour' | 'icon'>; size?: 'md' | 'lg' }) {
+	return (
+		<span
+			class={['vds-app-mark', { 'vds-app-mark--lg': props.size === 'lg' }]}
+			style={{ '--vds-app': props.app.colour }}
+		>
+			<Icon name={props.app.icon} />
+		</span>
+	)
+}
+
+/** The open app's mark and name, opening a menu of the host's apps. */
 export function AppSwitcher(props: AppSwitcherProps) {
 	const current = () => props.apps.find((app) => app.id === props.current)
 	return (
@@ -44,17 +53,5 @@ export function AppSwitcher(props: AppSwitcherProps) {
 				</button>
 			)}
 		/>
-	)
-}
-
-/** An app's icon on its colour. */
-export function AppMark(props: { app: Pick<App, 'colour' | 'icon'>; size?: 'md' | 'lg' }) {
-	return (
-		<span
-			class={['vds-app-mark', { 'vds-app-mark--lg': props.size === 'lg' }]}
-			style={{ '--vds-app': props.app.colour }}
-		>
-			<Icon name={props.app.icon} />
-		</span>
 	)
 }
