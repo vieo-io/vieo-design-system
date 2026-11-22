@@ -4,6 +4,8 @@ What changed in Vieo's shared design packages. Each package has its own version,
 
 ## Unreleased
 
+## @vieo-io/tokens 0.1.0, @vieo-io/ui 0.1.0, and @vieo-io/fonts 0.1.0 (2026-11-22)
+
 ### Added
 
 - `@vieo-io/ui`: an app frame. AppShell, a Sidebar that becomes a drawer on a phone with a handle to resize it, a Tree with arrow keys and type-ahead, and a Toolbar that is one tab stop.

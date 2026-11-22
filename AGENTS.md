@@ -1,7 +1,7 @@
 # vieo-design-system
 
-A pnpm workspace. `packages/tokens` is `@vieo-io/tokens`; `packages/ui` and `apps/gallery` arrive with the Solid
-components.
+A pnpm workspace. `packages/tokens` is `@vieo-io/tokens`, `packages/ui` is `@vieo-io/ui`, `packages/fonts` is
+`@vieo-io/fonts`, and `apps/gallery` shows the components.
 
 ## Commands
 
@@ -37,9 +37,13 @@ or Catch would look different. When the change is meant, add the app's value and
 
 ## Releasing
 
-1. Move `CHANGELOG.md`'s Unreleased entries under `## <version> (<date>)`, and set the package's `version` to match.
-2. Commit it as "Release @vieo-io/tokens <version>", and tag it `tokens-v<version>`.
-3. `pnpm --filter @vieo-io/tokens publish --access public`, which builds first through `prepublishOnly`.
+Each package has its own version. For each one being released, `<name>` being `tokens`, `ui`, or `fonts`:
+
+1. Move `CHANGELOG.md`'s Unreleased entries under a heading naming each package and version, then the date, such as
+   `## @vieo-io/tokens 0.2.0 (<date>)`, and set each package's `version` to match.
+2. Commit it as "Release @vieo-io/<name> <version>", and tag it `<name>-v<version>`.
+3. From `main`, `pnpm --filter @vieo-io/<name> publish --access public`. Tokens and ui build first through
+   `prepublishOnly`, and fonts ships its committed files. A ui release that needs newer tokens releases tokens first.
 
 ## Writing components
 
