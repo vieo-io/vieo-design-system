@@ -6,11 +6,18 @@ import { moveFor, typeahead } from './roving'
 
 export type TreeNode = {
 	children?: TreeNode[]
-	/** At the row's end in muted text, such as a count. */
+	/**
+	 * At the row's end in muted text, such as a count.
+	 * Several children stack, end-aligned, such as a time over an icon.
+	 */
 	end?: JSX.Element
 	icon?: IconName
 	id: string
 	label: string
+	/** A second line under the label, such as where a chat runs. It joins the row's name, after the label. */
+	meta?: JSX.Element
+	/** Sets the label, and the end's first child, strong in the text colour, and describes the row as Unread. */
+	unread?: boolean
 }
 
 export type TreeProps = {
@@ -99,11 +106,20 @@ export function Tree(props: TreeProps) {
 	}
 	/**
 	 * A treeitem is the row alone, and owns its children's group through `aria-owns`, so its name and its
-	 * visible text stay the row's own. A count joins the name after a space, which the text has too.
+	 * visible text stay the row's own.
+	 * A meta line and a count join the name after a space, which the text has too.
 	 */
 	const Row = (rowProps: { node: TreeNode; level: number }) => {
 		const itemId = () => rowId(rowProps.node.id)
 		const folder = () => Boolean(rowProps.node.children?.length)
+		const labelledBy = () =>
+			[
+				`${itemId()}-label`,
+				rowProps.node.meta && `${itemId()}-meta`,
+				rowProps.node.end && `${itemId()}-end`,
+			]
+				.filter(Boolean)
+				.join(' ')
 		return (
 			<>
 				{/* biome-ignore lint/a11y/useFocusableInteractive: tabindex is set below, as the tree's roving tab stop. */}
@@ -112,15 +128,13 @@ export function Tree(props: TreeProps) {
 					id={itemId()}
 					class='vds-tree__item'
 					role='treeitem'
-					aria-labelledby={
-						rowProps.node.end
-							? `${itemId()}-label ${itemId()}-end`
-							: `${itemId()}-label`
-					}
+					aria-labelledby={labelledBy()}
+					aria-describedby={rowProps.node.unread ? `${itemId()}-unread` : undefined}
 					aria-level={rowProps.level}
 					aria-expanded={folder() ? aria(open(rowProps.node)) : undefined}
 					aria-owns={open(rowProps.node) ? `${itemId()}-group` : undefined}
 					aria-current={rowProps.node.id === props.current ? 'page' : undefined}
+					data-unread={rowProps.node.unread ? '' : undefined}
 					tabindex={stop() === rowProps.node.id ? '0' : '-1'}
 					style={{ '--vds-tree-depth': rowProps.level - 1 }}
 					onFocus={() => setFocused(rowProps.node.id)}
@@ -150,9 +164,22 @@ export function Tree(props: TreeProps) {
 					<Show when={rowProps.node.icon}>
 						{(name) => <Icon name={name()} class='vds-tree__icon' />}
 					</Show>
-					<span id={`${itemId()}-label`} class='vds-tree__label'>
-						{rowProps.node.label}
+					<span class='vds-tree__text'>
+						<span id={`${itemId()}-label`} class='vds-tree__label'>
+							{rowProps.node.label}
+						</span>
+						<Show when={rowProps.node.meta}>
+							{' '}
+							<span id={`${itemId()}-meta`} class='vds-tree__meta'>
+								{rowProps.node.meta}
+							</span>
+						</Show>
 					</span>
+					<Show when={rowProps.node.unread}>
+						<span id={`${itemId()}-unread`} hidden>
+							Unread
+						</span>
+					</Show>
 					<Show when={rowProps.node.end}>
 						{' '}
 						<span id={`${itemId()}-end`} class='vds-tree__end'>

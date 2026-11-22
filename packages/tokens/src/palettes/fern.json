@@ -34,6 +34,14 @@
 			"accent-ink": {
 				"$value": "#ffffff"
 			}
+		},
+		"glow": {
+			"glow-1": {
+				"$value": "#41ba5d"
+			},
+			"glow-2": {
+				"$value": "#8cb623"
+			}
 		}
 	},
 	"dark": {
@@ -70,6 +78,14 @@
 			},
 			"accent-ink": {
 				"$value": "#101511"
+			}
+		},
+		"glow": {
+			"glow-1": {
+				"$value": "#5bc971"
+			},
+			"glow-2": {
+				"$value": "#9dc546"
 			}
 		}
 	}

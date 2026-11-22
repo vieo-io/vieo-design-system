@@ -3,6 +3,13 @@ import { type JSX, Show } from '@solidjs/web'
 export type AppShellProps = {
 	/** The page: a toolbar, then whatever scrolls. */
 	children: JSX.Element
+	/**
+	 * Draws the palette's `--wash` on one fixed backdrop behind the sidebar, the toolbar, and the page.
+	 * Those go transparent over it, dialogs and toasts keep their colour, and the drawer draws the wash over `--raised`.
+	 * Inside the shell, `--muted` becomes `--muted-on-wash`.
+	 * Off when the person asks for more contrast or uses forced colours.
+	 */
+	gradient?: boolean
 	/** Gets the `main` element, which can take focus, such as after a navigation from the drawer. */
 	mainRef?: (element: HTMLElement) => void
 	sidebar?: JSX.Element
@@ -16,7 +23,7 @@ export type AppShellProps = {
  */
 export function AppShell(props: AppShellProps) {
 	return (
-		<div class='vds-app-shell'>
+		<div class={['vds-app-shell', { 'vds-app-shell--gradient': props.gradient }]}>
 			{props.sidebar}
 			<main ref={props.mainRef} class='vds-app-shell__main' tabindex='-1'>
 				{props.children}

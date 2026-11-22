@@ -140,6 +140,13 @@ code {
 	font-size: var(--font-sm);
 }
 
+.frame-sidebar-head {
+	padding: 0 var(--space-2);
+	color: var(--muted);
+	font-size: var(--font-xs);
+	font-weight: var(--weight-strong);
+}
+
 .frame-scroll {
 	flex: 1;
 	min-height: 0;

@@ -46,16 +46,50 @@
 	color: var(--muted);
 }
 
-.vds-tree__label {
+.vds-tree__text {
+	display: flex;
 	flex: 1;
+	flex-direction: column;
 	min-width: 0;
+}
+
+.vds-tree__label,
+.vds-tree__meta {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
+.vds-tree__meta {
+	color: var(--muted);
+	font-size: var(--font-xs);
+}
+
+.vds-tree__meta > .vds-icon {
+	margin-right: var(--space-1);
+	vertical-align: -0.2em;
+}
+
+/* Two lines can outgrow the row height, so they get room above and below. */
+.vds-tree__item:has(.vds-tree__meta) {
+	padding-block: var(--space-1);
+}
+
+.vds-tree__item[data-unread] .vds-tree__label {
+	font-weight: var(--weight-strong);
+}
+
+.vds-tree__item[data-unread] .vds-tree__end > :first-child {
+	color: var(--text);
+	font-weight: var(--weight-strong);
+}
+
 .vds-tree__end {
+	display: flex;
 	flex: none;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: var(--space-1);
 	color: var(--muted);
 	font-size: var(--font-xs);
 	font-variant-numeric: tabular-nums;

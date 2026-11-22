@@ -48,6 +48,7 @@ them, but never names a colour of its own.
 | `--border-strong` | A control's outline, and a line that has to read at a glance                   |
 | `--text`          | Body text. At least 7:1 on `--bg` in every palette                             |
 | `--muted`         | Secondary text: meta, placeholders, a disabled label. Text, never a surface    |
+| `--muted-on-wash` | What `--muted` becomes over the gradient, nearer `--text`                      |
 | `--accent`        | The one colour that means "this is the action" or "this is where you are"      |
 | `--accent-soft`   | The fill behind the selected row. `--text` stays readable on it                |
 | `--accent-ink`    | Text and icons on an `--accent` fill                                           |
@@ -62,6 +63,22 @@ them to it. For a tinted background, mix the role into the page rather than addi
 `color-mix(in srgb, var(--warning) 12%, var(--bg))`.
 
 Use `--accent` sparingly. A page where every second element is accented has no accent.
+
+## Gradient
+
+`AppShell`'s `gradient` puts a wash of the palette's colours behind the sidebar, the toolbar, and the page, on one
+backdrop fixed to the window. Those three go transparent over it. Dialogs, popovers, menus, toasts, cards, and fields
+keep their colours, so whatever floats or takes input stays solid. There is no gradient when the person asks for more
+contrast or uses forced colours.
+
+- `--glow-1` and `--glow-2` are the palette's two colours. Glow-1 comes in from the top left, and at half strength
+  from the bottom right. Glow-2 comes in from the top right.
+- `--glow-strength` is how much of glow-1 the wash mixes in at its strongest: 15% in light and 18% in dark. Glow-2
+  peaks at four fifths of it.
+- `--wash` is the three radial gradients, ready for a `background`. An app that draws its own backdrop uses it over
+  `--ground`.
+- Inside a gradient shell `--muted` is `--muted-on-wash`, because the wash darkens or lightens the ground enough to
+  take muted text below 4.5:1 in most palettes.
 
 ## Space
 

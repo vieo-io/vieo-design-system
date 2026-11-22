@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@solidjs/testing-library'
 import { createSignal, flush } from 'solid-js'
 import { describe, expect, it, vi } from 'vitest'
+import { Icon } from '../src/Icon'
 import { Tree, type TreeNode } from '../src/Tree'
 
 const NODES: TreeNode[] = [
@@ -161,4 +162,51 @@ describe('Tree', () => {
 		))
 		expect(screen.getByRole('treeitem', { name: 'Plans 12' }).textContent).toBe('Plans 12')
 	})
+
+	it('a row with a meta line and a stacked end is named by its label, the meta, and the end', () => {
+		renderRows([
+			{
+				id: 'chat',
+				label: 'Fix the build',
+				meta: 'llt-build-fix',
+				end: (
+					<>
+						<span>2m</span>
+						<Icon name='sparkle' />
+					</>
+				),
+			},
+		])
+		const row = screen.getByRole('treeitem', { name: 'Fix the build llt-build-fix 2m' })
+		expect(row.querySelector('.vds-tree__meta')?.textContent).toBe('llt-build-fix')
+	})
+
+	it('an unread row is described as unread', () => {
+		renderRows([{ id: 'chat', label: 'Fix the build', meta: 'llt-build-fix', unread: true }])
+		const row = screen.getByRole('treeitem', { name: 'Fix the build llt-build-fix' })
+		const description = document.getElementById(row.getAttribute('aria-describedby') ?? '')
+		expect(description?.textContent).toBe('Unread')
+		expect(description?.hidden).toBe(true)
+		expect(row.hasAttribute('data-unread')).toBe(true)
+	})
+
+	it('a read row has no description', () => {
+		renderRows([{ id: 'plans', label: 'Plans', end: '12' }])
+		const row = screen.getByRole('treeitem', { name: 'Plans 12' })
+		expect(row.hasAttribute('aria-describedby')).toBe(false)
+		expect(row.hasAttribute('data-unread')).toBe(false)
+		expect(row.querySelector('.vds-tree__meta')).toBeNull()
+	})
 })
+
+function renderRows(nodes: TreeNode[]) {
+	render(() => (
+		<Tree
+			label='Chats'
+			nodes={nodes}
+			expanded={[]}
+			onExpandedChange={() => {}}
+			onOpen={() => {}}
+		/>
+	))
+}

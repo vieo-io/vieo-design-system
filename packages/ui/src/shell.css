@@ -40,6 +40,37 @@
 	grid-column: 1 / -1;
 }
 
+@media not (prefers-contrast: more) {
+	@media (forced-colors: none) {
+		.vds-app-shell--gradient {
+			--muted: var(--muted-on-wash);
+
+			isolation: isolate;
+		}
+
+		.vds-app-shell--gradient::before {
+			position: fixed;
+			inset: 0;
+			z-index: -1;
+			background: var(--wash), var(--ground);
+			content: "";
+			pointer-events: none;
+		}
+
+		.vds-app-shell--gradient .vds-app-shell__main,
+		.vds-app-shell--gradient .vds-sidebar,
+		.vds-app-shell--gradient .vds-toolbar {
+			background: transparent;
+		}
+
+		/* The drawer is a sidebar too, so this follows the transparent rule above to keep it opaque. */
+		.vds-app-shell--gradient .vds-drawer {
+			background: var(--wash), var(--raised);
+			background-attachment: fixed;
+		}
+	}
+}
+
 .vds-sidebar-frame {
 	position: relative;
 	display: flex;

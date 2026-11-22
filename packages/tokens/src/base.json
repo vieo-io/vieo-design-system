@@ -48,6 +48,11 @@
 			"$type": "color",
 			"$value": "#70706b"
 		},
+		"muted-on-wash": {
+			"$type": "color",
+			"$value": "color-mix(in srgb, {color.text} 30%, {color.muted})",
+			"$description": "Muted text over the gradient, a little nearer the text colour so it stays readable where the wash is strongest"
+		},
 		"accent": {
 			"$type": "color",
 			"$value": "#3b6fe0"
@@ -358,6 +363,28 @@
 			"$type": "number",
 			"$value": "1200",
 			"$description": "Toasts, above everything"
+		}
+	},
+	"glow": {
+		"glow-1": {
+			"$type": "color",
+			"$value": "#3b6fe0",
+			"$description": "The gradient's main colour, from the top left, and at half strength from the bottom right"
+		},
+		"glow-2": {
+			"$type": "color",
+			"$value": "#8b5cf6",
+			"$description": "The gradient's second colour, from the top right"
+		},
+		"glow-strength": {
+			"$type": "percentage",
+			"$value": "15%",
+			"$description": "How much of glow-1 the wash mixes in at its strongest. Glow-2 peaks at four fifths of it"
+		},
+		"wash": {
+			"$type": "gradient",
+			"$value": "radial-gradient(ellipse 70% 60% at 0% 0%, color-mix(in oklab, {glow.glow-1} {glow.glow-strength}, transparent), transparent 70%), radial-gradient(ellipse 55% 50% at 100% 0%, color-mix(in oklab, {glow.glow-2} calc({glow.glow-strength} * 0.8), transparent), transparent 70%), radial-gradient(ellipse 60% 50% at 90% 100%, color-mix(in oklab, {glow.glow-1} calc({glow.glow-strength} * 0.5), transparent), transparent 70%)",
+			"$description": "Three radial gradients of the palette's glows, for a background behind a shell's chrome"
 		}
 	}
 }

@@ -26,6 +26,7 @@ import {
 import { createSignal } from 'solid-js'
 import { ConnectForm } from './ConnectForm'
 import { applyLook, label, lookFromUrl } from './look'
+import { CHATS, PAGES } from './sidebar'
 
 const APPS: App[] = [
 	{ id: 'vieo', name: 'Vieo', icon: 'home', colour: '#4f5bd5' },
@@ -63,27 +64,6 @@ const CARDS: ObjectCardData[] = [
 	},
 ]
 
-const PAGES: TreeNode[] = [
-	{
-		id: 'notes',
-		label: 'Notes',
-		icon: 'folder',
-		children: [
-			{ id: 'direction', label: 'Design direction', icon: 'document' },
-			{ id: 'plans', label: 'Plans', icon: 'document', end: '12' },
-			{
-				id: 'calls',
-				label: 'Calls',
-				icon: 'folder',
-				children: [{ id: 'standup', label: 'Standup', icon: 'document' }],
-			},
-		],
-	},
-	{ id: 'tracker', label: 'Tracker', icon: 'tracker', end: '4' },
-	{ id: 'transcripts', label: 'Transcripts', icon: 'mic' },
-	{ id: 'settings', label: 'Settings', icon: 'settings' },
-]
-
 const THEMES = ['system', 'light', 'dark']
 
 export function AppFrame() {
@@ -99,9 +79,18 @@ export function AppFrame() {
 	const [connecting, setConnecting] = createSignal(false)
 	const [serif, setSerif] = createSignal(false)
 	const [compact, setCompact] = createSignal(true)
+	const [gradient, setGradient] = createSignal(
+		new URL(location.href).searchParams.get('gradient') === 'on',
+	)
+	const changeGradient = (on: boolean) => {
+		setGradient(on)
+		const url = new URL(location.href)
+		url.searchParams.set('gradient', on ? 'on' : 'off')
+		history.replaceState(null, '', url)
+	}
 	let main: HTMLElement | undefined
 	let navigated = false
-	const title = () => findPage(PAGES, page())?.label ?? ''
+	const title = () => findPage([...PAGES, ...CHATS], page())?.label ?? ''
 	const changeLook = (key: 'design' | 'palette' | 'theme', value: string) => {
 		const before = look()
 		const next = { ...before, [key]: value }
@@ -127,6 +116,7 @@ export function AppFrame() {
 	return (
 		<>
 			<AppShell
+				gradient={gradient()}
 				mainRef={(element) => {
 					main = element
 				}}
@@ -165,6 +155,15 @@ export function AppFrame() {
 									tabindex='-1'
 								/>
 							)}
+						/>
+						<div class='frame-sidebar-head'>Chats</div>
+						<Tree
+							label='Chats'
+							nodes={CHATS}
+							expanded={[]}
+							onExpandedChange={() => {}}
+							current={page()}
+							onOpen={open}
 						/>
 					</Sidebar>
 				}
@@ -236,6 +235,18 @@ export function AppFrame() {
 												label: label(value),
 											}))}
 											onChange={(value) => changeLook('palette', value)}
+											{...ids}
+										/>
+									)}
+								</SettingRow>
+								<SettingRow
+									label='Gradient'
+									hint="A wash of the palette's colours behind the sidebar and the page."
+								>
+									{(ids) => (
+										<Switch
+											checked={gradient()}
+											onChange={changeGradient}
 											{...ids}
 										/>
 									)}

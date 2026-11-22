@@ -1,0 +1,196 @@
+/*
+ * The two colours each palette's background gradients wash in, behind
+ * `data-palette`. The palettes' other colours come from `@vieo-io/tokens`.
+ */
+
+/* Lavender — Linear's colours. */
+:root[data-palette='lavender'] {
+	--glow-1: #5e6ad2;
+	--glow-2: #8f7cf7;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='lavender']:not([data-theme='light']) {
+		--glow-1: #7b86ee;
+		--glow-2: #a593ff;
+	}
+}
+:root[data-palette='lavender'][data-theme='dark'] {
+	--glow-1: #7b86ee;
+	--glow-2: #a593ff;
+}
+
+/* Violet — Aurora's colours. */
+:root[data-palette='violet'] {
+	--glow-1: #6c5ce7;
+	--glow-2: #2fb8e6;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='violet']:not([data-theme='light']) {
+		--glow-1: #9d8cff;
+		--glow-2: #3cc8f0;
+	}
+}
+:root[data-palette='violet'][data-theme='dark'] {
+	--glow-1: #9d8cff;
+	--glow-2: #3cc8f0;
+}
+
+/* Zinc — Slate's colours: one neutral ramp and one blue. */
+:root[data-palette='zinc'] {
+	--glow-1: #2563eb;
+	--glow-2: #06b6d4;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='zinc']:not([data-theme='light']) {
+		--glow-1: #60a5fa;
+		--glow-2: #22d3ee;
+	}
+}
+:root[data-palette='zinc'][data-theme='dark'] {
+	--glow-1: #60a5fa;
+	--glow-2: #22d3ee;
+}
+
+/* Ink — Contrast's colours, where a line is the colour of the text. */
+:root[data-palette='ink'] {
+	--glow-1: #1f46d6;
+	--glow-2: #e0a800;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='ink']:not([data-theme='light']) {
+		--glow-1: #8fa6ff;
+		--glow-2: #f2c230;
+	}
+}
+:root[data-palette='ink'][data-theme='dark'] {
+	--glow-1: #8fa6ff;
+	--glow-2: #f2c230;
+}
+
+/* Clay — Editorial's warm paper and terracotta. */
+:root[data-palette='clay'] {
+	--glow-1: #b0563a;
+	--glow-2: #d9a441;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='clay']:not([data-theme='light']) {
+		--glow-1: #d98060;
+		--glow-2: #e0b25a;
+	}
+}
+:root[data-palette='clay'][data-theme='dark'] {
+	--glow-1: #d98060;
+	--glow-2: #e0b25a;
+}
+
+/* Ember — the app icon: its orange-to-pink coil, and its charcoal tile for dark. */
+:root[data-palette='ember'] {
+	--glow-1: #ff9a2e;
+	--glow-2: #f8258a;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='ember']:not([data-theme='light']) {
+		--glow-1: #ff8a2e;
+		--glow-2: #f8258a;
+	}
+}
+:root[data-palette='ember'][data-theme='dark'] {
+	--glow-1: #ff8a2e;
+	--glow-2: #f8258a;
+}
+
+/* Tangerine — orange, between Ember's red and Marigold's gold. */
+:root[data-palette='tangerine'] {
+	--glow-1: #ec7c0e;
+	--glow-2: #fd7562;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='tangerine']:not([data-theme='light']) {
+		--glow-1: #f98f3a;
+		--glow-2: #ff8975;
+	}
+}
+:root[data-palette='tangerine'][data-theme='dark'] {
+	--glow-1: #f98f3a;
+	--glow-2: #ff8975;
+}
+
+/* Marigold — gold. A yellow light enough to look yellow cannot reach 4.5:1 on white, so the light accent is ochre. */
+:root[data-palette='marigold'] {
+	--glow-1: #ce9300;
+	--glow-2: #ef8600;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='marigold']:not([data-theme='light']) {
+		--glow-1: #dca400;
+		--glow-2: #fd9836;
+	}
+}
+:root[data-palette='marigold'][data-theme='dark'] {
+	--glow-1: #dca400;
+	--glow-2: #fd9836;
+}
+
+/* Fern — green, with a lime glow. */
+:root[data-palette='fern'] {
+	--glow-1: #41ba5d;
+	--glow-2: #8cb623;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='fern']:not([data-theme='light']) {
+		--glow-1: #5bc971;
+		--glow-2: #9dc546;
+	}
+}
+:root[data-palette='fern'][data-theme='dark'] {
+	--glow-1: #5bc971;
+	--glow-2: #9dc546;
+}
+
+/* Lagoon — teal, with a sky-blue glow. */
+:root[data-palette='lagoon'] {
+	--glow-1: #00beac;
+	--glow-2: #00b8f4;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='lagoon']:not([data-theme='light']) {
+		--glow-1: #00cdbb;
+		--glow-2: #00c8ff;
+	}
+}
+:root[data-palette='lagoon'][data-theme='dark'] {
+	--glow-1: #00cdbb;
+	--glow-2: #00c8ff;
+}
+
+/* Orchid — magenta, with a violet glow. */
+:root[data-palette='orchid'] {
+	--glow-1: #d275d8;
+	--glow-2: #ae8bff;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='orchid']:not([data-theme='light']) {
+		--glow-1: #e088e5;
+		--glow-2: #bc9dff;
+	}
+}
+:root[data-palette='orchid'][data-theme='dark'] {
+	--glow-1: #e088e5;
+	--glow-2: #bc9dff;
+}
+
+/* Rose — pink, with a fuchsia glow. */
+:root[data-palette='rose'] {
+	--glow-1: #f46a86;
+	--glow-2: #f072b3;
+}
+@media (prefers-color-scheme: dark) {
+	:root[data-palette='rose']:not([data-theme='light']) {
+		--glow-1: #ff7e97;
+		--glow-2: #fe86c2;
+	}
+}
+:root[data-palette='rose'][data-theme='dark'] {
+	--glow-1: #ff7e97;
+	--glow-2: #fe86c2;
+}

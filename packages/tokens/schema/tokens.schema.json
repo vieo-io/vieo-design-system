@@ -15,7 +15,9 @@
 				"duration",
 				"cubicBezier",
 				"fontFeatures",
-				"shadow"
+				"shadow",
+				"percentage",
+				"gradient"
 			]
 		},
 		"value": {

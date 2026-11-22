@@ -68,6 +68,14 @@ describe('the generated css', () => {
 		expect(all.slice(floor + 1)).toEqual(["@media (pointer: coarse) :root[data-design='vieo']"])
 	})
 
+	it("the wash is three radial gradients over the palette's glows", () => {
+		const root = rules(renderTokensCss(SOURCE)).find(({ where }) => where === ':root')
+		const wash = /--wash: ([^;]*)/.exec(root?.body ?? '')?.[1] ?? ''
+		expect(wash.match(/radial-gradient\(/g)).toHaveLength(3)
+		for (const name of ['glow-1', 'glow-2', 'glow-strength'])
+			expect(wash).toContain(`var(--${name})`)
+	})
+
 	it('classic writes no data-design block, and paper no data-palette block', () => {
 		expect(renderDesignsCss(SOURCE)).not.toContain("data-design='classic'")
 		expect(renderPalettesCss(SOURCE)).not.toContain("data-palette='paper'")

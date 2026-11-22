@@ -4,6 +4,12 @@ What changed in Vieo's shared design packages. Each package has its own version,
 
 ## Unreleased
 
+### Added
+
+- `@vieo-io/tokens`: each palette's gradient, as `--glow-1`, `--glow-2`, `--glow-strength`, and `--wash`, with RLN's colours and Vieo Dev's strength, and `--muted-on-wash` for muted text over it.
+- `@vieo-io/ui`: `AppShell` takes `gradient`, which draws the wash on one backdrop behind a transparent sidebar, toolbar, and page. It is off when the person asks for more contrast or uses forced colours.
+- `@vieo-io/ui`: a Tree row can have a second line under its label, an end that stacks a time over an icon, and an unread state that sets the label and the time bold. A second line joins the row's name.
+
 ### Changed
 
 - `@vieo-io/tokens`: on a phone, Vieo draws its controls at 36px, 32px small, as the mockup did. Each still takes a 44px touch, and rows stay 44px tall. A design may now set its own control heights for a coarse pointer, and nothing else there.
