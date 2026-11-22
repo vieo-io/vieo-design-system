@@ -10,6 +10,7 @@ What changed in Vieo's shared design packages. Each package has its own version,
 - `@vieo-io/ui`: form controls and settings rows: TextField, Checkbox, Switch, Select, SegmentedControl, and SettingRow.
 - `@vieo-io/ui`: toasts that pause while hovered or focused, an app switcher, an object card for something another app owns, and Badge, Kbd, and EmptyState.
 - `@vieo-io/ui`: IconButton, which names itself in a tooltip, or shows its label beside the icon until its toolbar narrows. Every button takes a 44px touch on a phone, whatever it draws.
+- `@vieo-io/ui`: on a phone a dialog rises from the bottom edge as a sheet. Dialogs, popovers, and the palette sit on `--raised`, and a dialog's title is set at the interface size.
 - `@vieo-io/fonts`: Inter and JetBrains Mono for the Vieo design, subset from the upstream releases with every OpenType feature kept.
 - `@vieo-io/tokens`: the Vieo design, the Vieo app's own. The sidebar sits on a ground colour with the page, toolbar included, as an inset panel, controls are 32px, and the type is Inter at 14px. RLN and Catch offer it in their design pickers and look the same until someone picks it.
 - `@vieo-io/tokens`: `--ground`, `--surface`, `--raised`, and `--scrim` for shells and what floats over them, `--font-prose` and `--line-prose` for reading text, per-face font features, `--hit-min`, `--sidebar-width`, and `--shell-inset` and `--shell-radius` for a page panel set in from the window.

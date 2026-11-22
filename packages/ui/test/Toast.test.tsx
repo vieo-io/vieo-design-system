@@ -75,4 +75,82 @@ describe('Toast', () => {
 		flush()
 		expect(shown()).toEqual(['Moved'])
 	})
+
+	it('a toast stays while focus is inside it, even after the pointer leaves', () => {
+		renderToaster()
+		toast('Copied', { duration: 1000, action: { label: 'Undo', onAction: () => {} } })
+		flush()
+		const item = document.querySelector('.vds-toast') as HTMLElement
+		fireEvent.pointerEnter(item)
+		fireEvent.focusIn(screen.getByRole('button', { name: 'Undo' }))
+		fireEvent.pointerLeave(item)
+		vi.advanceTimersByTime(3000)
+		flush()
+		expect(shown()).toEqual(['Copied'])
+	})
+
+	it('a toast lasts 4 seconds, or 8 with an action', () => {
+		renderToaster()
+		toast('Plain')
+		toast('Action', { action: { label: 'Undo', onAction: () => {} } })
+		flush()
+		vi.advanceTimersByTime(3900)
+		flush()
+		expect(shown()).toEqual(['Plain', 'Action'])
+		vi.advanceTimersByTime(400)
+		flush()
+		expect(shown()).toEqual(['Action'])
+		vi.advanceTimersByTime(3500)
+		flush()
+		expect(shown()).toEqual(['Action'])
+		vi.advanceTimersByTime(500)
+		flush()
+		expect(shown()).toEqual([])
+	})
+
+	it('Dismiss removes a pinned toast', () => {
+		renderToaster()
+		toast('Pinned', { pinned: true })
+		flush()
+		fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }))
+		vi.advanceTimersByTime(500)
+		flush()
+		expect(shown()).toEqual([])
+	})
+
+	it('a key replaces only the toast with the same key', () => {
+		renderToaster()
+		toast('Plain')
+		toast('Other', { key: 'other' })
+		toast('One', { key: 'look' })
+		toast('Two', { key: 'look' })
+		flush()
+		expect(shown()).toEqual(['Plain', 'Other', 'Two'])
+	})
+
+	it('hovering a pinned toast and leaving starts no timer', () => {
+		renderToaster()
+		toast('Pinned', { pinned: true })
+		flush()
+		const item = document.querySelector('.vds-toast') as HTMLElement
+		fireEvent.pointerEnter(item)
+		fireEvent.pointerLeave(item)
+		vi.advanceTimersByTime(60_000)
+		flush()
+		expect(shown()).toEqual(['Pinned'])
+	})
+
+	it('a paused toast resumes with the time it had left', () => {
+		renderToaster()
+		toast('Copied', { duration: 1000 })
+		flush()
+		const item = document.querySelector('.vds-toast') as HTMLElement
+		vi.advanceTimersByTime(600)
+		fireEvent.pointerEnter(item)
+		vi.advanceTimersByTime(5000)
+		fireEvent.pointerLeave(item)
+		vi.advanceTimersByTime(700)
+		flush()
+		expect(shown()).toEqual([])
+	})
 })

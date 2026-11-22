@@ -93,4 +93,9 @@ describe('every palette stays readable under the Vieo design', () => {
 			).toBeGreaterThanOrEqual(4.5)
 		}
 	})
+
+	it('in dark, Vieo swaps the ground and the panel and mixes its raised colour, as in Ember', () => {
+		const { ground, raised, surface } = resolveColours(SOURCE, 'ember', 'dark', 'vieo')
+		expect([ground, surface, raised]).toEqual(['#1c1d20', '#242528', '#2c2d30'])
+	})
 })

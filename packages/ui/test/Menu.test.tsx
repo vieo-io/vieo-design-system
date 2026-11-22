@@ -66,4 +66,28 @@ describe('Menu', () => {
 		flush()
 		expect(screen.queryByRole('menu')).toBeNull()
 	})
+
+	it('Space runs the focused item', async () => {
+		const copy = item('Copy')
+		renderMenu([copy])
+		fireEvent.keyDown(screen.getByRole('menu'), { key: ' ' })
+		await settle()
+		expect(copy.onSelect).toHaveBeenCalledTimes(1)
+	})
+
+	it('an item can carry a second line, and something of its own in place of the icon', () => {
+		renderMenu([
+			{
+				label: 'Vieo Base',
+				description: 'Notes and pages',
+				icon: 'home',
+				leading: () => <i data-testid='mark' />,
+				onSelect: () => {},
+			},
+		])
+		const entry = screen.getByRole('menuitem')
+		expect(entry.textContent).toBe('Vieo BaseNotes and pages')
+		expect(screen.getByTestId('mark')).toBeTruthy()
+		expect(entry.querySelectorAll('svg')).toHaveLength(0)
+	})
 })

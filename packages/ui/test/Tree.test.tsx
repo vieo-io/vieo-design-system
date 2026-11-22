@@ -20,7 +20,7 @@ const NODES: TreeNode[] = [
 	{ id: 'transcripts', label: 'Transcripts' },
 ]
 
-function renderTree(initial: string[] = []) {
+function renderTree(initial: string[] = [], current = 'plans') {
 	const [expanded, setExpanded] = createSignal(initial)
 	const onOpen = vi.fn()
 	render(() => (
@@ -31,7 +31,7 @@ function renderTree(initial: string[] = []) {
 			onExpandedChange={(id, open) =>
 				setExpanded((ids) => (open ? [...ids, id] : ids.filter((other) => other !== id)))
 			}
-			current='plans'
+			current={current}
 			onOpen={onOpen}
 		/>
 	))
@@ -102,5 +102,63 @@ describe('Tree', () => {
 		)
 		press('Enter')
 		expect(onOpen).toHaveBeenCalledWith(expect.objectContaining({ id: 'calls' }))
+	})
+
+	it('clicking a row opens it and makes it the tab stop', () => {
+		const { item, onOpen } = renderTree()
+		fireEvent.click(item('Tracker'))
+		flush()
+		expect(onOpen).toHaveBeenCalledWith(expect.objectContaining({ id: 'tracker' }))
+		expect(item('Tracker').tabIndex).toBe(0)
+	})
+
+	it('the twisty opens a folder without opening its page', () => {
+		const { expanded, item, onOpen } = renderTree()
+		fireEvent.click(item('Notes').querySelector('.vds-tree__twisty') as Element)
+		flush()
+		expect(expanded()).toEqual(['notes'])
+		expect(onOpen).not.toHaveBeenCalled()
+	})
+
+	it('Space opens the row, as Enter does', () => {
+		const { item, onOpen, press } = renderTree()
+		item('Notes').focus()
+		press(' ')
+		expect(onOpen).toHaveBeenCalledWith(expect.objectContaining({ id: 'notes' }))
+	})
+
+	it('a letter with Ctrl held is left to the browser', () => {
+		const { item } = renderTree()
+		item('Notes').focus()
+		const event = fireEvent.keyDown(item('Notes'), { key: 't', ctrlKey: true })
+		expect(document.activeElement).toBe(item('Notes'))
+		expect(event, 'not cancelled').toBe(true)
+	})
+
+	it('when the current page is inside a closed folder, the first row is the tab stop', () => {
+		renderTree([], 'standup')
+		const stops = screen.getAllByRole('treeitem').filter((row) => row.tabIndex === 0)
+		expect(stops.map((row) => row.textContent)).toEqual(['Notes'])
+	})
+
+	it('Right on a page does nothing', () => {
+		const { expanded, item, press } = renderTree()
+		item('Tracker').focus()
+		press('ArrowRight')
+		expect(expanded()).toEqual([])
+		expect(document.activeElement).toBe(item('Tracker'))
+	})
+
+	it('a row with a count is named by its label and the count', () => {
+		render(() => (
+			<Tree
+				label='Pages'
+				nodes={[{ id: 'plans', label: 'Plans', end: '12' }]}
+				expanded={[]}
+				onExpandedChange={() => {}}
+				onOpen={() => {}}
+			/>
+		))
+		expect(screen.getByRole('treeitem', { name: 'Plans 12' }).textContent).toBe('Plans 12')
 	})
 })

@@ -4,7 +4,7 @@
 	overflow: hidden;
 	border: 1px solid var(--border);
 	border-radius: var(--radius-lg);
-	background: var(--bg-elev);
+	background: var(--raised);
 	color: var(--text);
 }
 

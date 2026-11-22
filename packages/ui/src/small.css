@@ -64,6 +64,7 @@
 }
 
 .vds-empty__description {
+	text-wrap: balance;
 	max-width: 36ch;
 	margin: 0;
 	font-size: var(--font-sm);

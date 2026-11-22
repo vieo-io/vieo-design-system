@@ -33,7 +33,7 @@ const KNOWN_VERSIONS = [1]
 export function ObjectCard(props: ObjectCardProps) {
 	const id = createUniqueId()
 	const open = (event: MouseEvent) => {
-		if (!props.onOpen) return
+		if (!props.onOpen || event.ctrlKey || event.metaKey || event.shiftKey) return
 		event.preventDefault()
 		props.onOpen(props.card)
 	}
@@ -63,7 +63,7 @@ export function ObjectCard(props: ObjectCardProps) {
 					</Show>
 				</div>
 				<a
-					class='vds-button vds-button--secondary vds-button--sm'
+					class='vds-button vds-button--ghost vds-button--sm'
 					href={props.card.href}
 					aria-label={`Open ${props.card.title}`}
 					onClick={open}

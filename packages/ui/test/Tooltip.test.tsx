@@ -44,4 +44,17 @@ describe('Tooltip', () => {
 		flush()
 		expect(screen.queryByRole('tooltip')).toBeNull()
 	})
+
+	it('a tooltip whose when() is false stays shut on hover', () => {
+		vi.useFakeTimers()
+		render(() => (
+			<Tooltip content='Share' when={() => false}>
+				{(trigger) => <button {...trigger}>Share</button>}
+			</Tooltip>
+		))
+		fireEvent.pointerEnter(screen.getByRole('button', { name: 'Share' }))
+		vi.advanceTimersByTime(2000)
+		flush()
+		expect(screen.queryByRole('tooltip')).toBeNull()
+	})
 })

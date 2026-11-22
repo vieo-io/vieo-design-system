@@ -1,6 +1,7 @@
 /** Every path is drawn in a 24-unit box, stroked at 1.7 with round caps and joins. */
 export const PATHS = {
 	account: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20c0-4.1 3.4-7.5 7.5-7.5s7.5 3.4 7.5 7.5',
+	alert: 'M12 4 2.5 20h19L12 4zM12 10v4.5M12 17.2h.01',
 	archive: 'M3 7h18v3H3zM5 10v9h14v-9M10 14h4',
 	'arrow-down': 'M12 4v16M18 14l-6 6-6-6',
 	'arrow-left': 'M20 12H4M10 6l-6 6 6 6',
@@ -44,7 +45,8 @@ export const PATHS = {
 	maximize: 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5',
 	menu: 'M4 6h16M4 12h16M4 18h16',
 	mic: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21',
-	'more-horizontal': 'M6 12h.01M12 12h.01M18 12h.01',
+	'more-horizontal':
+		'M5 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0M17 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0',
 	'open-page': 'M14 4h6v6M20 4l-8 8M18 14v5H5V6h5',
 	outdent: 'M4 6h16M12 12h8M12 18h8M7 9l-3 3 3 3',
 	paperclip:

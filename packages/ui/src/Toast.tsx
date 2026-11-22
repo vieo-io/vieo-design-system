@@ -26,7 +26,7 @@ const DEFAULT_DURATION_MS = 4000
 /** How long a toast takes to fade out, and so how long it stays in the list after it's dismissed. */
 const EXIT_MS = 160
 
-const ICONS = { info: 'info', success: 'check', error: 'info' } as const
+const ICONS = { info: 'info', success: 'check', error: 'alert' } as const
 
 const [toasts, setToasts] = createStore<{ list: Entry[] }>({ list: [] })
 
@@ -83,13 +83,16 @@ function ToastItem(props: { entry: Entry }) {
 	let remaining = 0
 	let startedAt = 0
 	let timer: ReturnType<typeof setTimeout> | undefined
+	let hovered = false
+	let focused = false
 	const start = (id: number) => {
 		clearTimeout(timer)
 		startedAt = Date.now()
 		timer = setTimeout(() => dismissToast(id), remaining)
 	}
 	const resume = () => {
-		if (!props.entry.pinned && !props.entry.leaving) start(props.entry.id)
+		if (hovered || focused || props.entry.pinned || props.entry.leaving) return
+		start(props.entry.id)
 	}
 	const pause = () => {
 		if (timer === undefined) return
@@ -119,10 +122,23 @@ function ToastItem(props: { entry: Entry }) {
 					`vds-toast--${props.entry.kind ?? 'info'}`,
 					{ 'vds-toast--visible': presence.isVisible() },
 				]}
-				onPointerEnter={pause}
-				onPointerLeave={resume}
-				onFocusIn={pause}
-				onFocusOut={resume}
+				onPointerEnter={() => {
+					hovered = true
+					pause()
+				}}
+				onPointerLeave={() => {
+					hovered = false
+					resume()
+				}}
+				onFocusIn={() => {
+					focused = true
+					pause()
+				}}
+				onFocusOut={(event) => {
+					if (event.currentTarget.contains(event.relatedTarget as Node | null)) return
+					focused = false
+					resume()
+				}}
 			>
 				<Show when={props.entry.kind && props.entry.kind !== 'info'}>
 					<Icon name={ICONS[props.entry.kind ?? 'info']} class='vds-toast__icon' />

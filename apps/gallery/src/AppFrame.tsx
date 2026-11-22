@@ -90,7 +90,9 @@ const THEMES = ['system', 'light', 'dark']
 export function AppFrame() {
 	const [look, setLook] = createSignal(lookFromUrl())
 	applyLook(lookFromUrl())
-	const [page, setPage] = createSignal('direction')
+	const [page, setPage] = createSignal(
+		new URL(location.href).searchParams.get('open') ?? 'direction',
+	)
 	const [expanded, setExpanded] = createSignal(['notes'])
 	const [width, setWidth] = createSignal(256)
 	const [collapsed, setCollapsed] = createSignal(false)
@@ -171,7 +173,7 @@ export function AppFrame() {
 				<Toolbar
 					label='Page'
 					title={title()}
-					subtitle={page() === 'settings' ? undefined : 'Note'}
+					subtitle={findPage(PAGES, page())?.icon === 'document' ? 'Note' : undefined}
 					leading={
 						<IconButton
 							icon='menu'
@@ -184,7 +186,7 @@ export function AppFrame() {
 						/>
 					}
 				>
-					<IconButton icon='share' label='Share' showLabel />
+					<IconButton icon='share' label='Share' showLabel variant='ghost' />
 					<IconButton icon='pin' label='Pin' showLabel variant='ghost' />
 					<IconButton icon='more-horizontal' label='More' variant='ghost' />
 				</Toolbar>

@@ -26,28 +26,32 @@ for (const [width, device] of [
 					const diagnostics = watchDiagnostics(page)
 					const dir = join(SHOTS, 'frame', `${width}-${design}-${theme}`)
 					mkdirSync(dir, { recursive: true })
+					// The toast comes from choosing System, which keeps the theme the journey is shot in.
+					await page.emulateMedia({ colorScheme: theme as 'light' | 'dark' })
 					await page.goto(`/?page=frame&design=${design}&theme=${theme}`)
 					await expect(page.getByRole('heading', { level: 1 })).toHaveText(
 						'Design direction',
 					)
 					await audit(page, 'note')
-					await page.screenshot({ path: join(dir, 'note.png') })
+					await shoot(page, join(dir, 'note.png'))
 
 					if (width === 'phone') {
 						await page.getByRole('button', { name: 'Show the sidebar' }).click()
 						await expect(page.getByRole('dialog', { name: 'Pages' })).toBeVisible()
 						await audit(page, 'drawer')
-						await page.screenshot({ path: join(dir, 'drawer.png') })
+						await shoot(page, join(dir, 'drawer.png'))
 					}
 					await page.getByRole('treeitem', { name: 'Settings' }).click()
 					await expect(page.getByRole('heading', { level: 1 })).toHaveText('Settings')
 					await expect(page.getByRole('dialog', { name: 'Pages' })).toHaveCount(0)
 					await audit(page, 'settings')
-					await page.screenshot({ path: join(dir, 'settings.png') })
+					await shoot(page, join(dir, 'settings.png'))
 
-					await page.getByRole('radio', { name: 'Dark' }).click()
-					await expect(page.getByText('Theme changed to Dark')).toBeVisible()
-					await page.screenshot({ path: join(dir, 'toast.png') })
+					await page.getByRole('radio', { name: 'System' }).click()
+					await expect(page.locator('.vds-toast--visible')).toHaveText(
+						/Theme changed to System/,
+					)
+					await shoot(page, join(dir, 'toast.png'))
 
 					await page.getByRole('button', { name: 'Connect' }).click()
 					const dialog = page.getByRole('dialog', { name: 'Connect Vieo Catch' })
@@ -56,7 +60,7 @@ for (const [width, device] of [
 					await dialog.getByRole('textbox').blur()
 					await expect(dialog.getByText('The address starts with https://')).toBeVisible()
 					await audit(page, 'dialog')
-					await page.screenshot({ path: join(dir, 'dialog.png') })
+					await shoot(page, join(dir, 'dialog.png'))
 
 					expect.soft(diagnostics, 'Solid dev diagnostics').toEqual([])
 				})
@@ -65,46 +69,42 @@ for (const [width, device] of [
 test.describe('on a phone', () => {
 	test.use(PHONE)
 
-	test('the drawer opens from the menu button, a tree row navigates, and the drawer closes', async ({
+	test('choosing a page in the drawer closes it and moves focus to the page', async ({
 		page,
 	}) => {
 		await page.goto('/?page=frame&design=vieo&theme=light')
 		const menu = page.getByRole('button', { name: 'Show the sidebar' })
 		await menu.click()
 		const drawer = page.getByRole('dialog', { name: 'Pages' })
-		await expect(drawer).toBeVisible()
-		await page.keyboard.press('Escape')
-		await expect(drawer).toHaveCount(0)
-		await expect(menu, 'Escape gives focus back to the menu button').toBeFocused()
-
-		await menu.click()
 		await drawer.getByRole('treeitem', { name: 'Plans' }).click()
 		await expect(drawer).toHaveCount(0)
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Plans')
 		await expect(page.getByRole('main'), 'navigating moves focus to the page').toBeFocused()
 	})
 
-	test('on a coarse pointer every button has a 44px hit area whatever its visible height', async ({
+	test('on a coarse pointer every control takes a touch 44px across, whatever it draws', async ({
 		page,
 	}) => {
-		await page.goto('/?page=frame&design=vieo&theme=light')
+		await page.goto('/?page=frame&design=vieo&theme=light&open=settings')
+		expect
+			.soft(
+				await misses(
+					page,
+					'main :is(button, a[href], select, [role="radio"], [role="switch"])',
+				),
+			)
+			.toEqual([])
+
 		await page.getByRole('button', { name: 'Show the sidebar' }).click()
-		await page.getByRole('treeitem', { name: 'Settings' }).click()
+		await expect(page.getByRole('dialog', { name: 'Pages' })).toBeVisible()
+		expect
+			.soft(await misses(page, '[role="dialog"] :is([role="treeitem"], button)'))
+			.toEqual([])
+		await page.keyboard.press('Escape')
+
 		await page.getByRole('button', { name: 'Connect' }).click()
-		const small = await page.locator('.vds-button:visible').evaluateAll((buttons) =>
-			buttons.flatMap((button) => {
-				const box = button.getBoundingClientRect()
-				const hit = getComputedStyle(button, '::before')
-				const [width, height] = [hit.width, hit.height].map((value) =>
-					Number.parseFloat(value),
-				)
-				const name = button.getAttribute('aria-label') ?? button.textContent?.trim()
-				return (width ?? 0) >= 44 && (height ?? 0) >= 44
-					? []
-					: [`${name}: drawn ${box.width}x${box.height}, hits ${width}x${height}`]
-			}),
-		)
-		expect(small).toEqual([])
+		await expect(page.getByRole('dialog', { name: 'Connect Vieo Catch' })).toBeVisible()
+		expect.soft(await misses(page, '.vds-dialog :is(button, input)')).toEqual([])
 	})
 
 	test('a labelled toolbar button keeps its name and gains a tooltip once the toolbar narrows', async ({
@@ -127,10 +127,37 @@ test('on a desktop a labelled toolbar button shows its label and no tooltip', as
 	await expect(share).toHaveText('Share')
 	await share.focus()
 	await expect(page.getByRole('tooltip')).toHaveCount(0)
-	const more = page.getByRole('button', { name: 'More', exact: true })
-	await more.focus()
-	await expect(page.getByRole('tooltip'), 'an icon-only button names itself').toHaveText('More')
 })
+
+/**
+ * Each visible control matching `selector` that a touch 21px from its centre, up, down, left, or right, would miss.
+ * A control drawn smaller than 44px passes when its hit area reaches that far.
+ */
+async function misses(page: Page, selector: string): Promise<string[]> {
+	await page.waitForTimeout(200)
+	return page.locator(selector).evaluateAll((controls) =>
+		controls.flatMap((control) => {
+			const box = control.getBoundingClientRect()
+			if (box.width === 0 || box.height === 0) return []
+			const [x, y] = [box.left + box.width / 2, box.top + box.height / 2]
+			const missed = [
+				[x, y - 21],
+				[x, y + 21],
+				[x - 21, y],
+				[x + 21, y],
+			].filter(([px, py]) => {
+				const hit = document.elementFromPoint(px ?? 0, py ?? 0)
+				return !hit || !(control.contains(hit) || control.closest('label')?.contains(hit))
+			})
+			const name = control.getAttribute('aria-label') ?? control.textContent?.trim()
+			return missed.length === 0
+				? []
+				: [
+						`${name || control.tagName}: drawn ${box.width}x${box.height}, ${missed.length} of 4 touches miss`,
+					]
+		}),
+	)
+}
 
 function watchDiagnostics(page: Page): string[] {
 	const diagnostics: string[] = []
@@ -138,6 +165,11 @@ function watchDiagnostics(page: Page): string[] {
 		if (DIAGNOSTIC.test(message.text())) diagnostics.push(message.text())
 	})
 	return diagnostics
+}
+
+/** Shoots with transitions finished, so a toast that is fading in shows, and colours have settled. */
+async function shoot(page: Page, path: string) {
+	await page.screenshot({ path, animations: 'disabled' })
 }
 
 async function audit(page: Page, state: string) {

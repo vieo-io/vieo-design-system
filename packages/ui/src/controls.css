@@ -137,6 +137,7 @@
 }
 
 .vds-segmented__option {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 	gap: var(--space-1);
@@ -166,4 +167,16 @@
 .vds-segmented__option:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
+}
+
+@media (pointer: coarse) {
+	.vds-segmented__option::before {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		height: max(100%, var(--hit-min));
+		content: "";
+		transform: translateY(-50%);
+	}
 }

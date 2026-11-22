@@ -2,7 +2,7 @@
 	position: fixed;
 	inset: 0;
 	z-index: var(--z-dialog);
-	background: rgb(0 0 0 / 40%);
+	background: var(--scrim);
 }
 
 .vds-dialog {
@@ -19,10 +19,26 @@
 	padding: var(--space-5);
 	border: 1px solid var(--border);
 	border-radius: var(--radius-lg);
-	background: var(--bg-elev);
+	background: var(--raised);
 	color: var(--text);
 	box-shadow: var(--shadow-pop);
 	transform: translate(-50%, -50%);
+}
+
+/* A phone shows a dialog as a sheet from the bottom edge. */
+@media (max-width: 639.98px) {
+	.vds-dialog {
+		top: auto;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: auto;
+		max-height: 90dvh;
+		padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom));
+		border-width: 1px 0 0;
+		border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+		transform: none;
+	}
 }
 
 .vds-dialog:focus {
@@ -32,7 +48,7 @@
 .vds-dialog__title {
 	margin: 0;
 	font-family: var(--font-family-display);
-	font-size: var(--font-title);
+	font-size: var(--font-ui);
 	font-weight: var(--weight-strong);
 	letter-spacing: var(--tracking-title);
 }

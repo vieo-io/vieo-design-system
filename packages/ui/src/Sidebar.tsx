@@ -75,7 +75,9 @@ export function Sidebar(props: SidebarProps) {
 			if (
 				event.key.toLowerCase() !== 'b' ||
 				!(event.metaKey || event.ctrlKey) ||
-				event.altKey
+				event.altKey ||
+				event.shiftKey ||
+				editable(event.target)
 			)
 				return
 			event.preventDefault()
@@ -151,4 +153,12 @@ function createNarrow(breakpoint: () => number): () => boolean {
 		return () => query.removeEventListener('change', update)
 	})
 	return narrow
+}
+
+/** A text field or rich-text editor, where Mod-B belongs to the text. */
+function editable(target: EventTarget | null): boolean {
+	return (
+		target instanceof HTMLElement &&
+		(target.isContentEditable || target.matches('input, textarea, select'))
+	)
 }

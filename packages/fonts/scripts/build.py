@@ -70,14 +70,24 @@ def build(sources: dict, source_dir: Path) -> None:
 
 
 def check(sources: dict) -> list[str]:
-    """Every file fonts.css names exists and keeps its family's features, and every family ships its licence."""
+    """Every file fonts.css names exists, each family's face has its name and keeps its features, and ships its licence."""
     problems = []
-    named = re.findall(r"url\([\"']\./fonts/([^\"']+)[\"']\)", CSS.read_text())
-    if not named:
+    faces = dict(
+        (file, name)
+        for name, file in re.findall(
+            r"font-family:\s*[\"']([^\"']+)[\"'];\s*src:\s*url\([\"']\./fonts/([^\"']+)[\"']\)", CSS.read_text()
+        )
+    )
+    if not faces:
         problems.append("fonts.css names no font files")
+    for file in faces:
+        if not (FONTS / file).exists():
+            problems.append(f"fonts.css names {file}, which is missing")
     for family in sources["families"]:
-        if family["file"] not in named:
+        if family["file"] not in faces:
             problems.append(f"fonts.css has no face for {family['family']}")
+        elif faces[family["file"]] != family["family"]:
+            problems.append(f"{family['file']} is named {faces[family['file']]} in fonts.css, not {family['family']}")
         path = FONTS / family["file"]
         if not path.exists():
             problems.append(f"{path.name} is missing")
