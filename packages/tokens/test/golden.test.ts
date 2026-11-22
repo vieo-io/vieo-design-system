@@ -14,7 +14,7 @@ const CHANGED: Record<string, Record<string, string>> = {
 
 const FIXTURES = fileURLToPath(new URL('./fixtures/', import.meta.url))
 
-/** Designs the package added after the apps, which no app has yet. */
+/** Designs no app fixture carries. */
 const PACKAGE_OWN = /data-design='vieo'/
 
 const SOURCE = loadSource(fileURLToPath(new URL('../src', import.meta.url)))

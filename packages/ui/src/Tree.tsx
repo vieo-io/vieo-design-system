@@ -14,7 +14,7 @@ export type TreeNode = {
 }
 
 export type TreeProps = {
-	/** Buttons that show at the row's end on hover and focus. */
+	/** Buttons at the row's end, shown on hover and focus, and always on a touch screen. */
 	actions?: (node: TreeNode) => JSX.Element
 	/** The id of the open page, marked `aria-current`. */
 	current?: string
@@ -23,7 +23,7 @@ export type TreeProps = {
 	label: string
 	nodes: TreeNode[]
 	onExpandedChange: (id: string, open: boolean) => void
-	/** A row was chosen, by click or by Enter. */
+	/** A row was chosen, by click, Enter, or Space. */
 	onOpen: (node: TreeNode) => void
 }
 

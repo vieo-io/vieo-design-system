@@ -26,7 +26,6 @@ function isApple(): boolean {
 	return typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 }
 
-/** A letter in capitals, as keycaps print it, and a named key such as Enter with a capital. */
 function keyName(key: string): string {
 	return key.length === 1 ? key.toUpperCase() : key.charAt(0).toUpperCase() + key.slice(1)
 }

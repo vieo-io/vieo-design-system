@@ -16,7 +16,7 @@ export type ToolbarProps = {
 
 const CONTROLS = 'button, a[href], input, select, textarea, [role="button"], [role="switch"]'
 
-/** Typing keys that a text field keeps for itself. */
+/** Fields whose arrow keys move within them, which the toolbar leaves alone. */
 const TEXT_ENTRY = 'input:not([type="button"], [type="checkbox"], [type="radio"]), textarea, select'
 
 /**

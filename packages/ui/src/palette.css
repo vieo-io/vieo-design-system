@@ -68,6 +68,7 @@
 .vds-palette__hint {
 	color: var(--muted);
 	font-family: var(--font-family-mono);
+	font-feature-settings: var(--font-features-mono);
 	font-size: var(--font-xs);
 }
 

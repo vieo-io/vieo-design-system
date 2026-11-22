@@ -128,11 +128,12 @@ code {
 }
 
 .gallery-link {
-	color: var(--accent);
+	color: var(--text);
+	text-decoration: underline;
+	text-underline-offset: 2px;
 	font-size: var(--font-sm);
 }
 
-/* The App frame page. */
 .frame-scroll {
 	flex: 1;
 	min-height: 0;

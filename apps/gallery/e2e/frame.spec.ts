@@ -36,7 +36,7 @@ for (const [width, device] of [
 					await shoot(page, join(dir, 'note.png'))
 
 					if (width === 'phone') {
-						await page.getByRole('button', { name: 'Show the sidebar' }).click()
+						await page.getByRole('button', { name: 'Toggle the sidebar' }).click()
 						await expect(page.getByRole('dialog', { name: 'Pages' })).toBeVisible()
 						await audit(page, 'drawer')
 						await shoot(page, join(dir, 'drawer.png'))
@@ -58,7 +58,9 @@ for (const [width, device] of [
 					await expect(dialog).toBeVisible()
 					await dialog.getByRole('textbox').fill('http://desk')
 					await dialog.getByRole('textbox').blur()
-					await expect(dialog.getByText('The address starts with https://')).toBeVisible()
+					await expect(
+						dialog.getByText('The address must start with https://'),
+					).toBeVisible()
 					await audit(page, 'dialog')
 					await shoot(page, join(dir, 'dialog.png'))
 
@@ -73,7 +75,7 @@ test.describe('on a phone', () => {
 		page,
 	}) => {
 		await page.goto('/?page=frame&design=vieo&theme=light')
-		const menu = page.getByRole('button', { name: 'Show the sidebar' })
+		const menu = page.getByRole('button', { name: 'Toggle the sidebar' })
 		await menu.click()
 		const drawer = page.getByRole('dialog', { name: 'Pages' })
 		await drawer.getByRole('treeitem', { name: 'Plans' }).click()
@@ -82,7 +84,7 @@ test.describe('on a phone', () => {
 		await expect(page.getByRole('main'), 'navigating moves focus to the page').toBeFocused()
 	})
 
-	test('on a coarse pointer every control takes a touch 44px across, whatever it draws', async ({
+	test('on a coarse pointer a touch 21px from the centre of any control still reaches it, whatever it draws', async ({
 		page,
 	}) => {
 		await page.goto('/?page=frame&design=vieo&theme=light&open=settings')
@@ -95,7 +97,7 @@ test.describe('on a phone', () => {
 			)
 			.toEqual([])
 
-		await page.getByRole('button', { name: 'Show the sidebar' }).click()
+		await page.getByRole('button', { name: 'Toggle the sidebar' }).click()
 		await expect(page.getByRole('dialog', { name: 'Pages' })).toBeVisible()
 		expect
 			.soft(await misses(page, '[role="dialog"] :is([role="treeitem"], button)'))
@@ -107,7 +109,7 @@ test.describe('on a phone', () => {
 		expect.soft(await misses(page, '.vds-dialog :is(button, input)')).toEqual([])
 	})
 
-	test('a labelled toolbar button keeps its name and gains a tooltip once the toolbar narrows', async ({
+	test('on a phone a labelled toolbar button shows only its icon, keeps its name, and gains a tooltip', async ({
 		page,
 	}) => {
 		await page.goto('/?page=frame&design=vieo&theme=light')
@@ -146,7 +148,7 @@ async function audit(page: Page, state: string) {
 
 /**
  * Each visible control matching `selector` that a touch 21px from its centre, up, down, left, or right, would miss.
- * A control drawn smaller than 44px passes when its hit area reaches that far.
+ * A control drawn smaller passes when its hit area reaches that far.
  */
 async function misses(page: Page, selector: string): Promise<string[]> {
 	await page.waitForTimeout(200)

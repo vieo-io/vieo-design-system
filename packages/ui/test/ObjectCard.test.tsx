@@ -29,10 +29,11 @@ describe('ObjectCard', () => {
 		expect(
 			screen.getByRole('article', { name: 'Speaker labels drift after an hour' }),
 		).toBeTruthy()
-		fireEvent.click(
+		const followed = fireEvent.click(
 			screen.getByRole('link', { name: 'Open Speaker labels drift after an hour' }),
 		)
 		expect(onOpen).toHaveBeenCalledWith(CARD)
+		expect(followed, 'the link is cancelled').toBe(false)
 	})
 
 	it('without a host to hand it to, Open follows the link', () => {

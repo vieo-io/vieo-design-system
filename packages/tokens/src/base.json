@@ -156,7 +156,7 @@
 		"font-features-ui": {
 			"$type": "fontFeatures",
 			"$value": "normal",
-			"$description": "The UI face's OpenType features, set with the face so another face never inherits them"
+			"$description": "The UI face's OpenType features, for wherever `--font-family-ui` is set"
 		},
 		"font-features-mono": {
 			"$type": "fontFeatures",

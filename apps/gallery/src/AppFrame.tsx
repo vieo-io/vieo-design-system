@@ -86,7 +86,6 @@ const PAGES: TreeNode[] = [
 
 const THEMES = ['system', 'light', 'dark']
 
-/** The components together as an app window: a sidebar tree, a toolbar, pages, settings, a dialog, and toasts. */
 export function AppFrame() {
 	const [look, setLook] = createSignal(lookFromUrl())
 	applyLook(lookFromUrl())
@@ -177,7 +176,7 @@ export function AppFrame() {
 					leading={
 						<IconButton
 							icon='menu'
-							label='Show the sidebar'
+							label='Toggle the sidebar'
 							variant='ghost'
 							onClick={() => {
 								if (matchMedia('(max-width: 639.98px)').matches) setDrawer(true)
@@ -296,8 +295,7 @@ export function AppFrame() {
 								</p>
 								<For each={CARDS}>{(card) => <ObjectCard card={card} />}</For>
 								<p>
-									Press <Kbd keys='Mod+K' /> for the palette, and{' '}
-									<Kbd keys='Mod+B' /> to hide the sidebar.
+									Press <Kbd keys='Mod+B' /> to hide the sidebar.
 								</p>
 							</article>
 						</Match>

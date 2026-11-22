@@ -105,7 +105,6 @@
 	outline: none;
 }
 
-/* Below the breakpoint the sidebar is a drawer over the page. */
 .vds-drawer-scrim {
 	position: fixed;
 	inset: 0;

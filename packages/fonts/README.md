@@ -1,14 +1,14 @@
 # @vieo-io/fonts
 
 The Vieo design's fonts: Inter for the interface and JetBrains Mono for code, as Latin subsets of the upstream
-releases with every OpenType feature kept. Fontsource's builds drop `cv11`, `zero`, and `case`, which the Vieo design
-sets, so these come from Google Fonts' repository instead.
+releases in Google Fonts' repository, with every OpenType feature kept: `cv11` and `ss02`, which the Vieo design sets,
+and `zero`, `case`, and `tnum` for whoever wants them.
 
 ```css
 @import "@vieo-io/fonts/fonts.css";
 ```
 
-Load it before `@vieo-io/tokens`. The faces are named `Inter` and `JetBrains Mono`, the names the Vieo design's
+The faces are named `Inter` and `JetBrains Mono`, the names the Vieo design's
 `--font-family-ui` and `--font-family-mono` ask for, so they take the place of any copy installed on the machine.
 
 Each family's licence is the OFL text beside `fonts.css`. `sources.json` records where each file came from and the

@@ -6,7 +6,7 @@ import { Toolbar } from '../src/Toolbar'
 import { settle } from './settle'
 
 describe('Toolbar', () => {
-	it('arrow keys move between toolbar buttons and tab leaves the toolbar', async () => {
+	it('arrow keys move between toolbar buttons, and the toolbar is one tab stop', async () => {
 		render(() => (
 			<>
 				<Toolbar label='Page' title='Release notes' leading={<Button>Back</Button>}>

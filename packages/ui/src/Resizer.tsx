@@ -51,7 +51,7 @@ export function Resizer(props: ResizerProps) {
 		handle.addEventListener('pointercancel', onUp)
 	}
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: an <hr> can't take focus or keys, and the pattern is a focusable separator.
+		// biome-ignore lint/a11y/useSemanticElements: a window splitter is a separator with a value and a tab stop, which an <hr> doesn't announce.
 		<div
 			class='vds-resizer'
 			role='separator'

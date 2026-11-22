@@ -1,12 +1,11 @@
 import { Button, TextField, toast } from '@vieo-io/ui'
 import { createSignal } from 'solid-js'
 
-/** Pairing with Catch: a link out, a field for the address, and its check. */
 export function ConnectForm(props: { onDone: () => void }) {
 	const [address, setAddress] = createSignal('')
 	const error = () =>
 		address() && !address().startsWith('https://')
-			? 'The address starts with https://'
+			? 'The address must start with https://'
 			: undefined
 	return (
 		<div class='frame-form'>
