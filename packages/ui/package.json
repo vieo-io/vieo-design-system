@@ -1,6 +1,6 @@
 {
 	"name": "@vieo-io/ui",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Vieo's components in Solid 2.0, styled by @vieo-io/tokens",
 	"license": "MPL-2.0",
 	"type": "module",
@@ -30,7 +30,7 @@
 	},
 	"peerDependencies": {
 		"@solidjs/web": "^2.0.3",
-		"@vieo-io/tokens": "^0.1.0",
+		"@vieo-io/tokens": "^0.2.0",
 		"solid-js": "^2.0.3"
 	},
 	"dependencies": {

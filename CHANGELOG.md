@@ -2,7 +2,7 @@
 
 What changed in Vieo's shared design packages. Each package has its own version, named in each release heading.
 
-## Unreleased
+## @vieo-io/tokens 0.2.0 and @vieo-io/ui 0.2.0 (2026-11-22)
 
 ### Added
 
