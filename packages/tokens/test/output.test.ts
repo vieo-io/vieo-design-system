@@ -58,12 +58,14 @@ describe('the generated css', () => {
 		},
 	)
 
-	it('the touch floor comes after every design block', () => {
-		const all = rules(renderDesignsCss(SOURCE))
-		expect(all.at(-1)?.where).toBe('@media (pointer: coarse) :root[data-design]')
-		expect(all.at(-1)?.body).toBe(
-			'--control-height: 44px;--control-height-sm: 40px;--row-height: 44px',
+	it("the touch floor comes after every design's own blocks, and Vieo's touch heights after the floor", () => {
+		const all = rules(renderDesignsCss(SOURCE)).map(({ where }) => where)
+		const floor = all.indexOf('@media (pointer: coarse) :root[data-design]')
+		const lastDesign = all.findLastIndex(
+			(where) => !where.startsWith('@media (pointer: coarse)'),
 		)
+		expect(floor).toBeGreaterThan(lastDesign)
+		expect(all.slice(floor + 1)).toEqual(["@media (pointer: coarse) :root[data-design='vieo']"])
 	})
 
 	it('classic writes no data-design block, and paper no data-palette block', () => {

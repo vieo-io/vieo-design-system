@@ -79,6 +79,11 @@
 }
 
 @media (pointer: coarse) {
+	/* A native select can't hold a touch area larger than itself. */
+	.vds-select__input {
+		min-height: var(--hit-min);
+	}
+
 	.vds-switch::before,
 	.vds-checkbox__input::before {
 		position: absolute;

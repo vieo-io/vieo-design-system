@@ -66,6 +66,7 @@
 }
 
 @media (pointer: coarse) {
+	.vds-app-switcher,
 	.vds-app-switcher__menu .vds-menu__item {
 		min-height: var(--hit-min);
 	}

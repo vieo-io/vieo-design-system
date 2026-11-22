@@ -8,6 +8,8 @@ export type Layer = {
 	tokens: Token[]
 }
 
+export type Design = Look & { coarse: Layer }
+
 export type Look = {
 	name: string
 	default: Layer
@@ -18,8 +20,8 @@ export type Source = {
 	base: Token[]
 	dark: Layer
 	/** What every design starts from, and the touch floor restated after them all. */
-	designBase: Look & { coarse: Layer }
-	designs: Look[]
+	designBase: Design
+	designs: Design[]
 	palettes: Look[]
 	order: { designs: string[]; palettes: string[] }
 }
@@ -38,6 +40,9 @@ type RawToken = { $type?: TokenType; $value: string; $description?: string }
 
 type Tree = Record<string, Record<string, RawToken>>
 
+/** What a design's own coarse mode may set: the heights a control's touch area surrounds. */
+const DESIGN_COARSE_TOKENS = ['control-height', 'control-height-sm']
+
 export const REFERENCE = /\{([a-z][a-z0-9-]*)\.([a-z][a-z0-9-]*)\}/g
 
 export class SourceError extends Error {
@@ -50,10 +55,18 @@ export function loadSource(dir: string): Source {
 	const known = new Map(base.map((token) => [token.name, token]))
 	const order = validator.read(dir, 'order.json', 'order') as unknown as Source['order']
 
-	const look = (file: string): Look & { coarse: Layer } => {
+	const look = (file: string): Design => {
 		const modes = validator.read(dir, file, 'modes') as unknown as Record<string, Tree>
-		if (modes.coarse && file !== 'designs/base.json')
-			throw new SourceError(`${file}: only designs/base.json may set a coarse mode`)
+		if (modes.coarse && !file.startsWith('designs/'))
+			throw new SourceError(`${file}: only a design may set a coarse mode`)
+		const controlsOnly = file !== 'designs/base.json'
+		const stray = Object.values(modes.coarse ?? {})
+			.flatMap((group) => Object.keys(group))
+			.find((name) => controlsOnly && !DESIGN_COARSE_TOKENS.includes(name))
+		if (stray)
+			throw new SourceError(
+				`${file}: a coarse mode sets only ${DESIGN_COARSE_TOKENS.join(' and ')}, not ${stray}`,
+			)
 		const own = new Map(known)
 		const layer = (mode: string) =>
 			overrides(modes[mode] ?? {}, `${file}: ${mode}`, base, own, mode === 'default')

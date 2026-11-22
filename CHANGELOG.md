@@ -4,6 +4,11 @@ What changed in Vieo's shared design packages. Each package has its own version,
 
 ## Unreleased
 
+### Changed
+
+- `@vieo-io/tokens`: on a phone, Vieo draws its controls at 36px, 32px small, as the mockup did. Each still takes a 44px touch, and rows stay 44px tall. A design may now set its own control heights for a coarse pointer, and nothing else there.
+- `@vieo-io/ui`: on a phone, text fields, selects, and the app switcher are at least 44px tall in every design, and buttons in a toolbar or a sidebar row stand far enough apart for each to take its 44px touch.
+
 ## @vieo-io/tokens 0.1.0, @vieo-io/ui 0.1.0, and @vieo-io/fonts 0.1.0 (2026-11-22)
 
 ### Added

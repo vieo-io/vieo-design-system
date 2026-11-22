@@ -113,8 +113,11 @@ into Literata turns a transcript into a row of shapes. Numbers in tables, timers
 - `--z-raised`, `--z-sticky`, `--z-overlay`, `--z-popover`, `--z-dialog`, and `--z-toast`, lowest to highest. A
   component takes the layer it belongs to rather than a number of its own.
 
-On a coarse pointer, every design keeps controls and rows at least 44px tall. A design may widen a touch target, and
-never shrink one.
+On a coarse pointer, every control takes a touch over at least `--hit-min`, 44px, whatever it draws, and rows stay at
+least 44px tall. Buttons, checkboxes, switches, and segmented options hold a touch area larger than themselves, so a
+design may draw them shorter: its coarse mode may set `--control-height` and `--control-height-sm`, and nothing else.
+Buttons drawn shorter stand far enough apart that their touch areas don't overlap. A text field, a select, and the app
+switcher can't hold a larger area, so they draw at least 44px tall.
 
 ## The designs
 
@@ -153,7 +156,8 @@ The type is Inter with its single-storey a (`cv11`) and the disambiguation set (
 14px for the chrome, 13px secondary, 12px smallest, 24px titles, and 16px reading text at a line height of 1.6. Rows
 are 30px.
 
-On a coarse pointer it keeps the 44px floor every design has.
+On a coarse pointer its controls draw at 36px, 32px small, inside the 44px touch area every control has. Fields,
+selects, and rows stay 44px tall.
 
 ## What to avoid
 

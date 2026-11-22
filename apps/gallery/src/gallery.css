@@ -52,6 +52,12 @@ code {
 	font: inherit;
 }
 
+@media (pointer: coarse) {
+	.gallery-field select {
+		min-height: var(--hit-min);
+	}
+}
+
 .gallery {
 	display: flex;
 	flex-direction: column;

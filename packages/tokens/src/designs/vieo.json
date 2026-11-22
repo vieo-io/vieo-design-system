@@ -148,5 +148,15 @@
 				"$value": "0 16px 40px rgb(0 0 0 / 50%), 0 0 0 1px {color.border}"
 			}
 		}
+	},
+	"coarse": {
+		"size": {
+			"control-height": {
+				"$value": "36px"
+			},
+			"control-height-sm": {
+				"$value": "32px"
+			}
+		}
 	}
 }

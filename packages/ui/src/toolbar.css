@@ -44,3 +44,11 @@
 	color: var(--muted);
 	font-size: var(--font-sm);
 }
+
+/* A design may draw buttons under --hit-min, so neighbours stand far enough apart for each touch area. */
+@media (pointer: coarse) {
+	.vds-toolbar__leading,
+	.vds-toolbar__actions {
+		gap: max(var(--space-1), calc(var(--hit-min) - var(--control-height)));
+	}
+}

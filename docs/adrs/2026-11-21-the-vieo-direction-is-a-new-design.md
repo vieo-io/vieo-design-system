@@ -27,9 +27,10 @@ along with `--font-prose`, `--line-prose`, the two font-feature tokens, `--hit-m
   selectors as the package's own.
 - The Vieo app defaults to it. Making it the base for every app later means one release per app, with a screenshot
   review of each.
-- On a coarse pointer Vieo keeps the 44px floor for controls, as every design does. The mockup drew phone buttons at
-  36px with a 44px hit area around them, which would need the rule reworded and the generator to accept a design's
-  own touch values.
+- On a coarse pointer Vieo draws controls at 36px, 32px small, inside a 44px touch area, as the mockup drew them.
+  Callum chose this on 2026-11-22, and a design's coarse mode may now set its two control heights and nothing else.
+  Fields, selects, and rows stay 44px tall, because they can't hold a larger touch area. An app that offers Vieo needs
+  its own touch areas around its buttons before it takes `@vieo-io/tokens` 0.2.0.
 
 ## Considered options
 

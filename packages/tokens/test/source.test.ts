@@ -194,12 +194,21 @@ describe('the source', () => {
 		)
 	})
 
-	it('a coarse mode outside the design base is refused', () => {
+	it("a design's coarse mode setting anything but control heights is refused", () => {
 		const dir = sourceWith('designs/aurora.json', (json) => {
-			json.coarse = { size: { 'row-height': { $value: '99px' } } }
+			json.coarse = { size: { 'row-height': { $value: '36px' } } }
 		})
 		expect(() => loadSource(dir)).toThrow(
-			'designs/aurora.json: only designs/base.json may set a coarse mode',
+			'designs/aurora.json: a coarse mode sets only control-height and control-height-sm, not row-height',
+		)
+	})
+
+	it('a coarse mode in a palette is refused', () => {
+		const dir = sourceWith('palettes/rose.json', (json) => {
+			json.coarse = { size: { 'control-height': { $value: '36px' } } }
+		})
+		expect(() => loadSource(dir)).toThrow(
+			'palettes/rose.json: only a design may set a coarse mode',
 		)
 	})
 

@@ -45,8 +45,9 @@ export function layersFor(source: Source, context: Context): Layer[] {
 		[2, 4, design?.default],
 		[3, 5, dark ? design?.dark : undefined],
 		[2, 6, designed && context.coarse ? source.designBase.coarse : undefined],
-		[2, 7, palette?.default],
-		[3, 8, dark ? palette?.dark : undefined],
+		[2, 7, context.coarse ? design?.coarse : undefined],
+		[2, 8, palette?.default],
+		[3, 9, dark ? palette?.dark : undefined],
 	]
 	return blocks
 		.filter((block): block is [number, number, Layer] => block[2] !== undefined)

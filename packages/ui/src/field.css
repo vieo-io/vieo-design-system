@@ -59,3 +59,10 @@
 	color: var(--danger);
 	font-size: var(--font-sm);
 }
+
+/* An input can't hold a touch area larger than itself. */
+@media (pointer: coarse) {
+	.vds-field__input {
+		min-height: var(--hit-min);
+	}
+}

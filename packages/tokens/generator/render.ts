@@ -17,6 +17,12 @@ export function renderDesignsCss(source: Source): string {
 				look(`:root[data-design='${design.name}']`, design),
 			),
 			media('(pointer: coarse)', block(':root[data-design]', source.designBase.coarse)),
+			...source.designs.map((design) =>
+				media(
+					'(pointer: coarse)',
+					block(`:root[data-design='${design.name}']`, design.coarse),
+				),
+			),
 		]
 			.filter(Boolean)
 			.join('\n')

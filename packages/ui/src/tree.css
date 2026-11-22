@@ -82,8 +82,11 @@
 }
 
 @media (pointer: coarse) {
+	/* Each button's touch area keeps clear of its neighbour's and of the scrolling sidebar's edge, which clips it. */
 	.vds-tree__actions {
 		display: inline-flex;
+		gap: max(var(--space-1), calc(var(--hit-min) - var(--control-height-sm)));
+		margin-right: 0;
 	}
 
 	.vds-tree__item:has(> .vds-tree__actions) > .vds-tree__end {
