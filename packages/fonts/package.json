@@ -1,6 +1,6 @@
 {
 	"name": "@vieo-io/fonts",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "The Vieo design's fonts, Geist and Geist Mono, subset from their upstream releases with every OpenType feature kept",
 	"license": "MPL-2.0 AND OFL-1.1",
 	"type": "module",
