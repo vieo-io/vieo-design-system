@@ -2,7 +2,11 @@
 
 What changed in Vieo's shared design packages. Each package has its own version, named in each release heading.
 
-## Unreleased
+## @vieo-io/tokens 0.1.1 (2026-11-23)
+
+### Changed
+
+- `@vieo-io/tokens`: the Vieo design is set in Geist, with Geist Mono for code, and sets no OpenType features. An app needs `@vieo-io/fonts` 0.2.0 to draw it. This is 0.3.0's font change for apps not yet ready for 0.2.0's phone controls.
 
 ## @vieo-io/tokens 0.1.0, @vieo-io/ui 0.1.0, and @vieo-io/fonts 0.1.0 (2026-11-22)
 
