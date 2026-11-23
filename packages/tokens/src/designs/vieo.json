@@ -13,13 +13,10 @@
 		},
 		"typography": {
 			"font-family-ui": {
-				"$value": "Inter, 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+				"$value": "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
 			},
 			"font-family-mono": {
-				"$value": "'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
-			},
-			"font-features-ui": {
-				"$value": "'cv11', 'ss02'"
+				"$value": "'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
 			},
 			"font-ui": {
 				"$value": "14px"

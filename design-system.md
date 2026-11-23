@@ -108,7 +108,7 @@ or a third weight is type drift, which Callum ruled a tell on 2026-11-20. Labels
 labels is another tell.
 
 Set `font-feature-settings` from `--font-features-ui` on the chrome and from `--font-features-mono` on code, never on the
-page as a whole. Features belong to a face: Literata's `ss02` swaps its letters for symbols, so Inter's `ss02` inherited
+page as a whole. Features belong to a face: Literata's `ss02` swaps its letters for symbols, so another face's `ss02` inherited
 into Literata turns a transcript into a row of shapes. Numbers in tables, timers, and timestamps take
 `font-variant-numeric: tabular-nums`.
 
@@ -141,7 +141,7 @@ switcher can't hold a larger area, so they draw at least 44px tall.
 | Design    | Character                                                                                                        |
 | --------- | ---------------------------------------------------------------------------------------------------------------- |
 | Classic   | The base values. Plain, with 36px controls and an 8px step                                                       |
-| Vieo      | The Vieo app's own. The sidebar on a ground colour, the page an inset panel, 32px controls, and Inter            |
+| Vieo      | The Vieo app's own. The sidebar on a ground colour, the page an inset panel, 32px controls, and Geist            |
 | Linear    | A surface ladder and hairlines with no resting shadow, Inter at 590                                              |
 | Aurora    | Round, with shadows tinted by the accent, and sized to be pressed. The other designs start from its measurements |
 | Slate     | Small radii and soft shadows, with an offset ring on focus                                                       |
@@ -169,9 +169,10 @@ The shell puts the sidebar on `--ground` and the page, toolbar included, on `--s
 light the ground is the raised colour and the panel the page colour. In dark they swap, so the panel reads as lifted
 rather than as a hole. Dialogs and popovers sit on `--raised`, which in dark is a step lighter than the panel.
 
-The type is Inter with its single-storey a (`cv11`) and the disambiguation set (`ss02`), and JetBrains Mono for code:
-14px for the chrome, 13px secondary, 12px smallest, 24px titles, and 16px reading text at a line height of 1.6. Rows
-are 30px.
+The type is Geist, and Geist Mono for code, with no OpenType features set. On 2026-11-23 Callum swapped them in for Inter
+and JetBrains Mono: "Change the font in the design system to Geist instead, as per the alternative option in the
+mockups". The sizes are 14px for the chrome, 13px secondary, 12px smallest, 24px titles, and 16px reading text at a line
+height of 1.6. Rows are 30px.
 
 On a coarse pointer its controls draw at 36px, 32px small, inside the 44px touch area every control has. Fields,
 selects, and rows stay 44px tall.

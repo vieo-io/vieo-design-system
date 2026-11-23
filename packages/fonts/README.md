@@ -1,14 +1,14 @@
 # @vieo-io/fonts
 
-The Vieo design's fonts: Inter for the interface and JetBrains Mono for code, as Latin subsets of the upstream
-releases in Google Fonts' repository, with every OpenType feature kept: `cv11` and `ss02`, which the Vieo design sets,
-and `zero`, `case`, and `tnum` for whoever wants them.
+The Vieo design's fonts: Geist for the interface and Geist Mono for code, as Latin subsets of the release in the
+`geist` npm package, with every OpenType feature kept. The Vieo design sets none of them, and `tnum`, `case`, and Geist's
+stylistic sets, such as the single-storey a in `ss02`, are there for whoever wants them.
 
 ```css
 @import "@vieo-io/fonts/fonts.css";
 ```
 
-The faces are named `Inter` and `JetBrains Mono`, the names the Vieo design's
+The faces are named `Geist` and `Geist Mono`, the names the Vieo design's
 `--font-family-ui` and `--font-family-mono` ask for, so they take the place of any copy installed on the machine.
 
 Each family's licence is the OFL text beside `fonts.css`. `sources.json` records where each file came from and the

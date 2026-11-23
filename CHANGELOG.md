@@ -2,6 +2,13 @@
 
 What changed in Vieo's shared design packages. Each package has its own version, named in each release heading.
 
+## Unreleased
+
+### Changed
+
+- `@vieo-io/tokens`: the Vieo design is set in Geist, with Geist Mono for code, and sets no OpenType features. An app needs `@vieo-io/fonts` 0.2.0 to draw it.
+- `@vieo-io/fonts`: Geist and Geist Mono 1.900, from the `geist` npm package, replace Inter and JetBrains Mono.
+
 ## @vieo-io/tokens 0.2.0 and @vieo-io/ui 0.2.0 (2026-11-22)
 
 ### Added

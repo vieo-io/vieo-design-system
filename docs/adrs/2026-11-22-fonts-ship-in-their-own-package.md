@@ -8,6 +8,9 @@ date: 2026-11-22
 
 ## Context
 
+The faces changed to Geist and Geist Mono in [the Vieo design is set in Geist](2026-11-23-the-vieo-design-is-set-in-geist.md).
+The rest of this decision stands.
+
 Callum picked Inter for the Vieo design: "Inset, 32/28 buttons, Inter, call it Vieo". Its look depends on OpenType
 features (`cv11` and `ss02` in the interface, `zero` in code), and the Vieo apps run in Tauri windows that may have no
 network and no copy of Inter installed. The mockup loaded upstream subsets from its own folder rather than a CDN.

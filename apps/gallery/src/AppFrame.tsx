@@ -302,7 +302,7 @@ export function AppFrame() {
 							<article class='frame-page frame-note'>
 								<p>
 									The direction is settled: the inset shell, 32px controls, and
-									Inter. <Badge tone='success'>Approved</Badge>
+									Geist. <Badge tone='success'>Approved</Badge>
 								</p>
 								<For each={CARDS}>{(card) => <ObjectCard card={card} />}</For>
 								<p>
