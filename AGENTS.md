@@ -45,6 +45,9 @@ Each package has its own version. For each one being released, `<name>` being `t
 3. From `main`, `pnpm --filter @vieo-io/<name> publish --access public`. Tokens and ui build first through
    `prepublishOnly`, and fonts ships its committed files. A ui release that needs newer tokens releases tokens first.
 
+A release for an older line, such as tokens 0.1.1 from the `tokens-0.1` branch, publishes from that branch's worktree with
+`--tag <branch> --publish-branch <branch>`, so `latest` stays on the newest release.
+
 ## Writing components
 
 Read `node_modules/solid-js/skills/solid-2.0/SKILL.md` in `packages/ui` before writing Solid. A test fails on any Solid
