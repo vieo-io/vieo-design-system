@@ -35,3 +35,5 @@ buttons at 36px on a phone, and neither app has the touch areas around its butto
   the design.
 - `@font-face` downloads a face only when a page uses it, so RLN and Catch on their own designs fetch nothing new.
 - The 0.1 branch takes fixes only until RLN and Catch move to the current tokens.
+  On 2026-11-27 both did, with touch areas around their buttons: Catch in 0.22.2 and RLN in 0.3.149, on tokens 0.3.0.
+  The branch, its tag, and the `tokens-0.1` dist-tag stay for the record, and the branch takes no more releases.
